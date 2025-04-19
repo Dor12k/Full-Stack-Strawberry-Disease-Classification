@@ -1,131 +1,123 @@
-# Project Setup Guide  
-
-Welcome! <br>
-This template repository helps you set up your project quickly. Follow the steps below to configure and start working on your project.  
-
-## 1. Navigate to the Project Folder  
-
-```
-cd my-new-project
-```
-
-## 2. Configure Git Remote
-
-Ensure the remote repository is set correctly:
-
-```
-git remote -v
-```
-
-If you need to change the remote:
-
-```
-git remote remove origin  
-git remote add origin <clone-address>
-```
 
 
-## 3. Create the .env File
 
-Since the .env file is not included in this repository (for security reasons), you need to create it manually.
+# Full-Stack Application (Django + React + DRF)
+
+This project is a full-stack web application built with **Django** and **Django Rest Framework (DRF)** for the backend, and **React** with **Vite** for the frontend. The application features user authentication, a profile page, and a dashboard.
+
+---
+
+## 🛠️ **Tech Stack**
+
+- **Backend**: Python, Django, Django Rest Framework (DRF), JWT Authentication, Custom User Model
+- **Frontend**: React, Vite, Tailwind CSS
+- **Database**: SQLite (default for Django development)
+- **Authentication**: JWT, Custom User model with a CustomUserManager
+- **Deployment**: [Insert deployment platform here if applicable, e.g., Vercel, Render]
+
+---
+
+## 🚀 **Features**
+
+- **Homepage**: Simple UI with `Sign Up` and `Sign In` buttons.
+- **Authentication**: 
+  - Custom user model for handling users.
+  - JWT authentication for secure login and registration.
+  - Pop-up modals for user sign-up and sign-in.
+- **Profile**:
+  - Registered users can navigate to their profile page.
+  - Users can update their profile information, including first name, last name, and email.
+- **Dashboard**: Accessible to logged-in users.
+
+---
+
+## ⚙️ **Setup & Installation**
+
+### Backend Setup (Django + DRF)
+Clone the repository:
+    ```bash
+
+    git clone https://github.com/yourusername/your-repository.git
+    cd your-repository/backend-drf
+
+Create a virtual environment:
     
-  #### a. Create a new ".env. file in the "backend-drf" folder. <br>
-  
-  #### b. Generate a new SECRET_KEY:
-  
-  use "https://djecrety.ir/" or run the following command in "backend-drf" folder and copy the output:
-  
-  ```
-  python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
-  ```
-  
-  #### c. Edit the .env file and add your new SECRET_KEY:
-  ```
-  DEBUG = True
-  SECRET_KEY = your-new-secret-key-here
-  ```
+    python3 -m venv venv
+    venv\Scripts\activate  # On Linux use source venv/bin/activate : 
 
-🔒 Security Configuration: SECRET_KEY
+Install dependencies:
 
-In order to securely run your Django app, you need to set the SECRET_KEY environment variable.
-
-    GitHub Actions Secrets:
-
-        Go to your GitHub repository.
-
-        Navigate to Settings > Secrets and variables > Actions.
-
-        Click New repository secret.
-
-        Name the secret SECRET_KEY.
-
-        Set its value to your Django SECRET_KEY.
-
-    .env File: Add the SECRET_KEY to your .env file in the backend directory:
-
-    SECRET_KEY=your-secret-key-here
-
-Make sure to replace your-secret-key-here with your actual secret key.
-
-You can generate a new SECRET_KEY by running the following command in a Django shell:
-
-from django.core.management.utils import get_random_secret_key
-print(get_random_secret_key())
-
-Make sure to keep your SECRET_KEY secure and never expose it publicly
-
-## 4. Set Up a Virtual Environment for the Backend
-
-Create a new virtual environment:
-
-```
-python -m venv env
-```
-
-Activate the virtual environment:
-
-On Windows:
-```
-env\Scripts\activate
-```
-On macOS/Linux:
-```
-source env/bin/activate
-```
-
-## 5. Install Backend Requirements
-
-Navigate to the root folder and install dependencies:
-
-```
 pip install -r requirements.txt
-```
 
-## 6. Install Frontend Dependencies
+Run migrations:
 
-Navigate to the frontend folder and install dependencies:
+python manage.py migrate
 
-```
-cd ../frontend-react  
+Start the Django server:
+
+    python manage.py runserver
+
+### Frontend Setup (React + Vite)
+
+    Navigate to the frontend directory:
+
+cd ../frontend-react
+
+Install dependencies:
+
 npm install
-```
 
-## 7. Open Separate Terminals for Backend and Frontend
+Start the React development server:
 
-Backend Terminal:
-```
-cd backend-drf
-python manage.py runserver
-```
+    npm run dev
 
-Frontend Terminal:
-```
-cd frontend-react
-npm run dev
-```
+---
 
-## 8. You're Ready to Go! 🚀
+## 🔐 **Authentication Flow**
 
-Your backend should now be running at http://127.0.0.1:8000/, and your frontend at http://localhost:5173/ (or another port if specified).
+- **Sign Up**: New users can create an account via the Sign Up modal.
+- **Sign In**: Existing users can log in using the Sign In modal.
+- **Profile Update**: Users can navigate to their Profile page and update their details.
+- **Dashboard**: After successful authentication, users are redirected to the Dashboard.
 
-🎉 Happy coding!
+---
+
+## 🧑‍💻 **Running Tests**
+
+- **Backend Tests (Django)**:
+  ```bash
+  pytest
+  ```
+
+- **Frontend Tests (React)**:
+  ```bash
+  npm test
+  ```
+
+---
+
+## 📦 **Deployment**
+
+- **Backend**: Deploy the Django app to your preferred hosting platform (e.g., Render, Heroku).
+- **Frontend**: Deploy the React app to Vercel or Netlify.
+
+---
+
+## 📜 **Future Enhancements**
+
+- Add password reset functionality.
+- Integrate frontend with backend API to fetch and update user profile data.
+- Implement more advanced user features like user roles, permissions, and email notifications.
+
+---
+
+## 🤝 **Contributing**
+
+- Fork the repository.
+- Create a new branch for your feature (`git checkout -b feature/your-feature`).
+- Commit your changes (`git commit -am 'Add new feature'`).
+- Push to the branch (`git push origin feature/your-feature`).
+- Open a pull request.
+
+---
+

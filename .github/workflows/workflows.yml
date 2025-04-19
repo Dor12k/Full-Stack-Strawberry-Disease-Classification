@@ -1,0 +1,64 @@
+name: Run Tests
+
+on:
+  push:
+    branches:
+      - main            # Add the main branch here
+      - update-profile  # Keep the update-profile branch for testing as well
+  pull_request:
+    branches:
+      - main            # Add the main branch here
+      - update-profile  # Keep the update-profile branch for testing as well
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Set up Python environment
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      # Set environment variables
+      - name: Set environment variables
+        run: |
+          echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> $GITHUB_ENV
+          echo "DJANGO_SETTINGS_MODULE=backend_main.settings" >> $GITHUB_ENV
+
+      # Install Python dependencies (Backend)
+      - name: Install dependencies (Backend)
+        run: |
+          cd backend-drf
+          python -m pip install --upgrade pip
+          pip install -r ../requirements.txt
+          pip install pytest pytest-django
+
+      # Run backend tests
+      - name: Run backend tests
+        run: |
+          cd backend-drf
+          pytest --maxfail=5 --disable-warnings --verbose
+
+      # Set up Node.js environment
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'  
+
+      # Install Node.js dependencies (Frontend)
+      - name: Install dependencies (Frontend)
+        run: |
+          cd frontend-react
+          npm install
+
+      # Run frontend tests
+      - name: Run frontend tests
+        run: |
+          cd frontend-react
+          npm test -- --maxWorkers=2 --ci --reporters=default

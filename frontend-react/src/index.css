@@ -1,0 +1,114 @@
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* Circuit Board Effect */
+.circuit-field {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, rgba(0, 0, 255, 0.1), rgba(0, 0, 0, 0.9)); /* Blue gradient */
+    opacity: 0.7;
+    animation: animateCircuit 1000000000000000000000000000s linear infinite; /* Slower animation */
+}
+  
+@keyframes animateCircuit {
+    0% {
+      transform: scale(1) rotate(0deg);
+    }
+    100% {
+      transform: scale(1.5) rotate(360deg);
+    }
+}
+  
+.circle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 255, 0.6); /* Blue circles */
+    animation: moveCircle 1000000s  linear infinite; /* Slower circle movement */
+}
+  
+@keyframes moveCircle {
+    0% {
+      transform: scale(0.5) translate(0, 0);
+    }
+    100% {
+      transform: scale(1) translate(5vw, 5vh);
+    }
+}
+  
+/* Glowing Text Animation */
+.animate-glow {
+    animation: glow 200s ease-in-out infinite; /* Slower glow effect */
+}
+  
+@keyframes glow {
+    0% {
+      text-shadow: 0 0 5px rgba(0, 0, 255, 0.8), 0 0 10px rgba(0, 0, 255, 0.7); /* Blue glow */
+      transform: scale(1);
+    }
+    50% {
+      text-shadow: 0 0 20px rgba(0, 0, 255, 1), 0 0 30px rgba(0, 0, 255, 1); /* Brighter blue glow */
+      transform: scale(1.1);
+    }
+    100% {
+      text-shadow: 0 0 5px rgba(0, 0, 255, 0.8), 0 0 10px rgba(0, 0, 255, 0.7);
+      transform: scale(1);
+    }
+}
+  
+/* Pulse Animation for Hero Text */
+.pulse-animation {
+    animation: pulse 10s ease-in-out infinite; /* Slower pulse effect */
+}
+  
+@keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+}
+  
+/* Glowing Hover Effect on Buttons */
+.glow-on-hover {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+  
+.glow-on-hover:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(0, 0, 255, 0.2); /* Blue glow */
+    transition: all 0.3s ease;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+}
+  
+.glow-on-hover:hover:before {
+    transform: translate(-50%, -50%) scale(1);
+    width: 400%;
+    height: 400%;
+}
+  
+/* Hover Effect on Nav Links */
+nav a:hover {
+    transform: scale(1.1);
+    color: #00f; /* Blue color on hover */
+    transition: transform 0.3s ease, color 0.3s ease;
+}

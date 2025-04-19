@@ -49,6 +49,15 @@ Install dependencies:
 
 pip install -r requirements.txt
 
+📁 Before running the project, create the following folders in backend-drf folder:
+
+    static/
+    `media/
+
+Navigate to backn=end-drf
+
+  cd backend-drf
+  
 Run migrations:
 
 python manage.py migrate

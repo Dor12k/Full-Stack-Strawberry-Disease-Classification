@@ -82,6 +82,6 @@ describe('SignInForm Integration Tests', () => {
     await waitFor(() => expect(axiosInstance.get).toHaveBeenCalledTimes(1));
     await waitFor(() => expect(mockSetUser).toHaveBeenCalled());
     await waitFor(() => expect(mockSetIsLoggedIn).toHaveBeenCalledWith(true));
-    await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith('/dashboard'));
+    await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith('/home'));
   });
 });

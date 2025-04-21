@@ -21,7 +21,7 @@ function Guest({setType, setShow, setErrors}) {
                         password: '',
                         error: '',
                       })}} 
-                    className="px-5 py-2 border border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-black transition duration-300 rounded-md glow-on-hover">
+                      className="px-5 py-2 border border-red-900 text-#252627ad hover:bg-red-800 hover:text-white transition duration-300 rounded-md shadow-md ">
                     Sign In
                 </button>
             </div>
@@ -35,7 +35,7 @@ function Guest({setType, setShow, setErrors}) {
                         password: '',
                         error: '',
                       })}}   
-                    className="px-5 py-2 bg-blue-600 text-white hover:bg-blue-500 transition duration-300 rounded-md shadow-md glow-on-hover ml-4">
+                      className="visible w-24 px-5 py-2 bg-red-800 text-white hover:bg-red-800 hover:text-white transition duration-300 rounded-md shadow-md  ml-4">
                     Sign Up
                 </button>
             </div>

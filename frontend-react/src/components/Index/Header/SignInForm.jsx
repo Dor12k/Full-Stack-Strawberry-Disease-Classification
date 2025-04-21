@@ -90,7 +90,8 @@ const SignInForm = ({errors, setErrors, setShow}) => {
         setShow(false);
         setSuccess(true);
         setIsLoggedIn(true);
-        navigate("/dashboard");
+        // navigate("/dashboard");
+        navigate("/home");
         
     }catch(error){
             console.log(error)

@@ -1,71 +1,136 @@
 
 
-// FOOTER
+
 
 
 
 import React from 'react';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebook, faTwitter, faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+
+
 const Footer = () => {
-    return (
+
+  return (
+
+    <footer className="'w-full bg-[#24262b] py-16 shadow-lg">
 
 
-        <footer className="bg-blue-950 text-white py-8">
-        <div className="container mx-auto px-6">
-          {/* Footer Top Section */}
-          <div className="flex justify-between items-center mb-6">
-            <div className="text-lg font-semibold">
-              <h4 className="text-2xl font-extrabold text-white">Future Inc.</h4>
-              <p className="text-sm">Innovating the world of AI & Computer Vision</p>
-            </div>
-            <div className="flex space-x-6">
-              {/* Social Media Icons */}
-              <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-400">
-                <i className="fab fa-linkedin fa-2x"></i>
-              </a>
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-400">
-                <i className="fab fa-github fa-2x"></i>
-              </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-400">
-                <i className="fab fa-twitter fa-2x"></i>
-              </a>
-            </div>
-          </div>
-  
-          {/* Footer Middle Section */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mb-6">
-            <div>
-              <h5 className="text-xl font-bold">Quick Links</h5>
-              <ul className="mt-4">
-                <li><a href="#" className="text-white hover:text-blue-400">About Us</a></li>
-                <li><a href="#" className="text-white hover:text-blue-400">Services</a></li>
-                <li><a href="#" className="text-white hover:text-blue-400">Contact</a></li>
-                <li><a href="#" className="text-white hover:text-blue-400">Blog</a></li>
-              </ul>
-            </div>
-            <div>
-              <h5 className="text-xl font-bold">Resources</h5>
-              <ul className="mt-4">
-                <li><a href="#" className="text-white hover:text-blue-400">Documentation</a></li>
-                <li><a href="#" className="text-white hover:text-blue-400">API Reference</a></li>
-                <li><a href="#" className="text-white hover:text-blue-400">Support</a></li>
-              </ul>
-            </div>
-            <div>
-              <h5 className="text-xl font-bold">Get In Touch</h5>
-              <p className="mt-4">Email: <a href="mailto:support@future.com" className="text-white hover:text-blue-400">support@future.com</a></p>
-              <p className="mt-2">Phone: <a href="tel:+1234567890" className="text-white hover:text-blue-400">+123-456-7890</a></p>
-            </div>
-          </div>
-  
-          {/* Footer Bottom Section */}
-          <div className="text-center text-sm">
-            <p>&copy; {new Date().getFullYear()} Future Inc. All rights reserved.</p>
-            <p className="text-sm mt-2">Built with love by the Future Inc. team</p>
+
+      <div className="container mx-auto">
+
+        {/* Subscription Section */}
+        <div className="text-center mb-12">
+          <p className="text-white text-2xl mb-6">Join the Adventure newsletter to receive our best articles news</p>
+          <p className="text-white text-xl mb-6">You can unsubscribe at any time.</p>
+          <div className="flex justify-center">
+            <form id="footerForm" className="flex items-center">
+              <input
+                type="email"
+                id="footerInput"
+                className="footer-input p-2 mr-2 rounded-md border border-white text-lg outline-none"
+                placeholder="Your Email"
+                autoComplete="off"
+              />
+              <button
+                type="submit"
+                id="footerbtn"
+                className="bg-transparent text-white border border-white py-2 px-4 rounded-md text-lg hover:bg-white hover:text-black transition-all duration-300"
+              >
+                Subscribe
+              </button>
+            </form>
           </div>
         </div>
-      </footer>
-    );
+
+        {/* Information Section */}
+        <div className="flex justify-between">
+          {/* Company Info */}
+          <div className="footer-col w-1/4 px-4">
+            <h4 className="text-white text-xl mb-6 relative">
+              Company
+              <div className="absolute bottom-[-10px] left-0 bg-[#e91e63] h-[2px] w-[50px]"></div>
+            </h4>
+            <ul>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-all">About Us</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-all">Our Services</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-all">Privacy Policy</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-all">Affiliate Program</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-all">Terms of Service</a></li>
+            </ul>
+          </div>
+
+          {/* Help Section */}
+          <div className="footer-col w-1/4 px-4">
+            <h4 className="text-white text-xl mb-6 relative">
+              Get Help
+              <div className="absolute bottom-[-10px] left-0 bg-[#e91e63] h-[2px] w-[50px]"></div>
+            </h4>
+            <ul>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-all">FAQ</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-all">Returns</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-all">Shipping</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-all">Order Status</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-all">Payment Options</a></li>
+            </ul>
+          </div>
+
+          {/* Contact Section */}
+          <div className="footer-col w-1/4 px-4">
+            <h4 className="text-white text-xl mb-6 relative">
+              Contact Us
+              <div className="absolute bottom-[-10px] left-0 bg-[#e91e63] h-[2px] w-[50px]"></div>
+            </h4>
+            <ul>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-all">Contact</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-all">Support</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-all">Destinations</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-white transition-all">Sponsorships</a></li>
+            </ul>
+          </div>
+          
+
+          {/* Social Media Section */}       
+          <div className="footer-col w-1/4 px-4 ">
+
+            <h4 className="text-white text-xl mb-6 relative">
+              Follow Us
+              <div className="absolute bottom-[-10px] left-0 bg-[#e91e63] h-[2px] w-[50px]"></div>
+            </h4>
+
+            <div className="w-full social-links flex flex-col lg:flex-row lg:justify-start items-center justify-center space-x-4">
+
+              <a href="#" className="text-white bg-gray-500 hover:bg-white hover:text-black transition-all p-2 rounded-full ml-4 lg:ml-0">
+                <FontAwesomeIcon icon={faFacebook} className='w-6' />
+              </a>
+              <a href="#" className="text-white bg-gray-500 hover:bg-white hover:text-black transition-all p-2 rounded-full">
+                <FontAwesomeIcon icon={faTwitter} className='w-6' />
+              </a>
+              <a href="#" className="text-white bg-gray-500 hover:bg-white hover:text-black transition-all p-2 rounded-full">
+                <FontAwesomeIcon icon={faInstagram} className='w-6' />
+              </a>
+              <a href="#" className="text-white bg-gray-500 hover:bg-white hover:text-black transition-all p-2 rounded-full">
+                <FontAwesomeIcon icon={faLinkedin} className='w-6' />
+              </a>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <hr className="my-12 border-t-2 border-gray-700" />
+
+        {/* Footer Bottom */}
+        <div className="social-media-wrap text-center text-gray-400 py-4">
+          <small className="text-sm">Copyright © 2024 | All rights reserved by SDC</small>
+        </div>
+      </div>
+
+    </footer>
+
+  );
 };
 
 export default Footer;

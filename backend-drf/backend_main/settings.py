@@ -13,10 +13,14 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 from decouple import config
 from datetime import timedelta
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+
+# Load environment variables from the .env file
+load_dotenv()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -88,12 +92,39 @@ WSGI_APPLICATION = 'backend_main.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+
+# SQLite
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+
+
+'''
+# PostgreSQL Database
+DATABASES = {
+
+    'default': {
+
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+
+        'NAME': os.getenv('DB_NAME'), # - Enter your database name HERE
+
+        'USER': os.getenv('DB_USER'), # - Enter your User HERE
+
+        'PASSWORD': os.getenv('DB_PASSWORD'), # - Enter your RDS password HERE
+
+        'HOST' : os.getenv('DB_HOST'), # - Enter your RDS host name HERE
+
+        'PORT': '5432',
+    }
+}
+'''
+
+
 
 
 # Password validation

@@ -10,8 +10,8 @@ function Home() {
 
     const savedUser = localStorage.getItem('user');
     const accessToken = localStorage.getItem('accessToken')
-    const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext); 
     const { userContext, setUserContext } = useContext(UserContext);
+    const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext); 
 
     savedUser
     setIsLoggedIn
@@ -26,12 +26,12 @@ function Home() {
             const response = await axiosInstance.get('/protected-view/');
             response
 
-            console.log("Dashboard view successful")
+            console.log("Home view successful")
 
         }catch(error){
             console.error('Error fetching data:', error)
             console.error('Error fetching data:', error.response.data)
-            console.log("Dashboard view failed:", error.response.data.detail)
+            console.log("Home view failed:", error.response.data.detail)
         }
     }
     fetchProtectedData();

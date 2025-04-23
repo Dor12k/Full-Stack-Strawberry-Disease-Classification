@@ -66,7 +66,7 @@ describe('Unit Tests: Profile.jsx', () => {
   test('renders profile data', () => {
     renderProfile();
     expect(screen.getByText('john_doe')).toBeInTheDocument();
-    expect(screen.getByText(/Dashboard/i)).toBeInTheDocument();
+    expect(screen.getByText(/Home/i)).toBeInTheDocument();
   });
 
   test('opens EditProfilePopup on Edit click', async () => {

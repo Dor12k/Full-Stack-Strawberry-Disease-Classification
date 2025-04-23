@@ -55,34 +55,18 @@ const SignInForm = ({errors, setErrors, setShow}) => {
     const userData = state
 
     try{
-        console.log("userData", userData)
         const response = await axios.post('http://127.0.0.1:8000/api/v1/token/', userData) 
 
         // Store token in localStorage
         console.log("Sign In successful");
         console.log("Sign In response: ", response);
 
+        const user = response.data.user
         const accessToken = response.data.access;
         const refreshToken = response.data.refresh;
 
         localStorage.setItem('accessToken', accessToken);
         localStorage.setItem('refreshToken', refreshToken);
-        
-        const decodedToken = jwtDecode(accessToken);
-        const userId = decodedToken.user_id;
-
-        // Send a GET request by user id
-        const userResponse =  await axiosInstance.get(`/users/${userId}/`, 
-            {
-                headers: {
-                    'Authorization': `Bearer ${accessToken}`,
-                }
-            })
-
-        console.log("User loaded successfully");
-        console.log("userResponse: ", userResponse);
-
-        const user = userResponse.data
         localStorage.setItem('user', JSON.stringify(user));
 
         setUser(user);
@@ -90,7 +74,6 @@ const SignInForm = ({errors, setErrors, setShow}) => {
         setShow(false);
         setSuccess(true);
         setIsLoggedIn(true);
-        // navigate("/dashboard");
         navigate("/home");
         
     }catch(error){
@@ -126,7 +109,6 @@ const SignInForm = ({errors, setErrors, setShow}) => {
                 setErrors({ error: 'An error occurred while sending the request. Please try again later.' });
             }        
     }finally{
-
         setLoading(false)
     }
   }

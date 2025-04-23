@@ -16,8 +16,6 @@ const Footer = () => {
 
     <footer className="'w-full bg-[#24262b] py-16 shadow-lg">
 
-
-
       <div className="container mx-auto">
 
         {/* Subscription Section */}

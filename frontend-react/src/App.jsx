@@ -1,22 +1,23 @@
 
 import './App.css'
 import './index.css'; 
+import Home from './pages/Home/Home';
+import HomePage from './pages/HomePage';
+import About from './pages/About/About';
 import Index from './pages/Index/Index';
 import Profile from './pages/Profile/Profile';
+import Contact from './pages/Contact/Contact';
+import Gallery from './pages/Gallery/Gallery';
+import Articles from './pages/Articles/Articles';
 import UserProvider from './context/UserContext';
-import Dashboard from './pages/Dashboard/Dashboard';
 import AuthProvider from './context/AuthContext';
 import PublicRoute from './components/auth/PublicRoute';
 import PrivateRoute from './components/auth/PrivateRoute';
 import { createBrowserRouter, RouterProvider,} from "react-router-dom";
+import Article from './pages/Article/Article';
+import AddArticle from './components/Articles/AddArticle';
 
-import About from './pages/About/About';
-import Contact from './pages/Contact/Contact';
-import Gallery from './pages/Gallery/Gallery';
-import Articles from './pages/Articles/Articles';
-import Home from './pages/Home/Home';
 
-import HomePage from './pages/HomePage';
 
 
 
@@ -29,7 +30,6 @@ const router = createBrowserRouter([
   },
   
   {
-    
     element: <PrivateRoute> <HomePage /> </PrivateRoute>,
     children: [
       {
@@ -47,6 +47,14 @@ const router = createBrowserRouter([
       {
         path: "/gallery",
         element: <Gallery />
+      },
+      {
+        path: "/articles/:slug",
+        element: <Article />
+      },
+      {
+        path: "/add-article",
+        element: <AddArticle />
       },
       {
         path: "/articles",

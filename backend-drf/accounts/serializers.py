@@ -26,7 +26,7 @@ class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
         read_only_fields = ['id', 'date_joined']
-        fields = ['id', 'username', 'email', 'password', 'new_password', 'first_name', 'last_name', 'student_id', 'profile_picture']
+        fields = ['id', 'username', 'email', 'password', 'new_password', 'first_name', 'last_name', 'student_id', 'is_staff', 'profile_picture']
 
     def create(self, validated_data):
 
@@ -160,9 +160,8 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
 
         data = super().validate(attrs)
 
-        data["user_id"] = self.user.id
-        data["email"] = self.user.email
-        data["username"] = self.user.username
+        user_serializer = CustomUserSerializer(self.user, context=self.context)
+        data['user'] = user_serializer.data
 
         return data
     

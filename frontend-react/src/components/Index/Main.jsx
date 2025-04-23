@@ -28,14 +28,14 @@ const Main = () => {
 
     const handleClick = () => {
         
-        navigate('/dashboard');  
+        navigate('/home');  
         console.log("User is a guest and can not access Dashboard page")
     };
 
 
     return (
 
-        <div className="relative min-h-screen bg-black overflow-hidden">
+        <div className="relative min-h-screen bg-black overflow-hidden ">
 
             {/* Circuit Board / Data Flow Background */}
             <div className="circuit-field absolute inset-0">

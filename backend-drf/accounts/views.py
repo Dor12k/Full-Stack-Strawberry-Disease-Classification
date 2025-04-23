@@ -16,16 +16,13 @@ from .serializers import CustomTokenObtainPairSerializer
 
 class CustomTokenObtainPairView(TokenObtainPairView):
     
-    print("🔁 CustomTokenObtainPairView CLASS LOADED")
     serializer_class = CustomTokenObtainPairSerializer
 
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
-
         if serializer.is_valid():
             return Response(serializer.validated_data, status=status.HTTP_200_OK)
         else:
-            # errors = dict(serializer.errors)
             errors = serializer.errors.copy()
             
             email = request.data.get("email", "").strip()
@@ -41,6 +38,7 @@ class CustomTokenObtainPairView(TokenObtainPairView):
                 errors,
                 status=status.HTTP_400_BAD_REQUEST
             )
+        
         
 # Register with viewsets
 class CustomUserViewSet(viewsets.ModelViewSet):

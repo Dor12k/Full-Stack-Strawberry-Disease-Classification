@@ -3,7 +3,7 @@ import React from 'react'
 import { useRef } from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react';
-import { useContext } from 'react'
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaLongArrowAltLeft } from "react-icons/fa";
 import { AuthContext } from '../../context/AuthContext'
@@ -11,7 +11,6 @@ import { UserContext } from '../../context/UserContext';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
-
 
 import axiosInstance from '../../axiosInstance'
 import UserProfileCard from '../../components/Profile/UserProfileCard';
@@ -41,7 +40,7 @@ const Profile = () => {
     useEffect(() => {
         if (user) {
             setImagePreview(user.profile_picture || '');
-            
+                    
             // Ensure refs are initialized before accessing their values
             if (usernameRef.current) {
                 usernameRef.current.value = user.username || '';
@@ -222,11 +221,11 @@ const Profile = () => {
 
                 <div className=" min-h-screen bg-gradient-to-r from-indigo-600 to-purple-700 flex flex-col items-center justify-center p-6 relative">
                     
-                    {/* Button - back to Dashboard.jsx */}
+                    {/* Button - back to home.jsx */}
                     <div className="absolute top-0 left-0 m-4">
-                        <Link to='/dashboard'>
+                        <Link to='/home'>
                             <button className="flex items-center bg-teal-600 text-white px-6 py-3 rounded-full mt-2 gap-2 text-xl hover:bg-teal-700 transition duration-300 transform hover:scale-105">
-                                <FaLongArrowAltLeft className="text-2xl" /> Dashboard
+                                <FaLongArrowAltLeft className="text-2xl" /> Home
                             </button>
                         </Link>
                     </div>

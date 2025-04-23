@@ -79,7 +79,6 @@ describe('SignInForm Integration Tests', () => {
     fireEvent.click(submitButton);
 
     await waitFor(() => expect(axios.post).toHaveBeenCalledTimes(1));
-    await waitFor(() => expect(axiosInstance.get).toHaveBeenCalledTimes(1));
     await waitFor(() => expect(mockSetUser).toHaveBeenCalled());
     await waitFor(() => expect(mockSetIsLoggedIn).toHaveBeenCalledWith(true));
     await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith('/home'));

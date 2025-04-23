@@ -112,7 +112,7 @@ const Header = () => {
                             <li key={label}>
                             <Link
                                 to={path}
-                                className="text-[#1f2121] dark:text-white text-2xl hover:text-blue-600 transition duration-300 hover:scale-110"
+                                className="text-[#1f2121] dark:text-white dark:hover:text-blue-600 text-2xl hover:text-blue-600 transition duration-300 hover:scale-110"
                             >
                                 {label}
                             </Link>
@@ -146,10 +146,6 @@ const Header = () => {
                         </div>
 
                     </div>
-
-
-
-
 
                 </nav>
                 

@@ -24,7 +24,7 @@ export const UserProvider = ({ children }) => {
             const parsedUser = JSON.parse(savedUser); 
 
             setUser(parsedUser);
-            console.log('Loaded user from localStorage:', parsedUser);
+            // console.log('Loaded user from localStorage:', parsedUser);
         }
     }, [setUser]);
     

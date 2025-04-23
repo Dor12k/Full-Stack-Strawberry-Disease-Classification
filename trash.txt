@@ -1,0 +1,620 @@
+
+
+// File name: articles.css
+
+"
+
+#article-con{
+    width: 1200px;
+    height: 100%;
+    margin: 50px auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    flex-wrap: wrap;
+}
+.article-con a, main a{
+    font-size: 20px;
+    margin-right: 10px;
+    color: #5762D5;
+    text-decoration: none;
+    transition-duration: 0.3s;
+}
+.article-con a:hover, main a:hover{
+    color: #FB6376;
+}
+.article-card{
+    background-color: #e9e6f0;
+    color: #1E1E1E;
+    border-radius: 20px;
+    width: 250px;
+}
+.article-card p{
+    font-size: 17px; 
+    margin-bottom: 10px; 
+    color: #3C404A;   
+}
+.review-con{
+    opacity: 0%;
+    position: absolute;
+    margin: 185px 0 0 15px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    z-index: 1;
+    transition-duration: 0.3s;
+    cursor: default;
+}
+.article-img{
+    height: 220px;
+    width: 250px;
+    border-radius: 20px 20px 0 0;
+    transition-duration: 0.3s;
+}
+.hover-img{
+    filter: brightness(0.4);
+}
+.hover-review{
+    opacity: 100%;
+}
+/* ----------------------------------------------------- Special cards --------------------------------------------------*/
+
+
+/* ---------------------------------------------- Horizontal Card ----------------------------- */
+.article-horizontal-card{
+    width: 560px;
+    grid-row: 1/2;
+    grid-column: 1/3;
+    color: #1E1E1E;
+    border-radius: 20px;
+    background-color: #e9e6f0;
+}
+.article-horizontal-card p{
+    font-size: 17px; 
+    margin-bottom: 10px; 
+    color: #3C404A;
+}
+.horizontal-review-con{
+    width: 560px;
+    opacity: 0%;
+    position: absolute;
+    margin: 185px 0 0 15px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    z-index: 1;
+    transition-duration: 0.3s;
+    cursor: default;
+}
+.hover-horizontal-review-con{
+    opacity: 100%;
+}
+.article-horizontal-images{
+    top: 0;
+    left: 0;
+    position: relative;
+}
+.article-horizontal-img{
+    top: 0;
+    left: 0;
+    position: relative;
+
+    width: 560px;
+    height: 220px;
+    border-radius: 20px 20px 0 0;
+    transition-duration: 0.3s;
+}
+.locker-horizontal-img{
+    display: none;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 200px;
+    height: 200px;
+    margin-top: 1px;
+    margin-left: 180px;
+    border-radius: 20px 20px 0 0;
+    transition-duration: 0.3s;
+}
+
+/* ---------------------------------------------- Vartical Card ----------------------------- */
+.article-vertical-card{
+    width: 250px;
+    height: 920px;
+    grid-row: 2/4;
+    grid-column: 4/5;
+    color: #1E1E1E;
+    border-radius: 20px;
+    background-color: #e9e6f0;
+}
+.article-vertical-card p{
+    font-size: 17px; 
+    margin-bottom: 10px; 
+    color: #3C404A;
+}
+.vertical-review-con{
+    width: 250px;
+    opacity: 0%;
+    position: absolute;
+    margin: 665px 0 0 15px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    z-index: 1;
+    transition-duration: 0.3s;
+    cursor: default;
+}
+.hover-vertical-review-con{
+    opacity: 100%;
+}
+.article-vertical-images{
+    top: 0;
+    left: 0;
+    position: relative;
+}
+.article-vertical-img{
+    top: 0;
+    left: 0;
+    position: relative;
+    height: 697px;
+    width: 250px;
+    border-radius: 20px 20px 0 0;
+    transition-duration: 0.3s;
+}
+.locker-vertical-img{
+    display: none;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 200px;
+    height: 200px;
+    margin-top: 240px;
+    margin-left: 30px;
+    border-radius: 20px 20px 0 0;
+    transition-duration: 20.8s;
+}
+
+/* ---------------------------------------------- Mid Card ----------------------------- */
+.article-mid-card{    
+    width: 560px;
+    height: 915px;
+    grid-row: 3/5;
+    grid-column: 1/3;
+    color: #1E1E1E;
+    border-radius: 20px;
+    background-color: #e9e6f0;
+}
+.article-mid-card p{
+    font-size: 17px; 
+    margin-bottom: 10px; 
+    color: #3C404A;
+}
+.mid-review-con{
+    width: 560px;
+    opacity: 0%;
+    position: absolute;
+    margin: 665px 0 0 15px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    z-index: 1;
+    transition-duration: 0.3s;
+    cursor: default;
+}
+.hover-mid-review-con{
+    opacity: 100%;
+}
+.article-mid-images{
+    top: 0;
+    left: 0;
+    position: relative;
+}
+.article-mid-img{
+    top: 0;
+    left: 0;
+    position: relative;
+    width: 560px;
+    height: 697px;
+    border-radius: 20px 20px 0 0;
+    transition-duration: 0.3s;
+}
+.locker-mid-img{
+    display: none;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 200px;
+    height: 200px;
+    margin-top: 250px;
+    margin-left: 200px;
+    border-radius: 20px 20px 0 0;
+    transition-duration: 0.3s;
+}
+
+/* ---------------------------------------------- Flat Card ----------------------------- */
+.article-flat-card{
+    width: 1173px;
+    height: 480px;
+    grid-row: 6/7;
+    grid-column: 1/5;
+    color: #1E1E1E;
+    border-radius: 20px;
+    background-color: #e9e6f0;
+}
+.article-flat-card p{
+    text-align: center;
+    font-size: 17px; 
+    margin-bottom: 10px; 
+    color: #3C404A;
+}
+.article-flat-card h3{
+    text-align: center;
+    font-size: 20px; 
+    margin-bottom: 10px; 
+    color: #3C404A;
+}
+.flat-review-con{
+    width: 1161px;
+    opacity: 0%;
+    position: absolute;
+    margin: 210px 0 0 15px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    z-index: 1;
+    transition-duration: 0.3s;
+    cursor: default;
+}
+.hover-flat-review-con{
+    opacity: 100%;
+}
+.hover-flat-review-con p{
+    text-align: left;
+}
+.article-flat-images{
+    top: 0;
+    left: 0;
+    position: relative;
+}
+.article-flat-img{
+    top: 0;
+    left: 0;
+    position: relative;
+    width: 1173px;
+    height: 250px;
+    transition-duration: 0.3s;
+    border-radius: 20px 20px 0 0;
+}
+.locker-flat-img{
+    display: none;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 200px;
+    height: 200px;
+    margin-top: 10px;
+    margin-left: 450px;
+    transition-duration: 0.3s;
+    border-radius: 20px 20px 0 0;
+}
+
+/* ---------------------------------------------- End Card ----------------------------- */
+.article-end-card{
+    width: 560px;
+    grid-row: 8/9;
+    grid-column: 3/5;
+    color: #1E1E1E;
+    border-radius: 20px;
+    background-color: #e9e6f0;
+}
+.article-end-card p{
+    font-size: 17px; 
+    margin-bottom: 10px; 
+    color: #3C404A;
+}
+.end-review-con{
+    height: 220px;
+    width: 560px;
+    opacity: 0%;
+    position: absolute;
+    margin: 185px 0 0 15px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    z-index: 1;
+    transition-duration: 0.3s;
+    cursor: default;
+}
+.hover-end-review-con{
+    opacity: 100%;
+}
+.article-end-images{
+    top: 0;
+    left: 0;
+    position: relative;
+}
+.article-end-img{
+    top: 0;
+    left: 0;
+    position: relative;
+    width: 560px;
+    height: 220px;
+    border-radius: 20px 20px 0 0;
+    transition-duration: 0.3s;
+}
+.locker-end-img{
+    display: none;
+    position: absolute;
+    top: 0px;
+    left: 0px;    
+    width: 200px;
+    height: 200px;
+    margin-top: 5px;
+    margin-left: 180px;
+    border-radius: 20px 20px 0 0;
+    transition-duration: 0.3s;
+}
+#readMore{
+    font-size: 20px;
+    margin-right: 10px;
+    color: #5762D5;
+    text-decoration: none;
+    transition-duration: 0.3s;
+    cursor: default;
+}
+
+@media (max-width: 640px) {
+
+    /* Force the layout from row to columns */
+    header.wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+    /* Reduce the image size on mobile, the most possible */
+    header.wrapper h1 img {
+        width: 180px;
+        height: auto;
+    }
+    #article-con {
+        width: 100%;
+        height: 100%;
+        margin: 50px auto;
+        display: block;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+        flex-wrap: wrap;
+    }
+    .article-card {
+        margin: 40px 20%;
+        background-color: #e9e6f0;
+        color: #1E1E1E;
+        border-radius: 20px;
+        width: 250px;
+    }
+    .article-img {
+        height: 220px;
+        width: 100%;
+        border-radius: 20px 20px 0 0;
+        transition-duration: 0.3s;
+    }
+    .article-mid-card {
+        padding: 0px;
+        margin: 10% 18% 10% 20%;
+        width: 67%;
+        height: 100%;
+        grid-row: 3 / 5;
+        grid-column: 1 / 3;
+        color: #1E1E1E;
+        border-radius: 30px;
+        background-color: #e9e6f0;
+    }
+    .mid-review-con {
+        width: 57%;
+        opacity: 0%;
+        position: absolute;
+        margin: 28% 0 0 15px;
+        font-size: 18px;
+        font-weight: bold;
+        color: white;
+        z-index: 1;
+        transition-duration: 0.3s;
+        cursor: default;
+    }
+    .article-mid-img {
+        width: 100%;
+        height: 100%;
+        grid-row: 3 / 5;
+        grid-column: 1 / 3;
+        color: #1E1E1E;
+        border-radius: 25px 25px 0px 0px;
+        background-color: #e9e6f0;
+    }
+    .locker-mid-img {
+        display: none;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 150px;
+        height: 150px;
+        margin-left: 20%;
+        border-radius: 20px 20px 0 0;
+        transition-duration: 0.3s;
+    }
+    .article-mid-card p {
+        font-size: 17px;
+        margin-bottom: 20px;
+        color: #3C404A;
+    }
+    .article-flat-card {
+        margin: 10% 18% 10% 20%;
+        width: 67%;
+        height: 480px;
+        grid-row: 6 / 7;
+        grid-column: 1 / 5;
+        color: #1E1E1E;
+        border-radius: 20px;
+        background-color: #e9e6f0;
+    }
+    .article-flat-card h3 {
+        text-align: center;
+        color: #3C404A;
+    }
+    .article-flat-card p {
+        font-size: 17px;
+        margin-bottom: 20px;
+        color: #3C404A;
+    }
+    .flat-review-con {
+        width: 63%;
+        opacity: 0%;
+        position: absolute;
+        margin: 210px 0 0 15px;
+        font-size: 18px;
+        font-weight: bold;
+        color: white;
+        z-index: 1;
+        transition-duration: 0.3s;
+        cursor: default;
+    }
+    .article-flat-img {
+        top: 0;
+        left: 0;
+        position: relative;
+        width: 100%;
+        height: 250px;
+        transition-duration: 0.3s;
+        border-radius: 20px 20px 0 0;
+    }
+    .locker-flat-img {
+        display: none;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 200px;
+        height: 200px;
+        margin-top: 5%;
+        margin-left: 10%;
+        transition-duration: 0.3s;
+        border-radius: 20px 20px 0 0;
+    }
+    .article-horizontal-card {
+        margin: 10% 17% 10% 20%;
+        width: 67%;
+        grid-row: 1 / 2;
+        grid-column: 1 / 3;
+        color: #1E1E1E;
+        border-radius: 20px;
+        background-color: #e9e6f0;
+    }
+    .horizontal-review-con {
+        width: 63%;
+        opacity: 0%;
+        position: absolute;
+        margin: 185px 0 0 15px;
+        font-size: 18px;
+        font-weight: bold;
+        color: white;
+        z-index: 1;
+        transition-duration: 0.3s;
+        cursor: default;
+    }
+    .article-horizontal-img {
+        top: 0;
+        left: 0;
+        position: relative;
+        width: 100%;
+        height: 220px;
+        border-radius: 20px 20px 0 0;
+        transition-duration: 0.3s;
+    }
+    .locker-horizontal-img {
+        display: none;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 150px;
+        height: 150px;
+        margin-top: 10%;
+        margin-left: 20%;
+        border-radius: 20px 20px 0 0;
+        transition-duration: 0.3s;
+    }
+    .article-horizontal-card p {
+        font-size: 17px;
+        margin-bottom: 20px;
+        color: #3C404A;
+    }
+    .article-end-card {
+        margin: 10% 17% 10% 20%;
+        margin-bottom: 10%;
+        width: 67%;
+        grid-row: 8 / 9;
+        grid-column: 3 / 5;
+        color: #1E1E1E;
+        border-radius: 20px;
+        background-color: #e9e6f0;
+    }
+    .end-review-con {
+        height: 5%;
+        width: 63%;
+        opacity: 0%;
+        position: absolute;
+        margin: 185px 0 0 15px;
+        font-size: 18px;
+        font-weight: bold;
+        color: white;
+        z-index: 1;
+        transition-duration: 0.3s;
+        cursor: default;
+    }
+    .article-end-img {
+        width: 100%;
+        grid-row: 8 / 9;
+        grid-column: 3 / 5;
+        color: #1E1E1E;
+        border-radius: 20px 20px 0px 0px;
+        background-color: #e9e6f0;
+    }
+    .locker-end-img {
+        display: none;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 150px;
+        height: 150px;
+        margin-top: 10%;
+        margin-left: 20%;
+        border-radius: 20px 20px 0 0;
+        transition-duration: 0.3s;
+    }
+    .article-end-card p {
+        font-size: 17px;
+        margin-bottom: 20px;
+        color: #3C404A;
+    }
+    .article-vertical-card {
+        margin: 10% 20%;
+        width: 67%;
+        height: 920px;
+        grid-row: 2 / 4;
+        grid-column: 4 / 5;
+        color: #1E1E1E;
+        border-radius: 20px;
+        background-color: #e9e6f0;
+    }
+    .article-vertical-card p {
+        font-size: 17px;
+        margin-bottom: 20px;
+        color: #3C404A;
+    }
+    .article-vertical-img {
+        top: 0;
+        left: 0;
+        position: relative;
+        height: 697px;
+        width: 100%;
+        border-radius: 20px 20px 0 0;
+        transition-duration: 0.3s;
+    }
+}
+"

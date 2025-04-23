@@ -1,0 +1,322 @@
+
+
+# Git Log History from Template
+
+PS C:\WorkSpace\FullStack\DjangoReact\Project> git log --oneline
+8cc469b (HEAD -> main, origin/main, origin/HEAD) chore: define media and static file settings in Django
+94cdcca Fix test bugs by adding CI environment variable
+78315eb Fix test bugs by adding CI environment variable
+f34c710 Fix test bugs by adding CI environment variable
+94c5eb5 Update README.md
+f621943 Improve error handling (client & server), complete backend test suite, and finalize client-side tests
+599d9ed README file added
+dcafda0 Fix failing tests
+4e7b4fd Fix failing tests
+d8adff6 Update workflow.yml scripts for frontend and backend tests
+f5f6c4d Update main page
+b4b98d7 (origin/update-profile, update-profile) Fix failing tests
+8cc469b (HEAD -> main, origin/main, origin/HEAD) chore: define media and static file settings in Django
+8cc469b (HEAD -> main, origin/main, origin/HEAD) chore: define media and static file settings in Django
+94cdcca Fix test bugs by adding CI environment variable
+78315eb Fix test bugs by adding CI environment variable
+f34c710 Fix test bugs by adding CI environment variable
+94c5eb5 Update README.md
+f621943 Improve error handling (client & server), complete backend test suite, and finalize client-side tests
+8cc469b (HEAD -> main, origin/main, origin/HEAD) chore: define media and static file settings in Django
+94cdcca Fix test bugs by adding CI environment variable
+78315eb Fix test bugs by adding CI environment variable
+f34c710 Fix test bugs by adding CI environment variable
+94c5eb5 Update README.md
+f621943 Improve error handling (client & server), complete backend test suite, and finalize client-side tests
+599d9ed README file added
+dcafda0 Fix failing tests
+4e7b4fd Fix failing tests
+d8adff6 Update workflow.yml scripts for frontend and backend tests
+f5f6c4d Update main page
+b4b98d7 (origin/update-profile, update-profile) Fix failing tests
+8cc469b (HEAD -> main, origin/main, origin/HEAD) chore: define media and static file settings in Django
+94cdcca Fix test bugs by adding CI environment variable
+78315eb Fix test bugs by adding CI environment variable
+f34c710 Fix test bugs by adding CI environment variable
+94c5eb5 Update README.md
+f621943 Improve error handling (client & server), complete backend test suite, and finalize client-side tests
+599d9ed README file added
+dcafda0 Fix failing tests
+4e7b4fd Fix failing tests
+d8adff6 Update workflow.yml scripts for frontend and backend tests
+f5f6c4d Update main page
+b4b98d7 (origin/update-profile, update-profile) Fix failing tests
+be1712a Refactor Profile page, split into components; write unit and integration tests for frontend
+1b12aef Improve header layout
+d644035 Refactor header: split into SignIn, SignUp, Guest, and Member components. Set up Jest testing environment.
+02dd554 Server-side tests completed and passed successfully
+8cc469b (HEAD -> main, origin/main, origin/HEAD) chore: define media and static file settings in Django
+94cdcca Fix test bugs by adding CI environment variable
+78315eb Fix test bugs by adding CI environment variable
+f34c710 Fix test bugs by adding CI environment variable
+94c5eb5 Update README.md
+f621943 Improve error handling (client & server), complete backend test suite, and finalize client-side tests
+599d9ed README file added
+dcafda0 Fix failing tests
+4e7b4fd Fix failing tests
+d8adff6 Update workflow.yml scripts for frontend and backend tests
+f5f6c4d Update main page
+b4b98d7 (origin/update-profile, update-profile) Fix failing tests
+be1712a Refactor Profile page, split into components; write unit and integration tests for frontend
+1b12aef Improve header layout
+d644035 Refactor header: split into SignIn, SignUp, Guest, and Member components. Set up Jest testing environment.
+02dd554 Server-side tests completed and passed successfully
+efade0d Removed accounts/tests.py and fixed GitHub Actions workflow
+72938fe Removed unnecessary files  and fixed GitHub Actions workflow
+1ca19d0 Clean up Git history: removed unnecessary commits and fixed GitHub Actions workflow
+8cc469b (HEAD -> main, origin/main, origin/HEAD) chore: define media and static file settings in Django
+94cdcca Fix test bugs by adding CI environment variable
+78315eb Fix test bugs by adding CI environment variable
+f34c710 Fix test bugs by adding CI environment variable
+94c5eb5 Update README.md
+f621943 Improve error handling (client & server), complete backend test suite, and finalize client-side tests
+599d9ed README file added
+dcafda0 Fix failing tests
+4e7b4fd Fix failing tests
+d8adff6 Update workflow.yml scripts for frontend and backend tests
+f5f6c4d Update main page
+b4b98d7 (origin/update-profile, update-profile) Fix failing tests
+be1712a Refactor Profile page, split into components; write unit and integration tests for frontend
+1b12aef Improve header layout
+d644035 Refactor header: split into SignIn, SignUp, Guest, and Member components. Set up Jest testing environment.
+02dd554 Server-side tests completed and passed successfully
+efade0d Removed accounts/tests.py and fixed GitHub Actions workflow
+72938fe Removed unnecessary files  and fixed GitHub Actions workflow
+1ca19d0 Clean up Git history: removed unnecessary commits and fixed GitHub Actions workflow
+012f5b8 Fix: update GitHub Actions workflow
+8cc469b (HEAD -> main, origin/main, origin/HEAD) chore: define media and static file settings in Django
+94cdcca Fix test bugs by adding CI environment variable
+78315eb Fix test bugs by adding CI environment variable
+f34c710 Fix test bugs by adding CI environment variable
+94c5eb5 Update README.md
+f621943 Improve error handling (client & server), complete backend test suite, and finalize client-side tests
+599d9ed README file added
+dcafda0 Fix failing tests
+4e7b4fd Fix failing tests
+d8adff6 Update workflow.yml scripts for frontend and backend tests
+f5f6c4d Update main page
+b4b98d7 (origin/update-profile, update-profile) Fix failing tests
+be1712a Refactor Profile page, split into components; write unit and integration tests for frontend
+1b12aef Improve header layout
+d644035 Refactor header: split into SignIn, SignUp, Guest, and Member components. Set up Jest testing environment.
+02dd554 Server-side tests completed and passed successfully
+efade0d Removed accounts/tests.py and fixed GitHub Actions workflow
+72938fe Removed unnecessary files  and fixed GitHub Actions workflow
+1ca19d0 Clean up Git history: removed unnecessary commits and fixed GitHub Actions workflow
+012f5b8 Fix: update GitHub Actions workflow
+2b05dc4 Fix: Remove working-directory for requirements installation
+8cc469b (HEAD -> main, origin/main, origin/HEAD) chore: define media and static file settings in Django
+78315eb Fix test bugs by adding CI environment variable
+f34c710 Fix test bugs by adding CI environment variable
+94c5eb5 Update README.md
+f621943 Improve error handling (client & server), complete backend test suite, and finalize client-side tests
+599d9ed README file added
+dcafda0 Fix failing tests
+4e7b4fd Fix failing tests
+d8adff6 Update workflow.yml scripts for frontend and backend tests
+f5f6c4d Update main page
+b4b98d7 (origin/update-profile, update-profile) Fix failing tests
+be1712a Refactor Profile page, split into components; write unit and integration tests for frontend
+1b12aef Improve header layout
+d644035 Refactor header: split into SignIn, SignUp, Guest, and Member components. Set up Jest testing environment.
+02dd554 Server-side tests completed and passed successfully
+efade0d Removed accounts/tests.py and fixed GitHub Actions workflow
+72938fe Removed unnecessary files  and fixed GitHub Actions workflow
+1ca19d0 Clean up Git history: removed unnecessary commits and fixed GitHub Actions workflow
+012f5b8 Fix: update GitHub Actions workflow
+2b05dc4 Fix: Remove working-directory for requirements installation
+873f27a Fix: Add GitHub Actions workflow in correct location
+e87bd21 Fix: Add GitHub Actions workflow in correct location
+5cfd947 Create profile page, clean up code, and add server-side tests
+8d5ef2e Created UserCustom registration, implemented Serializers, Generics,Viewsets, Routes and Permissions. Configured User registration flow with custom authentication.  
+ede5b94 Implement JWT authentication with axios instance and interceptor for automatic token handling
+9f4effd login functionality
+:...skipping...
+8cc469b (HEAD -> main, origin/main, origin/HEAD) chore: define media and static file settings in Django
+94cdcca Fix test bugs by adding CI environment variable
+78315eb Fix test bugs by adding CI environment variable
+f34c710 Fix test bugs by adding CI environment variable
+94c5eb5 Update README.md
+f621943 Improve error handling (client & server), complete backend test suite, and finalize client-side tests
+599d9ed README file added
+dcafda0 Fix failing tests
+4e7b4fd Fix failing tests
+d8adff6 Update workflow.yml scripts for frontend and backend tests
+f5f6c4d Update main page
+b4b98d7 (origin/update-profile, update-profile) Fix failing tests
+be1712a Refactor Profile page, split into components; write unit and integration tests for frontend
+1b12aef Improve header layout
+d644035 Refactor header: split into SignIn, SignUp, Guest, and Member components. Set up Jest testing environment.
+02dd554 Server-side tests completed and passed successfully
+efade0d Removed accounts/tests.py and fixed GitHub Actions workflow
+72938fe Removed unnecessary files  and fixed GitHub Actions workflow
+1ca19d0 Clean up Git history: removed unnecessary commits and fixed GitHub Actions workflow
+012f5b8 Fix: update GitHub Actions workflow
+2b05dc4 Fix: Remove working-directory for requirements installation
+873f27a Fix: Add GitHub Actions workflow in correct location
+e87bd21 Fix: Add GitHub Actions workflow in correct location
+5cfd947 Create profile page, clean up code, and add server-side tests
+ede5b94 Implement JWT authentication with axios instance and interceptor for automatic token handling
+9f4effd login functionality
+8cc469b (HEAD -> main, origin/main, origin/HEAD) chore: define media and static file settings in Django
+94cdcca Fix test bugs by adding CI environment variable
+78315eb Fix test bugs by adding CI environment variable
+f34c710 Fix test bugs by adding CI environment variable
+94c5eb5 Update README.md
+f621943 Improve error handling (client & server), complete backend test suite, and finalize client-side tests
+599d9ed README file added
+dcafda0 Fix failing tests
+4e7b4fd Fix failing tests
+d8adff6 Update workflow.yml scripts for frontend and backend tests
+f5f6c4d Update main page
+b4b98d7 (origin/update-profile, update-profile) Fix failing tests
+be1712a Refactor Profile page, split into components; write unit and integration tests for frontend
+1b12aef Improve header layout
+d644035 Refactor header: split into SignIn, SignUp, Guest, and Member components. Set up Jest testing environment.
+02dd554 Server-side tests completed and passed successfully
+efade0d Removed accounts/tests.py and fixed GitHub Actions workflow
+72938fe Removed unnecessary files  and fixed GitHub Actions workflow
+1ca19d0 Clean up Git history: removed unnecessary commits and fixed GitHub Actions workflow
+012f5b8 Fix: update GitHub Actions workflow
+2b05dc4 Fix: Remove working-directory for requirements installation
+873f27a Fix: Add GitHub Actions workflow in correct location
+e87bd21 Fix: Add GitHub Actions workflow in correct location
+5cfd947 Create profile page, clean up code, and add server-side tests
+8d5ef2e Created UserCustom registration, implemented Serializers, Generics,Viewsets, Routes and Permissions. Configured User registration flow with custom authentication.  
+ede5b94 Implement JWT authentication with axios instance and interceptor for automatic token handling
+9f4effd login functionality
+9a78525 registration functionality
+7e4962d registration backend/api
+8cc469b (HEAD -> main, origin/main, origin/HEAD) chore: define media and static file settings in Django
+94cdcca Fix test bugs by adding CI environment variable
+78315eb Fix test bugs by adding CI environment variable
+f34c710 Fix test bugs by adding CI environment variable
+94c5eb5 Update README.md
+f621943 Improve error handling (client & server), complete backend test suite, and finalize client-side tests
+599d9ed README file added
+dcafda0 Fix failing tests
+4e7b4fd Fix failing tests
+d8adff6 Update workflow.yml scripts for frontend and backend tests
+f5f6c4d Update main page
+b4b98d7 (origin/update-profile, update-profile) Fix failing tests
+be1712a Refactor Profile page, split into components; write unit and integration tests for frontend
+1b12aef Improve header layout
+d644035 Refactor header: split into SignIn, SignUp, Guest, and Member components. Set up Jest testing environment.
+02dd554 Server-side tests completed and passed successfully
+efade0d Removed accounts/tests.py and fixed GitHub Actions workflow
+72938fe Removed unnecessary files  and fixed GitHub Actions workflow
+1ca19d0 Clean up Git history: removed unnecessary commits and fixed GitHub Actions workflow
+012f5b8 Fix: update GitHub Actions workflow
+2b05dc4 Fix: Remove working-directory for requirements installation
+873f27a Fix: Add GitHub Actions workflow in correct location
+e87bd21 Fix: Add GitHub Actions workflow in correct location
+5cfd947 Create profile page, clean up code, and add server-side tests
+8d5ef2e Created UserCustom registration, implemented Serializers, Generics,Viewsets, Routes and Permissions. Configured User registration flow with custom authentication.  
+ede5b94 Implement JWT authentication with axios instance and interceptor for automatic token handling
+9f4effd login functionality
+9a78525 registration functionality
+7e4962d registration backend/api
+654d246 Refactor: Split index.jsx into Header, Main, and Footer components
+:...skipping...
+8cc469b (HEAD -> main, origin/main, origin/HEAD) chore: define media and static file settings in Django
+94cdcca Fix test bugs by adding CI environment variable
+78315eb Fix test bugs by adding CI environment variable
+f34c710 Fix test bugs by adding CI environment variable
+94c5eb5 Update README.md
+f621943 Improve error handling (client & server), complete backend test suite, and finalize client-side tests
+599d9ed README file added
+dcafda0 Fix failing tests
+4e7b4fd Fix failing tests
+d8adff6 Update workflow.yml scripts for frontend and backend tests
+f5f6c4d Update main page
+b4b98d7 (origin/update-profile, update-profile) Fix failing tests
+be1712a Refactor Profile page, split into components; write unit and integration tests for frontend
+1b12aef Improve header layout
+d644035 Refactor header: split into SignIn, SignUp, Guest, and Member components. Set up Jest testing environment.
+02dd554 Server-side tests completed and passed successfully
+efade0d Removed accounts/tests.py and fixed GitHub Actions workflow
+72938fe Removed unnecessary files  and fixed GitHub Actions workflow
+1ca19d0 Clean up Git history: removed unnecessary commits and fixed GitHub Actions workflow
+012f5b8 Fix: update GitHub Actions workflow
+2b05dc4 Fix: Remove working-directory for requirements installation
+873f27a Fix: Add GitHub Actions workflow in correct location
+e87bd21 Fix: Add GitHub Actions workflow in correct location
+5cfd947 Create profile page, clean up code, and add server-side tests
+8d5ef2e Created UserCustom registration, implemented Serializers, Generics,Viewsets, Routes and Permissions. Configured User registration flow with custom authentication.  
+ede5b94 Implement JWT authentication with axios instance and interceptor for automatic token handling
+9f4effd login functionality
+9a78525 registration functionality
+7e4962d registration backend/api
+654d246 Refactor: Split index.jsx into Header, Main, and Footer components
+4e73772 Add Tailwind CSS, React Router, and design homepage with sign-in/sign-up buttons and popup
+:...skipping...
+8cc469b (HEAD -> main, origin/main, origin/HEAD) chore: define media and static file settings in Django
+94cdcca Fix test bugs by adding CI environment variable
+78315eb Fix test bugs by adding CI environment variable
+f34c710 Fix test bugs by adding CI environment variable
+94c5eb5 Update README.md
+f621943 Improve error handling (client & server), complete backend test suite, and finalize client-side tests
+599d9ed README file added
+dcafda0 Fix failing tests
+4e7b4fd Fix failing tests
+d8adff6 Update workflow.yml scripts for frontend and backend tests
+f5f6c4d Update main page
+b4b98d7 (origin/update-profile, update-profile) Fix failing tests
+be1712a Refactor Profile page, split into components; write unit and integration tests for frontend
+1b12aef Improve header layout
+d644035 Refactor header: split into SignIn, SignUp, Guest, and Member components. Set up Jest testing environment.
+02dd554 Server-side tests completed and passed successfully
+efade0d Removed accounts/tests.py and fixed GitHub Actions workflow
+72938fe Removed unnecessary files  and fixed GitHub Actions workflow
+1ca19d0 Clean up Git history: removed unnecessary commits and fixed GitHub Actions workflow
+012f5b8 Fix: update GitHub Actions workflow
+2b05dc4 Fix: Remove working-directory for requirements installation
+873f27a Fix: Add GitHub Actions workflow in correct location
+e87bd21 Fix: Add GitHub Actions workflow in correct location
+5cfd947 Create profile page, clean up code, and add server-side tests
+8d5ef2e Created UserCustom registration, implemented Serializers, Generics,Viewsets, Routes and Permissions. Configured User registration flow with custom authentication.  
+ede5b94 Implement JWT authentication with axios instance and interceptor for automatic token handling
+9f4effd login functionality
+9a78525 registration functionality
+7e4962d registration backend/api
+654d246 Refactor: Split index.jsx into Header, Main, and Footer components
+4e73772 Add Tailwind CSS, React Router, and design homepage with sign-in/sign-up buttons and popup
+948095a Initial commit
+:...skipping...
+8cc469b (HEAD -> main, origin/main, origin/HEAD) chore: define media and static file settings in Django
+94cdcca Fix test bugs by adding CI environment variable
+78315eb Fix test bugs by adding CI environment variable
+f34c710 Fix test bugs by adding CI environment variable
+94c5eb5 Update README.md
+f621943 Improve error handling (client & server), complete backend test suite, and finalize client-side tests
+599d9ed README file added
+dcafda0 Fix failing tests
+4e7b4fd Fix failing tests
+d8adff6 Update workflow.yml scripts for frontend and backend tests
+f5f6c4d Update main page
+b4b98d7 (origin/update-profile, update-profile) Fix failing tests
+be1712a Refactor Profile page, split into components; write unit and integration tests for frontend
+1b12aef Improve header layout
+d644035 Refactor header: split into SignIn, SignUp, Guest, and Member components. Set up Jest testing environment.
+02dd554 Server-side tests completed and passed successfully
+efade0d Removed accounts/tests.py and fixed GitHub Actions workflow
+72938fe Removed unnecessary files  and fixed GitHub Actions workflow
+1ca19d0 Clean up Git history: removed unnecessary commits and fixed GitHub Actions workflow
+012f5b8 Fix: update GitHub Actions workflow
+2b05dc4 Fix: Remove working-directory for requirements installation
+873f27a Fix: Add GitHub Actions workflow in correct location
+e87bd21 Fix: Add GitHub Actions workflow in correct location
+5cfd947 Create profile page, clean up code, and add server-side tests
+8d5ef2e Created UserCustom registration, implemented Serializers, Generics,Viewsets, Routes and Permissions. Configured User registration flow with custom authentication.  
+ede5b94 Implement JWT authentication with axios instance and interceptor for automatic token handling
+9f4effd login functionality
+9a78525 registration functionality
+7e4962d registration backend/api
+654d246 Refactor: Split index.jsx into Header, Main, and Footer components
+4e73772 Add Tailwind CSS, React Router, and design homepage with sign-in/sign-up buttons and popup
+948095a Initial commit

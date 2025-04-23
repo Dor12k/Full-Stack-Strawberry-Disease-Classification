@@ -6,11 +6,12 @@ import Footer from "../components/Index/Footer";
 import { Outlet } from "react-router-dom";
 
 const HomePage = () => {
+  
   return (
     <>
       <Header />
 
-        <main className="min-h-screen">
+        <main className="min-h-screen bg-slate-100 dark:bg-[#1b1b1be9] dark:text-white">
 
           <Outlet />
 

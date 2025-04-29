@@ -17,10 +17,11 @@ class FeedbackSerializer(serializers.ModelSerializer):
     class Meta:
         model = Feedback
         fields = ['id', 'text', 'username', 'user', 'rating']
+        read_only_fields = ['user', 'article']
+
 
 
 class AuthorSerializer(serializers.ModelSerializer):
-
 
     # Write picture
     picture = serializers.ImageField(required=False, allow_null=True)
@@ -42,12 +43,9 @@ class AuthorSerializer(serializers.ModelSerializer):
 
 
 class ArticleSerializer(serializers.ModelSerializer):
-    # author = AuthorSerializer(read_only=True)  # Nested Author serializer
-
-    author = serializers.PrimaryKeyRelatedField(
-        queryset=Author.objects.all(), write_only=True
-    )
+    
     author_details = AuthorSerializer(source='author', read_only=True)
+    author = serializers.PrimaryKeyRelatedField(queryset=Author.objects.all(), write_only=True )
 
     subject = SubjectSerializer(many=True, read_only=True)  # List of Subject serializers
     feedback = FeedbackSerializer(many=True, read_only=True)  # List of Feedback serializers
@@ -61,7 +59,7 @@ class ArticleSerializer(serializers.ModelSerializer):
     first_media_url = serializers.SerializerMethodField()
     second_media_url = serializers.SerializerMethodField()
     third_media_url = serializers.SerializerMethodField()
-
+    
     class Meta:
         model = Article
         fields = [
@@ -98,7 +96,6 @@ class ArticleSerializer(serializers.ModelSerializer):
             return obj.third_media.url
         return None
 
-    # Optional: validate uploaded files
     def validate_first_media(self, file):
         return self._validate_media(file)
 

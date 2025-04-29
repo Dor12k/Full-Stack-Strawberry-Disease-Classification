@@ -78,49 +78,44 @@ const Header = () => {
                         }
                     </div>
                 </div>
-
         
                 {/* Navigation Bar */}
                 <nav className="relative z-10 w-full top-0 left-0 backdrop-blur-lg
-                                bg-[#ececec] dark:bg-[#1f1f1f] dark:text-white shadow-lg border-b border-gray-100 
-                                dark:border-gray-700 px-4 py-3 sm:px-6 sm:py-4 flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-0">
-
-
+                                bg-[#ececec] dark:bg-[#222222] dark:text-white shadow-lg border-b border-gray-100 
+                                dark:border-gray-700 px-4 py-3 sm:px-6 sm:py-4 flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0">
 
                     {/* Logo */}
                     <div>
                         <Link to='/'>
                             {!darkMode 
-                                ? (<img src="/images/logo1.png" alt="Google Play" className="w-[250px] animate-slide-up" />)
-                                : (<img src="/images/logo2.png" alt="Google Play" className="w-[250px] animate-slide-up" />)
+                                ? (<img src="/images/Header/logo1.png" alt="Google Play" className="w-[250px] animate-slide-up" />)
+                                : (<img src="/images/Header/logo2.png" alt="Google Play" className="w-[250px] animate-slide-up" />)
                             }
                                             
                         </Link>
                     </div>
 
                     {/* Navigation Links */}
-                    <div>
-
-                    <ul className="hidden md:flex gap-6">
-                        {[
-                            { label: "Home", path: "/home" },
-                            { label: "About", path: "/about" },
-                            { label: "Contact", path: "/contact" },
-                            { label: "Gallery", path: "/gallery" },
-                            { label: "Articles", path: "/articles" },
-                        ].map(({ label, path }) => (
-                            <li key={label}>
-                            <Link
-                                to={path}
-                                className="text-[#1f2121] dark:text-white dark:hover:text-blue-600 text-2xl hover:text-blue-600 transition duration-300 hover:scale-110"
-                            >
-                                {label}
-                            </Link>
-                            </li>
-                        ))}
+                    <div >
+                        <ul className="flex flex-row md:flex-row gap-6">
+                            {[
+                                { label: "Home", path: "/home" },
+                                { label: "About", path: "/about" },
+                                { label: "Contact", path: "/contact" },
+                                { label: "Gallery", path: "/gallery" },
+                                { label: "Articles", path: "/articles" },
+                            ].map(({ label, path }) => (
+                                <li key={label}>
+                                <Link
+                                    to={path}
+                                    className="text-xl text-[#1f2121] dark:text-white dark:hover:text-blue-600 lg:text-2xl hover:text-blue-600 transition duration-300 hover:scale-110"
+                                >
+                                    {label}
+                                </Link>
+                                </li>
+                            ))}
                         </ul>
                     </div>
-
         
                     {/* Right Corener */}
                     <div className="flex items-center justify-center gap-6">

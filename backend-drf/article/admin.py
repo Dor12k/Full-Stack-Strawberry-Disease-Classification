@@ -17,7 +17,7 @@ class AuthorAdmin(admin.ModelAdmin):
 
 # Article
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'author', 'is_bestSeller', 'num_of_reviews', 'average_rating')
+    list_display = ('id', 'order', 'title', 'author', 'is_bestSeller', 'num_of_reviews', 'average_rating')
     list_filter = ('is_bestSeller', 'subject', 'author')
     search_fields = ('title', 'description', 'author__name')
     prepopulated_fields = {'slug': ('title',)}  # Creatie slug by title

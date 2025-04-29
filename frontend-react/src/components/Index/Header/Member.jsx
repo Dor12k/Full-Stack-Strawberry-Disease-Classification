@@ -19,11 +19,11 @@ function Member({setIsLoggedIn}) {
     // Logout button
     const handleLogOut = () => {
 
-        console.log('Logged out');
+        console.log('Logged out successful');
         localStorage.removeItem('user')
         localStorage.removeItem('accessToken')
         localStorage.removeItem('refreshToken')
-        console.log('User logged out ', user);
+        
         setIsLoggedIn(false)
         setUser(null)
         navigate('/')

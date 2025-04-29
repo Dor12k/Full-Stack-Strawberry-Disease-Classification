@@ -59,7 +59,7 @@ const SignInForm = ({errors, setErrors, setShow}) => {
 
         // Store token in localStorage
         console.log("Sign In successful");
-        console.log("Sign In response: ", response);
+        // console.log("Sign In response: ", response);
 
         const user = response.data.user
         const accessToken = response.data.access;

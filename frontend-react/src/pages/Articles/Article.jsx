@@ -1,12 +1,14 @@
 
 
-import React, { useState, useEffect, useContext } from 'react';
-import axiosInstance from '../../axiosInstance';
+import React from 'react';
+import { useParams } from 'react-router-dom';
+import { useState, useEffect, useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
-
-import { useParams } from 'react-router-dom';
+import axiosInstance from '../../axiosInstance';
+import FormattedParagraph from '../../components/Articles/FormattedParagraph';
+import { Link } from 'react-router-dom';
 
 const Article = () => {
 
@@ -33,10 +35,11 @@ const Article = () => {
 
     const getArticle = async () => {
       try {
-        const response = await axiosInstance.get(`/articles/${slug}/`);
-        console.log("response", response);
-        setArticle(response.data.article);
-        setReviews(response.data.reviews);
+        const articleRresponse = await axiosInstance.get(`/articles/${slug}/`);
+        setArticle(articleRresponse.data);
+        
+        const feedbackResponse = await axiosInstance.get(`/articles/${slug}/feedback`);
+        setReviews(feedbackResponse.data);
       } catch (error) {
         console.error('Error fetching article:', error);
       } finally {
@@ -55,7 +58,8 @@ const Article = () => {
     }
 
     try {
-      const response = await axiosInstance.post(`/articles/${article.slug}/feedback/`, {
+
+      const response = await axiosInstance.post(`/articles/${slug}/feedback/`, {
         username,
         rating,
         text,
@@ -80,6 +84,9 @@ const Article = () => {
     }
   };
 
+
+  
+
   if (loading || !article) {
     return (
       <div className="flex justify-center items-center h-screen bg-slate-800 gap-10">
@@ -97,6 +104,18 @@ const Article = () => {
 
     <div className=" w-full flex flex-col items-center justify-center dark:bg-[#1b1b1be1] dark:text-white">
 
+        {/* Button - add article */}
+        {user.is_staff && (
+
+          <div className="w-full my-4 px-2 lg:px-10 flex justify-end">
+            <Link to={`/edit-article/${article.slug}`}>
+              <button className="bg-teal-600 text-white px-6 py-3 rounded-full mt-2 gap-2 text-xl hover:bg-teal-700 transition duration-300 transform hover:scale-105">
+                Edit Article
+              </button>
+            </Link>
+          </div>
+
+        )}
 
         {/* Article Profile */}
         <div className="w-[80%] lg:w-[60%] flex flex-col lg:flex-row mt-20 gap-2 text-center rounded-3xl transition-all duration-300 bg-amber-100 dark:bg-[#1a1a1a] dark:text-white">
@@ -136,15 +155,31 @@ const Article = () => {
             </div>
         </div>
 
-        <main className="w-[80%] lg:w-[60%] mt-20 p-6 space-y-10 text-start flex flex-col md:flex-row items-center justify-center rounded-3xl md:space-y-0 md:space-x-10 bg-amber-100 dark:bg-[#1a1a1a] dark:text-white">
+        {/* Article Text + Images */}
+        <div className="w-[80%] lg:w-[60%] mt-20 p-6 space-y-10 text-start flex flex-col md:flex-row items-center justify-center rounded-3xl md:space-y-0 md:space-x-10 bg-amber-100 dark:bg-[#1a1a1a] dark:text-white">
 
-            {/* Article Text + Images */}
             <div className="w-full ">
             {[[article.first_paragraph, article.first_media], 
               [article.second_paragraph, article.second_media], 
               [article.third_paragraph, article.third_media]].map((item, index) => item[0] && (
                     <div key={index} className="mb-0">
-                        <p className='w-full p-2 lg:p-10 lg:text-2xl whitespace-pre-wrap break-words'>{item[0]}</p>
+
+                      <div className="p-4 text-lg lg:text-2xl max-w-full break-words word-break">
+                        <div><FormattedParagraph text={item[0]} /></div>
+                      </div>
+                      
+
+                        
+                        
+                        {/* <div className="p-4 text-lg lg:text-2xl whitespace-pre-wrap break-words">
+                          <div>{formatText(item[0])}</div>
+                        </div> */}
+
+                        {/* <pre className="prose dark:prose-invert p-4 whitespace-pre-wrap break-words font-sans" dangerouslySetInnerHTML={{ __html: item[0] }} /> */}
+
+                        {/* <p className='w-full p-2 lg:p-10 lg:text-2xl whitespace-pre-wrap break-words'>{item[0]}</p> */}
+
+
                         {/* Check if the media is video or image */}
                         {item[1]?.match(/\.(mp4|webm|ogg)$/i) ? (
                             <video 
@@ -166,7 +201,7 @@ const Article = () => {
                 )
             )}
             </div>
-        </main>
+        </div>
 
         {/* Feedback Form */}
         <section className="w-[80%] lg:w-[60%] p-6 my-10 rounded-xl shadow-lg  bg-amber-100 dark:bg-[#1a1a1a] dark:text-white ">
@@ -232,6 +267,7 @@ const Article = () => {
             ))}
 
         </section>
+
     </div>
   );
 };

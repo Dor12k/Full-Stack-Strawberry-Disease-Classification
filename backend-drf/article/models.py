@@ -30,8 +30,6 @@ class Author(models.Model):
         return f"{self.name}"
 
 
-
-
 # Article instance
 class Article(models.Model):
         
@@ -48,9 +46,11 @@ class Article(models.Model):
         
         return f'{folder}/article/{instance.slug}/{filename}'
 
-    title = models.CharField(max_length=43)
-    description = models.TextField(max_length=95)
-    introduction = models.TextField(max_length=330)
+    slug = models.SlugField(blank=True)
+
+    title = models.CharField(max_length=450)
+    description = models.TextField(max_length=500)
+    introduction = models.TextField(max_length=500)
 
     first_paragraph = models.TextField()
     first_media = models.FileField(blank=True, upload_to=article_file_upload_to)
@@ -61,15 +61,16 @@ class Article(models.Model):
     third_paragraph = models.TextField()
     third_media = models.FileField(blank=True, upload_to=article_file_upload_to)
 
-    slug = models.SlugField(blank=True)
     subject = models.ManyToManyField(Subject)
-    is_bestSeller = models.BooleanField(default=False)
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
 
+    is_bestSeller = models.BooleanField(default=False)
     num_of_reviews = models.PositiveBigIntegerField(default=0)
     average_rating = models.FloatField(default=0, validators=[MinValueValidator(0), MaxValueValidator(5)])
 
     card = models.CharField(max_length=20, default='regular', null=True)
+
+    order = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return f"{self.title}"
@@ -86,11 +87,11 @@ class Article(models.Model):
 # Article feedback
 class Feedback(models.Model):
     
-    text = models.TextField()
+    text = models.TextField(max_length=330)
     username = models.CharField(max_length=40)
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True)
     article = models.ForeignKey(Article, on_delete=models.CASCADE, null=True, related_name='feedbacks')
-    rating = models.PositiveIntegerField(default=0, validators=[MaxValueValidator(5)])
+    rating = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(5)])
 
     def __str__(self):
         return f"{self.article} - Rating {self.rating}"

@@ -14,11 +14,22 @@ import AuthProvider from './context/AuthContext';
 import PublicRoute from './components/auth/PublicRoute';
 import PrivateRoute from './components/auth/PrivateRoute';
 import { createBrowserRouter, RouterProvider,} from "react-router-dom";
-import Article from './pages/Article/Article';
-import AddArticle from './components/Articles/AddArticle';
+import Article from './pages/Articles/Article';
+import AddArticle from './pages/Articles/AddArticle';
+import EditArticle from './pages/Articles/EditArticle';
+import ScrollToTop from './components/utils/ScrollToTop';
 
 
-
+// Cancel warning message in console
+if (typeof console !== 'undefined') {
+  const originalWarn = console.warn;
+  console.warn = (...args) => {
+    if (/DOMNodeInserted/.test(args[0])) {
+      return;
+    }
+    originalWarn(...args);
+  };
+}
 
 
 
@@ -26,11 +37,11 @@ import AddArticle from './components/Articles/AddArticle';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <PublicRoute> <Index /> </PublicRoute>,
+    element: <PublicRoute><ScrollToTop /> <Index /> </PublicRoute>,
   },
   
   {
-    element: <PrivateRoute> <HomePage /> </PrivateRoute>,
+    element: <PrivateRoute><ScrollToTop /> <HomePage /> </PrivateRoute>,
     children: [
       {
         path: "/home",
@@ -57,6 +68,10 @@ const router = createBrowserRouter([
         element: <AddArticle />
       },
       {
+        path: "/edit-article/:slug",
+        element: <EditArticle />
+      },
+      {
         path: "/articles",
         element: <Articles />
       },
@@ -74,11 +89,13 @@ function App() {
 
   // Providing the router configuration to the app using RouterProvider
   return (
+    
 
     <UserProvider>
       <AuthProvider> {/* Wrap RouterProvider with AuthProvider */}
+        
 
-            <RouterProvider router={router} />
+          <RouterProvider router={router} />
                 
       </AuthProvider>
     </UserProvider>

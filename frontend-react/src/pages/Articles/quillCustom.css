@@ -1,0 +1,27 @@
+
+
+.ql-container {
+    min-height: 200px;
+    border-radius: 0.5rem;
+    font-size: 1.125rem; /* text-lg */
+  }
+  
+  .dark .ql-toolbar,
+  .dark .ql-container {
+    background-color: #2c2c2c;
+    color: #ffffff;
+    border: 1px solid #4a4a4a;
+  }
+  
+  .dark .ql-editor {
+    background-color: #2c2c2c;
+    color: #ffffff;
+  }
+  
+  .ql-toolbar {
+    border-radius: 0.5rem 0.5rem 0 0;
+  }
+  
+  .ql-container {
+    border-radius: 0 0 0.5rem 0.5rem;
+  }

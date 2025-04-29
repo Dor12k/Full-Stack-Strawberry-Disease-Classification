@@ -26,20 +26,10 @@ const EditProfilePopup = ({
     return (
         <>
             {/* Overlay */}
-            <div
-                data-testid="overlay-background"
-                className="absolute w-full h-full bg-black bg-opacity-30 z-40 transition-opacity duration-800 ease-in-out"
-                onClick={() => {
-                    setEditBtn(false);
-                    setErrors('');
-                }}
-            />
+            <div onClick={() => {setEditBtn(false); setErrors('');}} data-testid="overlay-background" className="absolute w-full h-full bg-black bg-opacity-30 z-40 transition-opacity duration-800 ease-in-out" />
 
             {/* Popup Form */}
-            <div
-                data-testid="edit-profile-popup"
-                className="absolute w-[600px] h-[1000px] bg-blue-500 rounded-3xl transition-opacity duration-300 ease-in-out top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-8 shadow-2xl z-50 flex flex-col justify-center px-16"
-            >
+            <div data-testid="edit-profile-popup" className="absolute w-[600px] h-[1000px] bg-blue-500 rounded-3xl transition-opacity duration-300 ease-in-out top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-8 shadow-2xl z-50 flex flex-col justify-center px-16" >
                 <form onSubmit={(e) => { e.preventDefault(); handleSaveBtn(e); }} className="h-[1000px]">
 
                     {/* Profile Picture */}

@@ -66,6 +66,7 @@ const Profile = () => {
         new_password: ''
     });
 
+    // Profile image Uploaded
     const handleImageUpload = (e) => {
         const file = e.target.files[0];
         if (file) {

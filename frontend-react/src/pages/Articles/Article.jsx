@@ -1,30 +1,32 @@
 
 
+import './Article.css'
 import React from 'react';
+import sanitizeHtml from 'sanitize-html';
+import axiosInstance from '../../axiosInstance';
+
+import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect, useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
-import axiosInstance from '../../axiosInstance';
-import FormattedParagraph from '../../components/Articles/FormattedParagraph';
-import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import FormattedParagraph from '../../components/Articles/FormattedParagraph';
 
 const Article = () => {
 
+  const { slug } = useParams();
   const { user } = useContext(UserContext);
+
+  const [text, setText] = useState('');
+  const [rating, setRating] = useState(4);
+  const [errors, setErrors] = useState({});
+  const [reviews, setReviews] = useState([]);
+  const [message, setMessage] = useState('');
+  const [username, setUsername] = useState('');
   const [article, setArticle] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [reviews, setReviews] = useState([]);
-  const [username, setUsername] = useState('');
-  const [rating, setRating] = useState(4);
-  const [text, setText] = useState('');
-  const [errors, setErrors] = useState({});
-  const [message, setMessage] = useState('');
   const [messageColor, setMessageColor] = useState('green');
-
-  
-  const { slug  } = useParams();
 
   useEffect(() => {
 
@@ -40,6 +42,8 @@ const Article = () => {
         
         const feedbackResponse = await axiosInstance.get(`/articles/${slug}/feedback`);
         setReviews(feedbackResponse.data);
+        
+        console.log('feedbackResponse:', feedbackResponse);
       } catch (error) {
         console.error('Error fetching article:', error);
       } finally {
@@ -58,34 +62,44 @@ const Article = () => {
     }
 
     try {
-
       const response = await axiosInstance.post(`/articles/${slug}/feedback/`, {
         username,
         rating,
         text,
       });
-      setMessage('Feedback submitted successfully!');
+
+      const isUpdate = reviews.some(r => r.username === response.data.username);
+      
+      
+      setMessage(isUpdate ? 'Feedback updated successfully!' : 'Feedback submitted successfully!');
       setMessageColor('green');
-      setUsername('');
       setRating(4);
       setText('');
-      setReviews((prev) => [...prev, response.data]);
+
+      setReviews(prev =>
+        isUpdate
+          ? prev.map(r => r.username === response.data.username ? response.data : r) 
+          : [...prev, response.data]
+      );
+
     } catch (error) {
+
       if (error.response && error.response.data) {
+
         const data = error.response.data;
+        setMessageColor('red');
+        
         setErrors({
           username: data.username?.[0],
           rating: data.rating?.[0],
           text: data.text?.[0],
+
         });
-        setMessage(data.detail || 'Something went wrong. Please try again later.');
-        setMessageColor('red');
+      }else{
+          setMessage(data.detail || 'Something went wrong. Please try again later.');
       }
     }
   };
-
-
-  
 
   if (loading || !article) {
     return (
@@ -99,8 +113,6 @@ const Article = () => {
   }
 
   return (
-
-    
 
     <div className=" w-full flex flex-col items-center justify-center dark:bg-[#1b1b1be1] dark:text-white">
 
@@ -121,14 +133,14 @@ const Article = () => {
         <div className="w-[80%] lg:w-[60%] flex flex-col lg:flex-row mt-20 gap-2 text-center rounded-3xl transition-all duration-300 bg-amber-100 dark:bg-[#1a1a1a] dark:text-white">
 
             {/* Author Profile */}
-            <div className=" m-10 lg:w-1/3 lg:mx-20 lg:my-10 flex flex-col items-center justify-center gap-4">
+            <div className="m-10 lg:w-1/3 lg:mx-20 lg:my-10 flex flex-col items-center justify-center gap-4">
 
                 <img
                     src={article?.author_details?.picture_url || ''}
                     className="w-1/2 lg:w-3/4 lg:h-[80%] rounded-full transition-transform duration-300 hover:scale-105"
                     alt="Author"
                 />
-                <p className="w-1/5 lg:w-full h-[20%] flex items-center justify-center text-xl font-semibold">{article?.author?.name}</p>
+                <p className="w-1/5 lg:w-full h-[20%] flex items-center justify-center text-xl font-semibold">{article?.author_details?.name}</p>
             </div>
 
             {/* Article Details */}
@@ -136,12 +148,12 @@ const Article = () => {
 
                 <h1 className="text-3xl font-bold pb-6">{article.title}</h1>
 
-                <div className="h-32 pb-4">
-                    <p className="text-xl">{article.description}</p>
+                <div className="h-72 lg:h-32 pb-4">
+                    <p className="text-xl" dangerouslySetInnerHTML={ {__html: article.description}}></p>
                 </div>
 
-                <div className="h-32 pb-4">
-                    <p className="text-xl">{article.introduction}</p>
+                <div className="h-72 lg:h-32 pb-4">
+                    <p className="text-xl" dangerouslySetInnerHTML={ {__html: article.introduction}}></p>
                 </div>
 
                 {/* Article Tags */}
@@ -158,47 +170,40 @@ const Article = () => {
         {/* Article Text + Images */}
         <div className="w-[80%] lg:w-[60%] mt-20 p-6 space-y-10 text-start flex flex-col md:flex-row items-center justify-center rounded-3xl md:space-y-0 md:space-x-10 bg-amber-100 dark:bg-[#1a1a1a] dark:text-white">
 
-            <div className="w-full ">
+          <div className="w-full lg:text-xl lg:p-10">
             {[[article.first_paragraph, article.first_media], 
               [article.second_paragraph, article.second_media], 
               [article.third_paragraph, article.third_media]].map((item, index) => item[0] && (
-                    <div key={index} className="mb-0">
+              <div key={index} className="mb-4">
 
-                      <div className="p-4 text-lg lg:text-2xl max-w-full break-words word-break">
-                        <div><FormattedParagraph text={item[0]} /></div>
-                      </div>
-                      
-
+                <div className="article-content prose prose-sm dark:prose-invert whitespace-pre-line list-decimal list-inside"
+                  dangerouslySetInnerHTML={{
+                    __html: sanitizeHtml(item[0], {
+                    allowedTags: ['p', 'ol', 'ul', 'li', 'strong', 'em', 'br', 'u', 'blockquote'], 
+                    allowedAttributes: {'*': ['class'], }, })
+                  }}
+                />
                         
-                        
-                        {/* <div className="p-4 text-lg lg:text-2xl whitespace-pre-wrap break-words">
-                          <div>{formatText(item[0])}</div>
-                        </div> */}
 
-                        {/* <pre className="prose dark:prose-invert p-4 whitespace-pre-wrap break-words font-sans" dangerouslySetInnerHTML={{ __html: item[0] }} /> */}
-
-                        {/* <p className='w-full p-2 lg:p-10 lg:text-2xl whitespace-pre-wrap break-words'>{item[0]}</p> */}
-
-
-                        {/* Check if the media is video or image */}
-                        {item[1]?.match(/\.(mp4|webm|ogg)$/i) ? (
-                            <video 
-                            src={item[1]} 
-                            controls 
-                            className="w-1/2 lg:w-1/3 m-auto p-8 rounded-[70px]"
-                            >
-                            Your browser does not support the video tag.
-                            </video>
-                            
-                        ) : (
-                            <img 
-                            src={item[1]} 
-                            alt="Article Media" 
-                            className="w-full lg:w-[50%] m-auto p-8 rounded-[70px]" 
-                            />
-                        )}
-                    </div>
-                )
+                {/* Check if the media is video or image */}
+                {item[1]?.match(/\.(mp4|webm|ogg)$/i) ? (
+                    <video 
+                    src={item[1]} 
+                    controls 
+                    className="w-1/2 lg:w-1/3 m-auto p-8 rounded-[70px]"
+                    >
+                    Your browser does not support the video tag.
+                    </video>
+                    
+                ) : (
+                    <img 
+                    src={item[1]} 
+                    alt="Article Media" 
+                    className={`${(article.id == 6 || article.id == 8) && index == 2 ? 'lg:w-[100%]' : 'lg:w-[50%]'} w-full m-auto p-8 rounded-[70px]`}
+                    />
+                )}
+                </div>
+              )
             )}
             </div>
         </div>
@@ -207,49 +212,47 @@ const Article = () => {
         <section className="w-[80%] lg:w-[60%] p-6 my-10 rounded-xl shadow-lg  bg-amber-100 dark:bg-[#1a1a1a] dark:text-white ">
 
             <h2 className="text-2xl font-bold mb-4">Leave a Comment</h2>
+
             <div className="mb-4">
-                <label className="block mb-1 font-semibold">Username</label>
+                <label className="lg:text-xl block mb-1 font-semibold">Username</label>
                 <input
                     type="text"
-                    className="w-full border border-gray-300 rounded-lg p-2 dark:text-black"
+                    className="w-full lg:text-xl border border-gray-300 rounded-lg p-2 dark:text-black"
                     value={username || user?.username || ''}
                     placeholder="Enter username"
                     onChange={(e) => setUsername(e.target.value)}
                 />
-                {errors.username && <p className="text-red-500 text-sm mt-1">{errors.username}</p>}
+                {errors.username && <p className="text-red-500 text-sm lg:text-xl mt-1">{errors.username}</p>}
             </div>
 
             <div className="mb-4">
-            <label className="block mb-1 font-semibold">Rating (0-5)</label>
+            <label className="lg:text-xl block mb-1 font-semibold">Rating (0-5)</label>
             <input
                 type="number"
                 min="0"
                 max="5"
-                className="w-full border border-gray-300 rounded-lg p-2 dark:text-black"
+                className="w-full lg:text-xl border border-gray-300 rounded-lg p-2 dark:text-black"
                 value={rating}
                 onChange={(e) => setRating(e.target.value)}
             />
-            {errors.rating && <p className="text-red-500 text-sm mt-1">{errors.rating}</p>}
+            {errors.rating && <p className="text-red-500 text-sm lg:text-xl mt-1">{errors.rating}</p>}
             </div>
 
             <div className="mb-4">
-            <label className="block mb-1 font-semibold">Feedback</label>
+            <label className="lg:text-xl block mb-1 font-semibold">Feedback</label>
             <textarea
-                className="w-full border border-gray-300 rounded-lg p-2 dark:text-black"
+                className="w-full lg:text-xl border border-gray-300 rounded-lg p-2 dark:text-black"
                 rows="4"
                 value={text}
                 onChange={(e) => setText(e.target.value)}
             />
-            {errors.text && <p className="text-red-500 text-sm mt-1">{errors.text}</p>}
+            {errors.text && <p className="text-red-500 text-sm lg:text-xl mt-1">{errors.text}</p>}
             </div>
 
-            {message && <div className={`mb-4 text-sm font-semibold text-${messageColor}-600`}>{message}</div>}
+            {message && <div className={`mb-4 text-sm lg:text-xl font-semibold text-${messageColor}-600`}>{message}</div>}
 
-            <button
-            onClick={handlePostReview}
-            className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
-            >
-            Submit Feedback
+            <button onClick={handlePostReview} className="lg:text-xl bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700" >
+                Submit Feedback
             </button>
         </section>
 

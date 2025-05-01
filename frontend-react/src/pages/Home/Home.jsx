@@ -3,13 +3,13 @@ import React from 'react'
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useContext } from 'react'
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import { UserContext } from '../../context/UserContext';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import axiosInstance from '../../axiosInstance';
-import { Link } from 'react-router-dom';
 import ArticleCard from '../../components/Articles/ArticleCard';
+import axiosInstance from '../../axiosInstance';
 
 function Home() {
 
@@ -22,9 +22,6 @@ function Home() {
     const [ isDragging, setIsDragging ] = useState(false);
     const [ selectedFile, setSelectedFile ] = useState(null);
     const [ imagePreview, setImagePreview ] = useState('');
-    const [ imageUploaded, setImageUploaded ] = useState(
-        '/images/Home/Smart-Argiculture.jpg',
-    );
     const [ popularArticles, setPopularArticles ] = useState([]);
     const [ classificationLabel, setClassificationLabel ] = useState('');
     const [ classificationScore, setClassificationScore ] = useState('');
@@ -41,7 +38,8 @@ function Home() {
                 console.log("Home view successful");
 
                 // 2. Fetch popular articles
-                const popularResponse = await axiosInstance.get('/articles/popular/?limit=4');
+                // const popularResponse = await axiosInstance.get('/articles/popular/?limit=4');
+                const popularResponse = await axiosInstance.get('/articles/specific/');
                 setPopularArticles(popularResponse.data);
                 
             }catch(error){

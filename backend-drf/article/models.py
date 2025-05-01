@@ -46,10 +46,10 @@ class Article(models.Model):
         
         return f'{folder}/article/{instance.slug}/{filename}'
 
-    slug = models.SlugField(blank=True)
+    slug = models.SlugField(blank=True, unique=True)
 
     title = models.CharField(max_length=450)
-    description = models.TextField(max_length=500)
+    description = models.TextField(max_length=500) # 319
     introduction = models.TextField(max_length=500)
 
     first_paragraph = models.TextField()
@@ -77,10 +77,13 @@ class Article(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.title)
-            
-        while Article.objects.filter(slug=self.slug).exists():
-            self.slug = f"{self.slug}-{self.id}"
+            base_slug = slugify(self.title)
+            slug = base_slug
+            counter = 1
+            while Article.objects.filter(slug=slug).exists():
+                slug = f"{base_slug}-{counter}"
+                counter += 1
+            self.slug = slug
         super().save(*args, **kwargs)
 
 

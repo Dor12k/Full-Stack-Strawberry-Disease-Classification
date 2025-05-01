@@ -20,7 +20,6 @@ class FeedbackSerializer(serializers.ModelSerializer):
         read_only_fields = ['user', 'article']
 
 
-
 class AuthorSerializer(serializers.ModelSerializer):
 
     # Write picture
@@ -44,6 +43,8 @@ class AuthorSerializer(serializers.ModelSerializer):
 
 class ArticleSerializer(serializers.ModelSerializer):
     
+    slug = serializers.SlugField(read_only=True)
+
     author_details = AuthorSerializer(source='author', read_only=True)
     author = serializers.PrimaryKeyRelatedField(queryset=Author.objects.all(), write_only=True )
 

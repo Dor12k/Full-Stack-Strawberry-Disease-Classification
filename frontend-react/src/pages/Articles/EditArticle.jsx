@@ -1,31 +1,28 @@
 
 
-
-
+import './quillCustom.css';
+import 'react-quill/dist/quill.snow.css';
 
 import React from 'react'
-import { useEffect, useState, useContext, useRef } from 'react';
-import { UserContext } from '../../context/UserContext';
-import { useNavigate } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
-
-import axiosInstance from '../../axiosInstance';
-
 import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
-import './quillCustom.css';
+import axiosInstance from '../../axiosInstance';
+import { useEffect, useState, useContext } from 'react';
+import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../../context/UserContext';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 export default function EditArticle() {
 
   const navigate = useNavigate();
+  const { slug  } = useParams();
   const { user } = useContext(UserContext);
-  const [subjects, setSubjects] = useState([]);
-  const [authors, setAuthors] = useState([]);
-  const [previews, setPreviews] = useState({});
   const [message, setMessage] = useState('');
+  const [authors, setAuthors] = useState([]);
+  const [subjects, setSubjects] = useState([]);
+  const [previews, setPreviews] = useState({});
   const [article, setArticle] = useState(null);
   const [loading, setLoading] = useState(true);
   const [formData, setFormData] = useState({
@@ -44,8 +41,6 @@ export default function EditArticle() {
     author: '',
     card: 'regular',
   });
-
-  const { slug  } = useParams();
 
   // Get article instance from server
   useEffect(() => {
@@ -86,9 +81,6 @@ export default function EditArticle() {
     };
     getArticle();
   }, [slug , user]);
-
-
-
 
   useEffect(() => {
     if (!user?.is_staff){
@@ -170,80 +162,6 @@ export default function EditArticle() {
     }
   };
 
-
-  const handleTabIndent = (e) => {
-    if (e.key === 'Tab') {
-      e.preventDefault();
-  
-      const TAB = '    ';
-      const textarea = e.target;
-      const start = textarea.selectionStart;
-      const end = textarea.selectionEnd;
-      const value = textarea.value;
-  
-      const selected = value.slice(start, end);
-      const isMultiLine = selected.includes('\n');
-  
-      let newValue, newStart = start, newEnd = end;
-  
-      if (isMultiLine) {
-        const lines = value.slice(start, end).split('\n');
-        const before = value.slice(0, start);
-        const after = value.slice(end);
-  
-        if (e.shiftKey) {
-          const newLines = lines.map(line => {
-            if (line.startsWith(TAB)) {
-              return line.slice(TAB.length);
-            } else if (line.startsWith(" ")) {
-              return line.replace(/^ {1,4}/, '');
-            }
-            return line;
-          });
-          newValue = before + newLines.join('\n') + after;
-          newEnd -= lines.length * TAB.length; // approximate
-        } else {
-          const newLines = lines.map(line => TAB + line);
-          newValue = before + newLines.join('\n') + after;
-          newEnd += lines.length * TAB.length;
-        }
-      } else {
-        // Only one line or no selection
-        const lineStart = value.lastIndexOf('\n', start - 1) + 1;
-        const lineEnd = value.indexOf('\n', start);
-        const actualLineEnd = lineEnd === -1 ? value.length : lineEnd;
-  
-        const before = value.slice(0, lineStart);
-        const line = value.slice(lineStart, actualLineEnd);
-        const after = value.slice(actualLineEnd);
-  
-        if (e.shiftKey) {
-          const newLine = line.startsWith(TAB)
-            ? line.slice(TAB.length)
-            : line.replace(/^ {1,4}/, '');
-  
-          newValue = before + newLine + after;
-          newStart -= TAB.length;
-          newEnd -= TAB.length;
-        } else {
-          newValue = before + TAB + line + after;
-          newStart += TAB.length;
-          newEnd += TAB.length;
-        }
-      }
-  
-      setFormData(prev => ({
-        ...prev,
-        [textarea.name]: newValue,
-      }));
-  
-      setTimeout(() => {
-        textarea.selectionStart = newStart;
-        textarea.selectionEnd = newEnd;
-      }, 0);
-    }
-  };
-  
   const handleQuillChange = (field, value) => {
     setFormData((prevData) => ({
       ...prevData,
@@ -251,15 +169,15 @@ export default function EditArticle() {
     }));
   };
 
-
+  // Local host
   const fields = [
-      { name : 'slug', type: 'input' },
-      { name : 'title', type: 'input' },
-      { name : 'description', type: 'textarea' },
-      { name : 'introduction', type: 'quill' },
-      { name : 'first_paragraph', type: 'textarea' },
-      { name : 'second_paragraph', type: 'textarea' },
-      { name : 'third_paragraph', type: 'textarea' },
+    { name : 'slug', type: 'input' },
+    { name : 'title', type: 'input' },
+    { name : 'description', type: 'textarea' },
+    { name : 'introduction', type: 'textarea' },
+    { name : 'first_paragraph', type: 'quill' },
+    { name : 'second_paragraph', type: 'quill' },
+    { name : 'third_paragraph', type: 'quill' },
   ];
 
   if (loading || !article) {
@@ -287,52 +205,51 @@ export default function EditArticle() {
 
             <div className="grid grid-cols-1 gap-4 text-xl ">
 
-
-
                 {fields.map(({ name, type }) => (
                     <div key={name}>
-                    <label className="block mb-1 font-semibold capitalize">{name.replace('_', ' ')}</label>
 
-                    {type === 'input' && (
-                        <input
-                        type="text"
-                        name={name}
+                      <label className="block mb-1 font-semibold capitalize">{name.replace('_', ' ')}</label>
+
+                      {type === 'input' && (
+                          <input
+                          type="text"
+                          name={name}
+                          value={formData[name] || ''}
+                          onChange={handleChange}
+                          className="w-full border rounded-lg p-2 dark:text-black"
+                          />
+                      )}
+
+                      {type === 'textarea' && (
+                          <textarea
+                          name={name}
+                          value={formData[name] || ''}
+                          onChange={handleChange}
+                          className="w-full border rounded-lg p-2 dark:text-black"
+                          rows={2}
+                          />
+                      )}
+
+                      {type === 'quill' && (
+                        <ReactQuill
+                        theme="snow"
                         value={formData[name] || ''}
-                        onChange={handleChange}
-                        className="w-full border rounded-lg p-2 dark:text-black"
-                        />
-                    )}
+                        onChange={(value) => handleQuillChange(name, value)}
+                        modules={{
+                          toolbar: [
+                            [{ list: 'ordered' }, { list: 'bullet' }],
+                            ['bold', 'italic', 'underline'],
+                            [{ align: [] }],
+                            ['link'],
+                            [{ indent: '-1' }, { indent: '+1' }],
+                          ]
+                        }}
+                        className="bg-white dark:bg-[#2c2c2c] text-black dark:text-white rounded-lg"
+                      />
+                      )}
 
-                    {type === 'textarea' && (
-                        <textarea
-                        name={name}
-                        value={formData[name] || ''}
-                        onChange={handleChange}
-                        className="w-full border rounded-lg p-2 dark:text-black"
-                        rows={2}
-                        />
-                    )}
-
-                    {type === 'quill' && (
-                      <ReactQuill
-                      theme="snow"
-                      value={formData[name] || ''}
-                      onChange={(value) => handleQuillChange(name, value)}
-                      modules={{
-                        toolbar: [
-                          [{ list: 'ordered' }, { list: 'bullet' }],
-                          ['bold', 'italic', 'underline'],
-                          [{ align: [] }],
-                          ['link']
-                        ]
-                      }}
-                      className="bg-white dark:bg-[#2c2c2c] text-black dark:text-white rounded-lg"
-                    />
-                    )}
                     </div>
                 ))}
-
-
 
                 {["first_media", "second_media", "third_media"].map((field) => (
                 <div key={field}>
@@ -345,40 +262,42 @@ export default function EditArticle() {
                 ))}
 
                 <div>
-                    <label className="block mb-1 font-semibold">Subjects</label>
-                    <div className="flex flex-wrap gap-2">
-                        {subjects.map((subj, index) => (
-                        <label key={subj.id} className="flex items-center gap-1">
-                            <input
-                            type="checkbox"
-                            name="subject"
-                            value={subj.id}
-                            checked={formData.subject.includes(subj.id)}
-                            onChange={handleChange}
-                            />
-                            {subj.title}
-                        </label>
-                        ))}
-                    </div>
+
+                  <label className="block mb-1 font-semibold">Subjects</label>
+                  <div className="flex flex-wrap gap-2">
+                      {subjects.map((subj, index) => (
+                      <label key={subj.id} className="flex items-center gap-1">
+                          <input
+                          type="checkbox"
+                          name="subject"
+                          value={subj.id}
+                          checked={formData.subject.includes(subj.id)}
+                          onChange={handleChange}
+                          />
+                          {subj.title}
+                      </label>
+                      ))}
+                  </div>
+
                 </div>
 
                 <div>
-                <label className="block mb-1 font-semibold">Author</label>
-                <select name="author" value={formData.author} onChange={handleChange} className="w-full border rounded-lg p-2 dark:text-black">
-                    <option value="">Select author</option>
-                    {authors.map((auth) => (
-                    <option key={auth.id} value={auth.id}>{auth.name}</option>
-                    ))}
-                </select>
+                  <label className="block mb-1 font-semibold">Author</label>
+                  <select name="author" value={formData.author} onChange={handleChange} className="w-full border rounded-lg p-2 dark:text-black">
+                      <option value="">Select author</option>
+                      {authors.map((auth) => (
+                      <option key={auth.id} value={auth.id}>{auth.name}</option>
+                      ))}
+                  </select>
                 </div>
 
                 <div>
-                <label className="block mb-1 font-semibold">Card layout</label>
-                <select name="card" value={formData.card} onChange={handleChange} className="w-full border rounded-lg p-2 dark:text-black">
-                    {["regular", "horizontal", "vartical", "mid", "flat", "end"].map((opt) => (
-                    <option key={opt} value={opt}>{opt}</option>
-                    ))}
-                </select>
+                  <label className="block mb-1 font-semibold">Card layout</label>
+                  <select name="card" value={formData.card} onChange={handleChange} className="w-full border rounded-lg p-2 dark:text-black">
+                      {["regular", "horizontal", "vartical", "mid", "flat", "end"].map((opt) => (
+                      <option key={opt} value={opt}>{opt}</option>
+                      ))}
+                  </select>
                 </div>
 
                 <div className="flex items-center gap-2">

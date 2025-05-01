@@ -1,0 +1,91 @@
+/* Scoped styles for article content */
+.article-content ol {
+  list-style-type: decimal; /* Ensure numbered lists */
+  margin-left: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+.article-content ul {
+  list-style-type: disc; /* Use bullet points */
+  margin-left: 2.5rem;
+}
+
+.article-content ul li {
+  list-style-type: disc; /* Ensure bullets are shown for all <ul> items */
+}
+
+.article-content li {
+  margin-bottom: 0.5rem; /* Add space between list items */
+}
+
+.article-content strong {
+  font-weight: bold; /* Bold text */
+}
+
+.article-content em {
+  font-style: italic; /* Italic text */
+}
+
+.article-content p {
+  margin-bottom: 1rem; /* Paragraph spacing */
+}
+
+/* Quill indent levels for nested list simulation */
+.article-content li.ql-indent-1 {
+  margin-left: 0em;
+}
+
+.article-content li.ql-indent-2 {
+  margin-left: 6em;
+}
+
+.article-content li.ql-indent-3 {
+  margin-left: 9em;
+}
+
+/* Desktop styles (min-width: 768px) */
+@media (min-width: 768px) {
+  .article-content ol {
+    margin-left: 1.5rem;
+    padding-left: 1.5rem;
+  }
+
+  .article-content li.ql-indent-1 {
+    margin-left: 3em;
+  }
+
+  .article-content li.ql-indent-2 {
+    margin-left: 6em;
+  }
+
+  .article-content li.ql-indent-3 {
+    margin-left: 9em;
+  }
+
+  .article-content p.ql-indent-1 {
+    margin-left: 3em;
+  }
+  .article-content p.ql-indent-2 {
+    margin-left: 6em;
+  }
+  .article-content p.ql-indent-3 {
+    margin-left: 9em;
+  }
+
+  .article-content .ql-align-center {
+    text-align: center;
+  }
+  
+  .article-content .ql-align-right {
+    text-align: right;
+  }
+  
+  .article-content .ql-align-left {
+    text-align: left;
+  }
+  
+  .article-content .ql-align-justify {
+    text-align: justify;
+  }
+
+}

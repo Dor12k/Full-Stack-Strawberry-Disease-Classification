@@ -7,7 +7,7 @@ const About = () => {
       <section className="max-w-5xl mx-auto space-y-20">
 
         {/* About Us Section */}
-        <div className="bg-white dark:bg-[#1b1b1be1] rounded-2xl shadow-lg p-8 space-y-6">
+        <div className="text-2xl bg-white dark:bg-[#1b1b1be1] rounded-2xl shadow-lg p-8 space-y-6">
           <h1 className="text-4xl font-extrabold text-red-600 dark:text-red-400 flex items-center gap-3">
             <Leaf className="w-8 h-8" /> About Us
           </h1>
@@ -30,7 +30,7 @@ const About = () => {
           <div className="text-right mt-4">
             <a
               href="https://www.aiStrawberries.com"
-              className="text-lg font-semibold text-red-500 hover:text-red-600 hover:underline"
+              className="text-2xl font-semibold text-red-500 hover:text-red-600 hover:underline"
             >
               www.aiStrawberries.com
             </a>
@@ -38,7 +38,7 @@ const About = () => {
         </div>
 
         {/* Technologies Section */}
-        <div className="bg-white dark:bg-[#1a1a1a] rounded-2xl shadow-lg p-8 space-y-6">
+        <div className="text-2xl bg-white dark:bg-[#1a1a1a] rounded-2xl shadow-lg p-8 space-y-6">
           <h2 className="text-4xl font-extrabold text-green-700 dark:text-green-400 flex items-center gap-3">
             <Brain className="w-8 h-8" /> Technologies
           </h2>

@@ -75,7 +75,6 @@ class FeedbackViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         slug = self.kwargs.get('article_slug')
-        print("slug", slug)
         return Feedback.objects.filter(article__slug=slug)
 
     def perform_create(self, serializer):

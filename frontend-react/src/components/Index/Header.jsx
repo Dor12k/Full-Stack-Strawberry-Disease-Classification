@@ -37,17 +37,17 @@ const Header = () => {
 
     const [darkMode, setDarkMode] = useState(() => {
         return localStorage.getItem('theme') === 'dark';
-      });
+    });
     
-      useEffect(() => {
+    useEffect(() => {
         if (darkMode) {
-          document.documentElement.classList.add('dark');
-          localStorage.setItem('theme', 'dark');
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
         } else {
-          document.documentElement.classList.remove('dark');
-          localStorage.setItem('theme', 'light');
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('theme', 'light');
         }
-      }, [darkMode]);
+    }, [darkMode]);
 
 
     return (

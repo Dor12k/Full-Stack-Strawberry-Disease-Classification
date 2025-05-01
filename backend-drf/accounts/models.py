@@ -32,10 +32,13 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         'unique': 'Username already exists.',
         'blank': 'Username cannot be empty.'
     })
+
     first_name = models.CharField(max_length=30, blank=True)
     last_name = models.CharField(max_length=30, blank=True)
+
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
+    is_premium = models.BooleanField(default=False)
     date_joined = models.DateTimeField(auto_now_add=True)
 
     password = models.CharField(max_length=128, blank=False)

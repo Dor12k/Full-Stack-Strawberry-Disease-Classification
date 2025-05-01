@@ -13,11 +13,11 @@ import UserProvider from './context/UserContext';
 import AuthProvider from './context/AuthContext';
 import PublicRoute from './components/auth/PublicRoute';
 import PrivateRoute from './components/auth/PrivateRoute';
-import { createBrowserRouter, RouterProvider,} from "react-router-dom";
 import Article from './pages/Articles/Article';
 import AddArticle from './pages/Articles/AddArticle';
 import EditArticle from './pages/Articles/EditArticle';
 import ScrollToTop from './components/utils/ScrollToTop';
+import { createBrowserRouter, RouterProvider,} from "react-router-dom";
 
 
 // Cancel warning message in console

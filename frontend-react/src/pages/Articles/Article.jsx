@@ -5,19 +5,23 @@ import React from 'react';
 import sanitizeHtml from 'sanitize-html';
 import axiosInstance from '../../axiosInstance';
 
-import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-import { useState, useEffect, useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../context/UserContext';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { useState, useEffect, useContext, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import FormattedParagraph from '../../components/Articles/FormattedParagraph';
+
+
 
 const Article = () => {
 
   const { slug } = useParams();
   const { user } = useContext(UserContext);
 
+  const navigate = useNavigate();
+  const hasFetchedRef = useRef(false);
   const [text, setText] = useState('');
   const [rating, setRating] = useState(4);
   const [errors, setErrors] = useState({});
@@ -28,14 +32,17 @@ const Article = () => {
   const [loading, setLoading] = useState(true);
   const [messageColor, setMessageColor] = useState('green');
 
+
   useEffect(() => {
 
     if(user){
       setUsername(user.username);
     }
     
+    if (!user || hasFetchedRef.current) return;
 
     const getArticle = async () => {
+
       try {
         const articleRresponse = await axiosInstance.get(`/articles/${slug}/`);
         setArticle(articleRresponse.data);
@@ -43,15 +50,23 @@ const Article = () => {
         const feedbackResponse = await axiosInstance.get(`/articles/${slug}/feedback`);
         setReviews(feedbackResponse.data);
         
-        console.log('feedbackResponse:', feedbackResponse);
+        if (!user?.is_premium && !user?.is_staff && articleRresponse.data.card !== 'regular') {
+          navigate('/home');
+          console.log('Article: User try to access a premium article');
+          alert('This article is available for premium users only.');
+        }else{
+          console.log('Article page loaded successful');
+        }
+
       } catch (error) {
         console.error('Error fetching article:', error);
       } finally {
         setLoading(false);
+        hasFetchedRef.current = true;
       }
     };
     getArticle();
-  }, [slug , user]);
+  }, [navigate, slug , user, ]);
 
   const handlePostReview = async () => {
     setErrors({});
@@ -148,11 +163,11 @@ const Article = () => {
 
                 <h1 className="text-3xl font-bold pb-6">{article.title}</h1>
 
-                <div className="h-72 lg:h-32 pb-4">
+                <div className={`${article.card == 'flat' ? 'h-72 lg:h-48' : 'h-72 lg:h-32 pb-4'}`}>
                     <p className="text-xl" dangerouslySetInnerHTML={ {__html: article.description}}></p>
                 </div>
 
-                <div className="h-72 lg:h-32 pb-4">
+                <div className={`${article.card == 'flat' ? 'h-72 lg:h-48' : 'h-72 lg:h-32 pb-4'}`}>
                     <p className="text-xl" dangerouslySetInnerHTML={ {__html: article.introduction}}></p>
                 </div>
 
@@ -265,7 +280,7 @@ const Article = () => {
                 {review.username} {review.rating}{' '}
                 {'⭐'.repeat(review.rating)}
                 </h2>
-                <p className="text-lg p-4 whitespace-pre-wrap break-words">{review.text}</p>
+                <p className="text-lg lg:text-xl p-4 whitespace-pre-wrap break-words">{review.text}</p>
             </div>
             ))}
 

@@ -10,11 +10,11 @@ const getCardSizeClasses = (type) => {
       
       return 'lg:col-span-2';
     case 'vertical':
-      return 'lg:row-span-2';
+      return 'lg:row-span-2 row-span-2';
     case 'flat':
       return 'lg:col-span-4 lg:row-span-1';
     case 'mid':
-      return 'lg:col-span-2 lg:row-span-2';
+      return 'lg:col-span-2 lg:row-span-2' ;
     case 'end':
       return 'lg:col-span-2';
     case 'regular':
@@ -46,16 +46,15 @@ const ArticleCard = ({ article }) => {
 
   return (
 
-    <div className={`h-full ${sizeClasses}`}>
+    <div className={`h-full  ${sizeClasses}`}>
       <Wrapper {...wrapperProps}>
 
-        <div className={`h-full flex flex-col rounded-2xl shadow-md overflow-hidden transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:shadow-2xl bg-white dark:bg-[#2d2d2d] ${!isRestricted ? 'cursor-pointer' : 'cursor-auto'}`}>
+        <div className={`h-full  flex flex-col rounded-2xl shadow-md overflow-hidden transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:shadow-2xl bg-white dark:bg-[#2d2d2d] ${!isRestricted ? 'cursor-pointer' : 'cursor-auto'}`}>
 
           {/* Image with overlay */}
-          <div className={`relative group w-full ${imageHeight} ${article.card == 'flat' ? 'h-[250px]' : 'h-[100%]'}`}>
+          <div className={`relative group w-full ${imageHeight} ${article.card == 'flat' ? 'h-[250px]' : 'h-[100%]'} ${article.card == 'mid' ? 'h-[60%] lg:h-[80%]' : 'text-left'}`}>
 
-            {/* <img alt={article.title} src={article.first_media} className="object-cover w-full h-full" /> */}
-            <img alt={article.title} src={article.first_media} className='object-cover w-full h-full'/>
+            <img alt={article.title} src={article.first_media} className='object-fill w-full h-full'/>
 
             {/* Overlay container */}
             <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition duration-300 pointer-events-none">
@@ -80,7 +79,12 @@ const ArticleCard = ({ article }) => {
           </div>
 
           {/* Text content */}
-          <div className={`p-4 flex flex-col justify-between flex-1 overflow-hidden ${article.card == 'flat' ? 'text-center' : 'text-left'}`}>
+          <div className={`p-4 flex flex-col justify-between flex-1 overflow-hidden 
+            ${article.card == 'flat' ? 'text-center lg:mx-60 lg:mt-5'  : 'text-left'}
+            ${article.card == 'mid' ? ''  : 'text-left'}
+            ${article.card == 'vertical' ? ''  : 'text-left'}
+             `
+            }>
         
             <div className="overflow-hidden">
               <h3 className="text-lg font-semibold text-gray-800 dark:text-white line-clamp-2">

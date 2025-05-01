@@ -7,7 +7,7 @@ from rest_framework.exceptions import AuthenticationFailed
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from .validators import custom_email_validation, custom_username_validation, custom_password_validation
 
-# User = get_user_model()
+User = get_user_model()
 
 class CustomUserSerializer(serializers.ModelSerializer):
     
@@ -24,13 +24,18 @@ class CustomUserSerializer(serializers.ModelSerializer):
     profile_picture = serializers.ImageField(required=False)
 
     class Meta:
+
+
         model = CustomUser
         read_only_fields = ['id', 'date_joined']
-        fields = ['id', 'username', 'email', 'password', 'new_password', 'first_name', 'last_name', 'student_id', 'is_staff', 'profile_picture']
+        fields = ['id', 'username', 'email', 'password', 'new_password', 'first_name', 'last_name', 'student_id', 'is_staff', 'is_premium', 'profile_picture']
 
     def create(self, validated_data):
 
         errors = {}
+
+        # Normalize email to lowercase
+        validated_data['email'] = validated_data['email'].lower()
 
         if 'email' in validated_data:
             try:
@@ -52,6 +57,8 @@ class CustomUserSerializer(serializers.ModelSerializer):
 
         if errors:
             raise serializers.ValidationError(errors)
+        
+        print(validated_data)
 
         return CustomUser.objects.create_user(**validated_data)
 
@@ -67,6 +74,8 @@ class CustomUserSerializer(serializers.ModelSerializer):
 
             # Continue with the update if no password errors
             if 'email' in validated_data:
+                # Normalize email to lowercase
+                validated_data['email'] = validated_data['email'].lower()
                 if instance.email != validated_data['email']:
                     try:
                         custom_email_validation(validated_data['email'], 'update')
@@ -140,10 +149,15 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
 
         errors = {}
 
-        try:
-            custom_email_validation(email)
-        except serializers.ValidationError as e:
-            errors['email'] = e.detail
+        # Normalize email to lowercase
+        if email:
+            email = email.lower()
+            attrs['email'] = email
+            
+            try:
+                custom_email_validation(email)
+            except serializers.ValidationError as e:
+                errors['email'] = e.detail
         
         if not password:
             errors["password"] = "Password is required."

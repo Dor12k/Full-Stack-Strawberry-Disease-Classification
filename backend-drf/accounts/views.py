@@ -19,7 +19,9 @@ class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
 
     def post(self, request, *args, **kwargs):
+
         serializer = self.get_serializer(data=request.data)
+
         if serializer.is_valid():
             return Response(serializer.validated_data, status=status.HTTP_200_OK)
         else:
@@ -34,10 +36,7 @@ class CustomTokenObtainPairView(TokenObtainPairView):
             if not password:
                 errors["password"] = ["Password cannot be empty."]
 
-            return Response(
-                errors,
-                status=status.HTTP_400_BAD_REQUEST
-            )
+            return Response(errors, status=status.HTTP_400_BAD_REQUEST)
         
         
 # Register with viewsets

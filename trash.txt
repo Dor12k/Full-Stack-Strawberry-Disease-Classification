@@ -1,0 +1,184 @@
+
+
+| פעולה       | תיאור                                   |
+|-------------|------------------------------------------|
+| `Add`       | הוספת קוד חדש (פיצ'ר, קובץ, רכיב)        |
+| `Fix`       | תיקון באג                                |
+| `Update`    | עדכון קיים שלא בהכרח באג (UI, תוכן)      |
+| `Remove`    | הסרת קוד, קובץ, פונקציונליות             |
+| `Refactor`  | שיפור קוד בלי לשנות התנהגות              |
+| `Implement` | מימוש פיצ'ר (לרוב ראשוני או עיקרי)       |
+| `Optimize`  | שיפור ביצועים                            |
+| `Test`      | הוספת או עדכון בדיקות                    |
+| `Document`  | עדכון או הוספת תיעוד                     |
+
+
+
+הפונקציה שלי בצד לקוח נראית כך:
+"
+  // Submit form of signin
+  const handleSignIn = async (e) => {
+
+    e.preventDefault();
+
+    setErrors('');
+    setLoading(true);
+
+    const userData = state
+
+    try{
+        const response = await axios.post('http://127.0.0.1:8000/api/v1/token/', userData) 
+
+        // Store token in localStorage
+        console.log("Sign In successful");
+        // console.log("Sign In response: ", response);
+
+        const user = response.data.user
+        const accessToken = response.data.access;
+        const refreshToken = response.data.refresh;
+
+        localStorage.setItem('accessToken', accessToken);
+        localStorage.setItem('refreshToken', refreshToken);
+        localStorage.setItem('user', JSON.stringify(user));
+
+        setUser(user);
+        setErrors(''); 
+        setShow(false);
+        setSuccess(true);
+        setIsLoggedIn(true);
+        navigate("/home");
+        
+    }catch(error){
+            console.log(error)
+            // Handle different error response formats
+            if (error.response) {
+                
+                if (error.response.data) {
+                    if (error.response.headers['content-type'].includes('application/json')) {
+                        setErrors(prevErrors => ({
+                            ...prevErrors,
+                            ...(error.response.data.email && { email: error.response.data.email }),
+                            ...(error.response.data.username && { username: error.response.data.username }),
+                            ...(error.response.data.password && { password: error.response.data.password }),
+                            ...(error.response.data.new_password && { new_password: error.response.data.new_password })
+                        }));
+                        console.log("Error response data:", error.response.data);
+                    } else {
+                        console.log("Error response is not JSON. Received HTML or other content.", error);
+                        setErrors({ error: 'An unexpected error occurred on the server. Please try again later.' });
+                    }
+                }
+                else{
+                    setErrors({ error: 'An unexpected error occurred.' });
+                }
+            } else if (error.request) {
+                // No response received from the server
+                console.log("No response received:", error.request);
+                setErrors({ error: 'No response received from the server. Please try again later.' });
+            } else {
+                // Error in setting up the request
+                console.log("Error in request:", error.message);
+                setErrors({ error: 'An error occurred while sending the request. Please try again later.' });
+            }        
+    }finally{
+        setLoading(false)
+    }
+  }
+  "
+  ובצד השרת:
+  urls.py
+  "
+      # djangorestframework-simplejwt 
+    path('token/', UserViews.CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    "
+    ,
+    "
+views.py:
+class CustomTokenObtainPairView(TokenObtainPairView):
+    
+    serializer_class = CustomTokenObtainPairSerializer
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            return Response(serializer.validated_data, status=status.HTTP_200_OK)
+        else:
+            errors = serializer.errors.copy()
+            
+            email = request.data.get("email", "").strip()
+            password = request.data.get("password", "").strip()
+
+            if not email:
+                errors["email"] = ["Email cannot be empty."]
+
+            if not password:
+                errors["password"] = ["Password cannot be empty."]
+
+            return Response(errors, status=status.HTTP_400_BAD_REQUEST)
+        
+        "
+        ,
+        serializers:
+        "
+        class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+
+    email = serializers.EmailField(
+        required=True,
+        allow_blank=False,
+        error_messages={
+            'required': 'Please provide an email address.',
+            'blank': 'Email cannot be empty.',
+            'invalid': 'Please enter a valid email address.'
+        },
+    )
+
+    password = serializers.CharField(
+        write_only=True,
+        required=True,
+        allow_blank=False,
+        min_length=8,
+        error_messages={
+            'required': 'Please provide a password.',
+            'blank': 'Password cannot be empty.',
+            'min_length': 'Password must be at least 8 characters long.'
+        }
+    )
+
+            
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        
+    def validate(self, attrs):
+        
+        email = attrs.get("email")
+        username = attrs.get("username")
+        password = attrs.get("password")
+
+        errors = {}
+
+        try:
+            custom_email_validation(email)
+        except serializers.ValidationError as e:
+            errors['email'] = e.detail
+        
+        if not password:
+            errors["password"] = "Password is required."
+
+        if errors:
+            raise serializers.ValidationError(errors)
+        
+        try:
+            # Use default validation (authenticate + token creation)
+            data = super().validate(attrs)
+        except AuthenticationFailed:
+            errors["error"] = "Invalid username, email or password."
+            raise AuthenticationFailed(errors)
+
+        data = super().validate(attrs)
+
+        user_serializer = CustomUserSerializer(self.user, context=self.context)
+        data['user'] = user_serializer.data
+
+        return data
+    "

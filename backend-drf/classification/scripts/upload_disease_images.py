@@ -1,15 +1,11 @@
 
 
 
-
-
-
-
 import os
 from django.core.files import File
 from classification.models import Disease, DiseaseImage
 
-# base_directory = "C:/WorkSpace/StrawberriesLocalHost-DR/Files/Images/Diseases"
+# base_directory = "path"
 
 
 def upload_disease_images(base_directory):
@@ -33,4 +29,4 @@ def upload_disease_images(base_directory):
 
 # Use it from python manage.py shell to run hte script
 # from classification.scripts.upload_disease_images import upload_disease_images
-# upload_disease_images('C:/WorkSpace/StrawberriesLocalHost-DR/Files/Images/Diseases')
+# upload_disease_images('path')

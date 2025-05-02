@@ -205,16 +205,18 @@ const Article = () => {
                     <video 
                     src={item[1]} 
                     controls 
-                    className="w-1/2 lg:w-1/3 m-auto p-8 rounded-[70px]"
-                    >
-                    Your browser does not support the video tag.
+                    className={`w-1/2 lg:w-1/3 m-auto p-8 rounded-[70px]
+                                ${(article.id == 1) && index == 2 ? 'lg:cursor-pointer' : 'lg:cursor-auto'} `}>
+                      Your browser does not support the video tag.
                     </video>
                     
                 ) : (
                     <img 
                     src={item[1]} 
                     alt="Article Media" 
-                    className={`${(article.id == 6 || article.id == 8) && index == 2 ? 'lg:w-[100%]' : 'lg:w-[50%]'} w-full m-auto p-8 rounded-[70px]`}
+                    className={`w-full m-auto p-8 rounded-[70px]
+                                ${(article.id == 6 || article.id == 8) && index == 2 ? 'lg:w-[100%]' : 'lg:w-[50%]'} 
+                              `}
                     />
                 )}
                 </div>

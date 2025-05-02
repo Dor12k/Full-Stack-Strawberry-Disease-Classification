@@ -1,6 +1,16 @@
+
+import os
+import shutil
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+from django.conf import settings
 from rest_framework.exceptions import ValidationError
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+
+def user_profile_picture_upload_path(instance, filename):
+    ext = filename.split('.')[-1]
+    filename = f"profile_picture.{ext}"
+    return f"images/accounts/{instance.username}/profile_picture/{filename}"
+
 
 # Custom user management
 class CustomUserManager(BaseUserManager):
@@ -44,7 +54,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     password = models.CharField(max_length=128, blank=False)
 
     student_id = models.CharField(max_length=10, blank=True, null=True)
-    profile_picture = models.ImageField(upload_to='profile_pics/', blank=True, null=True)
+    profile_picture = models.ImageField(upload_to=user_profile_picture_upload_path, blank=True, null=True)
 
     objects = CustomUserManager()
 
@@ -53,3 +63,61 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
+
+    def save(self, *args, **kwargs):
+        try:
+            old_instance = CustomUser.objects.get(pk=self.pk)
+            old_username = old_instance.username
+        except CustomUser.DoesNotExist:
+            old_username = None
+
+        super().save(*args, **kwargs)  # Default save
+
+        # If username has changed, move image to a new folder
+        if old_username and old_username != self.username and self.profile_picture:
+            print("Debug", "old_username", old_username, "self.username", self.username)
+            
+            # Define old and new paths
+            old_path = os.path.join(settings.MEDIA_ROOT, 'images', 'accounts', old_username, 'profile_picture')
+            new_path = os.path.join(settings.MEDIA_ROOT, 'images', 'accounts', self.username, 'profile_picture')
+
+            print("OLD PATH:", old_path)
+            print("NEW PATH:", new_path)
+            print("PROFILE PIC:", self.profile_picture.path)
+
+            # Check if old path exists
+            if os.path.exists(old_path):
+                # Create the new folder if not exists
+                os.makedirs(new_path, exist_ok=True)
+                
+                # Move all files from the old folder to the new one
+                for filename in os.listdir(old_path):
+                    old_file_path = os.path.join(old_path, filename)
+                    new_file_path = os.path.join(new_path, filename)
+                    shutil.move(old_file_path, new_file_path)
+                    print(f"Moved {old_file_path} to {new_file_path}")
+                    
+                # After moving files, check if old directory is empty
+                if not os.listdir(old_path):  # Directory should be empty after moving files
+                    shutil.rmtree(old_path)
+                    print(f"Removed old path: {old_path}")
+
+                    # After deleting 'profile_picture' folder
+                    user_old_dir = os.path.join(settings.MEDIA_ROOT, 'images', 'accounts', old_username)    
+
+                    # If the user directory is now empty, remove it too
+                    if os.path.isdir(user_old_dir) and not os.listdir(user_old_dir):
+                        os.rmdir(user_old_dir)
+                        print(f"Removed user directory: {user_old_dir}")  
+                else:
+                    print(f"Old path {old_path} is not empty, skipped removal.")
+  
+                    
+                # Update the image path in the model
+                ext = self.profile_picture.name.split('.')[-1]
+                self.profile_picture.name = f"images/accounts/{self.username}/profile_picture/profile_picture.{ext}"
+                super().save(update_fields=['profile_picture'])
+            else:
+                print(f"Old path {old_path} does not exist, skipping move and cleanup.")
+
+

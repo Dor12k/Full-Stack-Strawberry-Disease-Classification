@@ -31,6 +31,7 @@ class FeedbackAdmin(admin.ModelAdmin):
     list_filter = ('rating',)
     search_fields = ('article__title', 'username', 'text')
 
+
 #
 admin.site.register(Subject, SubjectAdmin)
 admin.site.register(Author, AuthorAdmin)

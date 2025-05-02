@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=70)),
-                ('picture', models.ImageField(blank=True, upload_to='author-img')),
+                ('picture', models.ImageField(blank=True, upload_to='author_image_upload_to')),
             ],
         ),
         migrations.CreateModel(
@@ -39,11 +39,11 @@ class Migration(migrations.Migration):
                 ('description', models.TextField(max_length=95)),
                 ('introduction', models.TextField(max_length=330)),
                 ('first_paragraph', models.TextField()),
-                ('first_image', models.ImageField(blank=True, upload_to=article.models.Article.article_file_upload_to)),
+                ('first_image', models.ImageField(blank=True, upload_to='article_file_upload_to')),
                 ('second_paragraph', models.TextField()),
-                ('second_image', models.ImageField(blank=True, upload_to=article.models.Article.article_file_upload_to)),
+                ('second_image', models.ImageField(blank=True, upload_to='article_file_upload_to')),
                 ('third_paragraph', models.TextField()),
-                ('third_image', models.ImageField(blank=True, upload_to=article.models.Article.article_file_upload_to)),
+                ('third_image', models.ImageField(blank=True, upload_to='article_file_upload_to')),
                 ('slug', models.SlugField(blank=True)),
                 ('is_bestSeller', models.BooleanField(default=False)),
                 ('num_of_reviews', models.PositiveBigIntegerField(default=0)),

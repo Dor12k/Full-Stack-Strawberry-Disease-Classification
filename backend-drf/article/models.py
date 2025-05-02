@@ -7,7 +7,6 @@ from django.utils.text import slugify
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 
-
 # Article subject
 class Subject(models.Model):
     title = models.CharField(max_length=50)
@@ -16,36 +15,38 @@ class Subject(models.Model):
         return f"{self.title}"
     
 
+def author_image_upload_to(instance, filename):
+    return f'images/article/author/{instance.name}/{filename}'
+
 # Article author
 class Author(models.Model):
     
-    def author_image_upload_to(instance, filename):
-        return f'images/author/{instance.name}/{filename}'
-    
     name = models.CharField(max_length=70)
     subject = models.ManyToManyField(Subject)
-    picture = models.ImageField(blank=True, upload_to=author_image_upload_to)
+    picture = models.ImageField(blank=True, null=True, upload_to=author_image_upload_to)
 
     def __str__(self):
         return f"{self.name}"
 
 
+# Define image path when am image uploaded     
+def article_file_upload_to(instance, filename):
+
+    ext = os.path.splitext(filename)[1].lower() # Get extension, like .jpg or .mp4
+
+    if ext in ['.jpg', '.jpeg', '.png', '.gif', '.webp']:
+        folder = 'images'
+    elif ext in ['.mp4', '.webm', '.ogg', '.mov', '.avi']:
+        folder = 'videos'
+    else:
+        folder = 'files'
+    
+    return f'{folder}/article/article/{instance.slug}/{filename}'
+
+
 # Article instance
 class Article(models.Model):
         
-    def article_file_upload_to(instance, filename):
-        
-        ext = os.path.splitext(filename)[1].lower()  # Get extension, like .jpg or .mp4
-        
-        if ext in ['.jpg', '.jpeg', '.png', '.gif', '.webp']:
-            folder = 'images'
-        elif ext in ['.mp4', '.webm', '.ogg', '.mov', '.avi']:
-            folder = 'videos'
-        else:
-            folder = 'files'  # fallback
-        
-        return f'{folder}/article/{instance.slug}/{filename}'
-
     slug = models.SlugField(blank=True, unique=True)
 
     title = models.CharField(max_length=450)
@@ -53,13 +54,13 @@ class Article(models.Model):
     introduction = models.TextField(max_length=500)
 
     first_paragraph = models.TextField()
-    first_media = models.FileField(blank=True, upload_to=article_file_upload_to)
+    first_media = models.FileField(blank=True, null=True, upload_to=article_file_upload_to)
 
     second_paragraph = models.TextField()
-    second_media = models.FileField(blank=True, upload_to=article_file_upload_to)
+    second_media = models.FileField(blank=True, null=True, upload_to=article_file_upload_to)
 
     third_paragraph = models.TextField()
-    third_media = models.FileField(blank=True, upload_to=article_file_upload_to)
+    third_media = models.FileField(blank=True, null=True, upload_to=article_file_upload_to)
 
     subject = models.ManyToManyField(Subject)
     author = models.ForeignKey(Author, on_delete=models.CASCADE)

@@ -14,16 +14,16 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='article',
             name='first_image',
-            field=models.FileField(blank=True, upload_to=article.models.Article.article_file_upload_to),
+            field=models.FileField(blank=True, upload_to='article_file_upload_to'),
         ),
         migrations.AlterField(
             model_name='article',
             name='second_image',
-            field=models.FileField(blank=True, upload_to=article.models.Article.article_file_upload_to),
+            field=models.FileField(blank=True, upload_to='article_file_upload_to'),
         ),
         migrations.AlterField(
             model_name='article',
             name='third_image',
-            field=models.FileField(blank=True, upload_to=article.models.Article.article_file_upload_to),
+            field=models.FileField(blank=True, upload_to='article_file_upload_to'),
         ),
     ]

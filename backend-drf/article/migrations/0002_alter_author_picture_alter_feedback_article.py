@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='author',
             name='picture',
-            field=models.ImageField(blank=True, upload_to=article.models.Author.author_image_upload_to),
+            field=models.ImageField(blank=True, upload_to='author_image_upload_to'),
         ),
         migrations.AlterField(
             model_name='feedback',

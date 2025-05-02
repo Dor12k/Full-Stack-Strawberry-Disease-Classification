@@ -9,11 +9,13 @@ from accounts.views import CustomUserViewSet
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from article.views import ArticleViewSet, FeedbackViewSet, SubjectViewSet, AuthorViewSet
 from rest_framework_nested.routers import NestedDefaultRouter
-
+from classification.views import DiseaseViewSet, DiseaseImageViewSet
 
 # Create Router
 router = DefaultRouter()
 router.register(r'users', CustomUserViewSet )
+router.register(r'diseases', DiseaseViewSet, basename='diseases')
+router.register(r'disease-images', DiseaseImageViewSet, basename='disease-images')
 router.register(r'articles', ArticleViewSet, basename='articles')
 router.register(r'subjects', SubjectViewSet, basename='subjects')
 router.register(r'authors', AuthorViewSet, basename='authors')

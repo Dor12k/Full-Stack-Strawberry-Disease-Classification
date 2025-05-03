@@ -17,6 +17,7 @@ def disease_image_upload_path(instance, filename):
 class Disease(models.Model):
     name = models.CharField(max_length=100, unique=True)
     description = models.TextField(blank=True)
+    category = models.CharField(max_length=20, default='leaf')
 
     def __str__(self):
         return self.name

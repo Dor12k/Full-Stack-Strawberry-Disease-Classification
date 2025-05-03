@@ -33,11 +33,10 @@ function Home() {
         const fetchProtectedData = async () =>{
 
             try{
-                // 1. Check permission
+                
                 const protectedResponse = await axiosInstance.get('/protected-view/');
                 console.log("Home view successful");
 
-                // 2. Fetch popular articles
                 // const popularResponse = await axiosInstance.get('/articles/popular/?limit=4');
                 const popularResponse = await axiosInstance.get('/articles/specific/');
                 setPopularArticles(popularResponse.data);

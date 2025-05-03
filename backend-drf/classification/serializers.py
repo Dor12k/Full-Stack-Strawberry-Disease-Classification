@@ -16,4 +16,4 @@ class DiseaseSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Disease
-        fields = ['id', 'name', 'description', 'images']
+        fields = ['id', 'name', 'category', 'description', 'images']

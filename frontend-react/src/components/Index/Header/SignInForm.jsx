@@ -113,12 +113,9 @@ const SignInForm = ({errors, setErrors, setShow}) => {
     }
   }
 
-  
-
   return (
 
     <>
-
       <h2 className='text-white pb-4 text-center text-xl'>Sign in seconds</h2>
 
       <form onSubmit={handleSignIn}>       

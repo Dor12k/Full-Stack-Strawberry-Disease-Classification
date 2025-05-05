@@ -1,7 +1,7 @@
 
 
 # accounts/tests/unit/test_serializers.py
-
+import re
 import os
 import pytest
 import tempfile
@@ -263,7 +263,8 @@ def test_update_user_with_profile_picture(valid_user_data):
     user = serializer.save()
 
     # Check that the profile picture is updated
-    assert user.profile_picture.name.startswith("profile_pics/profile_picture")
+    pattern = rf"^images/accounts/{user.username}/profile_picture/profile_picture(_[a-zA-Z0-9]+)?\.jpg$"
+    assert re.match(pattern, user.profile_picture.name)
     
     # Clean up the temporary file
     os.remove(img.name)

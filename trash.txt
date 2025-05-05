@@ -12,8 +12,47 @@
 | `Test`      | הוספת או עדכון בדיקות                    |
 | `Document`  | עדכון או הוספת תיעוד                     |
 
-|           
-+---media
-|   |   .gitkeep
-|   |   
-|   +---images
+
+
+
+import React from 'react';
+
+function Dashboard() {
+  return (
+    <div className="w-full min-h-screen bg-slate-100 dark:bg-[#1b1b1b] flex flex-col items-center justify-center px-4 py-16">
+
+      {/* Text content */}
+      <div className="text-center max-w-2xl mb-10">
+        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+          From Seed to Strawberry 🍓
+        </h1>
+        <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300">
+          Watch the fascinating journey of a strawberry plant and explore how AI helps keep it healthy.
+        </p>
+      </div>
+
+      {/* Video Preview */}
+      <div className="w-full max-w-3xl rounded-3xl overflow-hidden shadow-xl border border-gray-300 dark:border-gray-700">
+        <video
+          controls
+          className="w-full h-auto"
+        >
+          <source src="videos/Home/videoplayback.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      {/* Call to Action */}
+      <div className="mt-10">
+        <button className="bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-8 rounded-full shadow-md transition">
+          Upload a Leaf Photo
+        </button>
+      </div>
+
+    </div>
+  );
+}
+
+export default Dashboard;
+
+

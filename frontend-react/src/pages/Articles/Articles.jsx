@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useContext } from 'react';
 
+import LoadingPage from '../LoadingPage';
 import axiosInstance from '../../axiosInstance';
 import ArticleGrid from '../../components/Articles/ArticleGrid';
 
@@ -37,14 +38,8 @@ function Articles() {
 
   
   if (loading ) {
-    return (
-      <div className="flex justify-center items-center h-screen bg-slate-800 gap-10">
-        <FontAwesomeIcon icon={faSpinner} spin className="text-white text-4xl" />
-        <div className="text-2xl text-white">
-          <h6>Loading...</h6>
-        </div>
-      </div>
-    );
+    
+    return <LoadingPage/>
   }
 
   

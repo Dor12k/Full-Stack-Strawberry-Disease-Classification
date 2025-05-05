@@ -4,14 +4,13 @@ import { useRef } from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react';
 import { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { FaLongArrowAltLeft } from "react-icons/fa";
 import { AuthContext } from '../../context/AuthContext'
 import { UserContext } from '../../context/UserContext';
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link } from 'react-router-dom';
 
+import LoadingPage from '../LoadingPage';
 import axiosInstance from '../../axiosInstance'
 import UserProfileCard from '../../components/Profile/UserProfileCard';
 import EditProfilePopup from '../../components/Profile/EditProfilePopup';
@@ -21,20 +20,21 @@ import EditProfilePopup from '../../components/Profile/EditProfilePopup';
 const Profile = () => {
     
     const navigate = useNavigate();
+
     const { user, setUser } = useContext(UserContext);
     const {isLoggedIn, setIsLoggedIn} = useContext(AuthContext)
 
-    const usernameRef = useRef(null);
     const emailRef = useRef(null);
-    const passwordRef = useRef(null);
-    const newPasswordRef = useRef(null);
-    const firstNameRef = useRef(null);
+    const usernameRef = useRef(null);
     const lastNameRef = useRef(null);
+    const passwordRef = useRef(null);
+    const firstNameRef = useRef(null);
+    const newPasswordRef = useRef(null);
 
-    const [imagePreview, setImagePreview] = useState('');
-    const [selectedFile, setSelectedFile] = useState(null);
     const [loading, setLoading] = useState(false);
     const [editBtn, setEditBtn] = useState(false);
+    const [imagePreview, setImagePreview] = useState('');
+    const [selectedFile, setSelectedFile] = useState(null);
 
     // Initialize state from user local storage
     useEffect(() => {
@@ -169,9 +169,14 @@ const Profile = () => {
     // Delete user profile
     const handleDeleteBtn = async (e) => {
         
-        setLoading(true)
+        setLoading(true);
         e.preventDefault();
-        if (!window.confirm('Are you sure you want to delete your account?')) return;
+
+        if (!window.confirm('Are you sure you want to delete your account?')) {
+            setLoading(false);
+            return;
+        }
+
 
         try{
             // Get the access token from localStorage
@@ -207,12 +212,7 @@ const Profile = () => {
     }
 
     if (!user) {
-        return <div className="flex justify-center items-center h-screen bg-slate-800 gap-10">
-                    <FontAwesomeIcon icon={faSpinner} spin className="text-white text-4xl" />
-                    <div className='text-2xl text-white'>
-                        <h6>Loading.. </h6>
-                    </div>
-                </div>;
+        return <LoadingPage/>
     }
     
     return (

@@ -128,7 +128,7 @@ const Header = () => {
                         </div>
 
                         {/* Dark/Light Mode */}
-                        <div className="mb-1">
+                        <div className="mb-[0.1rem]">
 
                             <button onClick={() => setDarkMode(!darkMode)}
                                     className="flex items-center text-lg gap-2 px-4 py-2 bg-gray-200 dark:bg-gray-700 text-black dark:text-white rounded-full shadow hover:text-white hover:bg-red-800 transition duration-300">

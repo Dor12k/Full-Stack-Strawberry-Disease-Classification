@@ -1,9 +1,17 @@
+
+
 import { Link } from "react-router-dom";
 import { Leaf, Brain, Smartphone, Rocket } from "lucide-react";
 
+
+
 const About = () => {
+
+
   return (
+
     <div className="min-h-screen bg-gradient-to-br from-red-50 to-green-50 dark:from-[#1b1b1be1] dark:to-[#1a1a1a] text-gray-800 dark:text-gray-100 px-6 py-12">
+      
       <section className="max-w-5xl mx-auto space-y-20">
 
         {/* About Us Section */}
@@ -39,12 +47,14 @@ const About = () => {
 
         {/* Technologies Section */}
         <div className="text-2xl bg-white dark:bg-[#1a1a1a] rounded-2xl shadow-lg p-8 space-y-6">
+
           <h2 className="text-4xl font-extrabold text-green-700 dark:text-green-400 flex items-center gap-3">
             <Brain className="w-8 h-8" /> Technologies
           </h2>
 
           <p>
             This project is powered by a modern full-stack architecture. The backend is built using <strong>Django</strong> and <strong>Python</strong>, while the frontend uses <strong>HTML, CSS, and JavaScript</strong>, developed in <em>Visual Studio Code</em>.
+            Later refactored using <strong> Node.js </strong> and <strong> React (with Vite) </strong> and styled with <strong> Tailwind CSS </strong> for a more modern, scalable interface.
           </p>
 
           <p>
@@ -58,7 +68,7 @@ const About = () => {
 
           <p>
             Our Android app, built in <strong>Java</strong> via <strong>Android Studio</strong>, features <strong>TensorFlow Lite</strong> for on-device predictions. You can read more about it{' '}
-            <Link to="/articles/1" className="text-green-600 hover:underline font-medium">here</Link>.
+            <Link to="/articles/our-app-for-android-is-now-available" className="text-green-600 hover:underline font-medium">here</Link>.
           </p>
 
           <div className="text-center mt-10">
@@ -70,11 +80,14 @@ const About = () => {
               Join the Journey
             </Link>
           </div>
+
         </div>
 
       </section>
+      
     </div>
   );
+
 };
 
 export default About;

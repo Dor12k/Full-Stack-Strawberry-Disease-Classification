@@ -3,7 +3,7 @@
 
 import React, { useState } from 'react';
 
-function GallerySearch( {
+function GalleryToolbar( {
   searchText, setSearchText, 
   searchSuggestions, setSearchSuggestions, 
   filteredGallery, 
@@ -86,7 +86,7 @@ function GallerySearch( {
         </div>
         
         {/* Search Button */}
-        <button onClick={handleSearchButton} className="w-full lg:w-52 px-4 py-2 mt-3  sm:w-auto sm:mt-0 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-500 transition">
+        <button onClick={handleSearchButton} className="w-full lg:w-52 px-4 py-2 mt-3 sm:w-auto sm:mt-0 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-500 transition">
           Search
         </button>
 
@@ -151,4 +151,4 @@ function GallerySearch( {
   );
 }
 
-export default GallerySearch;
+export default GalleryToolbar;

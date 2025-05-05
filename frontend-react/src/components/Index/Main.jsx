@@ -7,6 +7,8 @@ import { useNavigate } from 'react-router-dom';
 
 const Main = () => {
 
+    const navigate = useNavigate();
+
     // Generate the animated circuit board effect or glowing connections
     useEffect(() => {
 
@@ -24,14 +26,11 @@ const Main = () => {
         }
     }, []);
     
-    const navigate = useNavigate();
-
     const handleClick = () => {
         
         navigate('/home');  
         console.log("User is a guest and can not access Dashboard page")
     };
-
 
     return (
 
@@ -49,12 +48,11 @@ const Main = () => {
                     AI & Computer Vision: Into the Future
                 </h2>
 
-
             </section>
 
             {/* Dashboard button */}
             <div className="absolute inset-0 flex items-center justify-center">
-                <button onClick={handleClick} className="h-16 bg-blue-500 text-white py-2 px-6 rounded-md hover:bg-blue-600 transition duration-300">
+                <button onClick={handleClick} className="h-12 bg-blue-500 text-white py-2 px-6 rounded-md hover:bg-blue-600 transition duration-300">
                     Continue as a guest
                 </button>
             </div>

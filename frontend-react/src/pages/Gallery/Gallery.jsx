@@ -1,11 +1,10 @@
 
 import React, { useEffect, useState } from 'react'
 
+import LoadingPage from '../LoadingPage';
 import axiosInstance from '../../axiosInstance';
 import GalleryImages from '../../components/Gallery/GalleryImages';
 import GalleryToolbar from '../../components/Gallery/GalleryToolbar';
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function Gallery() {
 
@@ -16,8 +15,8 @@ function Gallery() {
   const [selectedDate, setSelectedDate] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
   const [searchSuggestions, setSearchSuggestions] = useState('');
-  const [filteredGallery, setFilteredGallery] = useState(gallery);
   const [isFiltersVisible, setIsFiltersVisible] = useState(false);
+  const [filteredGallery, setFilteredGallery] = useState(gallery);
 
   useEffect(() => {
 
@@ -115,19 +114,10 @@ function Gallery() {
     setFilteredGallery(filtered);
   };
   
-  
-
-  
   // Fallback for loading state if needed
   if ((loading) ) {
-      return (
-      <div className="flex justify-center items-center h-screen bg-slate-800 gap-10">
-          <FontAwesomeIcon icon={faSpinner} spin className="text-white text-4xl" />
-          <div className="text-2xl text-white">
-          <h6>Loading...</h6>
-          </div>
-      </div>
-      );
+
+    return <LoadingPage/>
   }
 
   return (

@@ -11,6 +11,7 @@ import { UserContext } from '../../context/UserContext';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { useState, useEffect, useContext, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import LoadingPage from '../LoadingPage';
 // import FormattedParagraph from '../../components/Articles/FormattedParagraph';
 
 
@@ -117,14 +118,8 @@ const Article = () => {
   };
 
   if (loading || !article) {
-    return (
-      <div className="flex justify-center items-center h-screen bg-slate-800 gap-10">
-        <FontAwesomeIcon icon={faSpinner} spin className="text-white text-4xl" />
-        <div className="text-2xl text-white">
-          <h6>Loading...</h6>
-        </div>
-      </div>
-    );
+    
+    return <LoadingPage/>
   }
 
   return (

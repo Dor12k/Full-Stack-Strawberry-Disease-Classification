@@ -8,16 +8,18 @@ import Index from './pages/Index/Index';
 import Profile from './pages/Profile/Profile';
 import Contact from './pages/Contact/Contact';
 import Gallery from './pages/Gallery/Gallery';
+import Article from './pages/Articles/Article';
 import Articles from './pages/Articles/Articles';
 import UserProvider from './context/UserContext';
 import AuthProvider from './context/AuthContext';
-import PublicRoute from './components/auth/PublicRoute';
-import PrivateRoute from './components/auth/PrivateRoute';
-import Article from './pages/Articles/Article';
 import AddArticle from './pages/Articles/AddArticle';
 import EditArticle from './pages/Articles/EditArticle';
+import PublicRoute from './components/auth/PublicRoute';
 import ScrollToTop from './components/utils/ScrollToTop';
+import PrivateRoute from './components/auth/PrivateRoute';
 import { createBrowserRouter, RouterProvider,} from "react-router-dom";
+
+
 
 
 // Cancel warning message in console

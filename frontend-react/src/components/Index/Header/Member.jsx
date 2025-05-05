@@ -29,12 +29,6 @@ function Member({setIsLoggedIn}) {
         navigate('/')
     }  
 
-    const handleProfileBtn = () => {
-
-        navigate('/profile')
-
-    }
-
     return (
 
         <div className='flex'>

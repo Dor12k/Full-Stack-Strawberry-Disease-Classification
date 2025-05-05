@@ -8,21 +8,26 @@ import { AuthContext } from '../../context/AuthContext';
 import { UserContext } from '../../context/UserContext';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import ArticleCard from '../../components/Articles/ArticleCard';
+
+import LoadingPage from '../LoadingPage';
 import axiosInstance from '../../axiosInstance';
+import ArticleCard from '../../components/Articles/ArticleCard';
+
+
 
 function Home() {
 
     const savedUser = localStorage.getItem('user');
     const accessToken = localStorage.getItem('accessToken');
-    const { userContext, setUserContext } = useContext(UserContext);
-    const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext); 
+
     const [ loading, setLoading ] = useState(true);
     const [ classify, setClassify ] = useState(false);
     const [ isDragging, setIsDragging ] = useState(false);
-    const [ selectedFile, setSelectedFile ] = useState(null);
     const [ imagePreview, setImagePreview ] = useState('');
+    const [ selectedFile, setSelectedFile ] = useState(null);
     const [ popularArticles, setPopularArticles ] = useState([]);
+    const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext); 
+    const { userContext, setUserContext } = useContext(UserContext);
     const [ classificationLabel, setClassificationLabel ] = useState('');
     const [ classificationScore, setClassificationScore ] = useState('');
 
@@ -129,16 +134,8 @@ function Home() {
 
     // Fallback for loading state if needed
     if ((loading && isLoggedIn === undefined) ) {
-        return (
-        <div className="flex justify-center items-center h-screen bg-slate-800 gap-10">
-            <FontAwesomeIcon icon={faSpinner} spin className="text-white text-4xl" />
-            <div className="text-2xl text-white">
-            <h6>Loading...</h6>
-            </div>
-        </div>
-        );
+        return <LoadingPage/>
     }
-
 
   return (
 
@@ -233,8 +230,9 @@ function Home() {
                                                 {classificationLabel}
                                             </p>
                                             </Link>
+
                                             <p className="col-span-2 mb-1 flex items-center justify-center text-green-500 dark:text-green-500">
-                                            {classificationScore}
+                                                {classificationScore}
                                             </p>
                                         </div>
                                     </div>

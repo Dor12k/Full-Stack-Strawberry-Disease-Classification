@@ -1,15 +1,14 @@
 
 
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import LoadingPage from '../LoadingPage';
 import axiosInstance from '../../axiosInstance';
 import ArticleGrid from '../../components/Articles/ArticleGrid';
+import ScrollToTopButton from '../../components/utils/ScrollToTopButton';
 
 import { Link } from 'react-router-dom';
 import { UserContext } from '../../context/UserContext';
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 
@@ -64,6 +63,8 @@ function Articles() {
       <div className="w-full min-h-screen py-10 px-4 lg:px-20 bg-slate-50 dark:bg-[#1f1f1f] dark:text-white ">
         <ArticleGrid articles={articles} />
       </div>
+
+      <ScrollToTopButton/>
 
     </div>
   )

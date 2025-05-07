@@ -16,7 +16,6 @@ import UserProfileCard from '../../components/Profile/UserProfileCard';
 import EditProfilePopup from '../../components/Profile/EditProfilePopup';
 
 
-
 const Profile = () => {
     
     const navigate = useNavigate();
@@ -141,7 +140,8 @@ const Profile = () => {
                             ...(error.response.data.email && { email: error.response.data.email }),
                             ...(error.response.data.username && { username: error.response.data.username }),
                             ...(error.response.data.password && { password: error.response.data.password }),
-                            ...(error.response.data.new_password && { new_password: error.response.data.new_password })
+                            ...(error.response.data.new_password && { new_password: error.response.data.new_password }),
+                            ...(error.response.data.error && { error: error.response.data.error })
                         }));
                         console.log("Error response data:", error.response.data);
                     } else {
@@ -218,45 +218,50 @@ const Profile = () => {
     return (
 
         <>
-            {user && (
+        {user && (
+            <div className="min-h-screen bg-gradient-to-r from-indigo-600 to-purple-700 flex items-center justify-center px-4 py-8 sm:px-6 lg:px-8 relative">
 
-                <div className=" min-h-screen bg-gradient-to-r from-indigo-600 to-purple-700 flex flex-col items-center justify-center p-6 relative">
-                    
-                    {/* Button - back to home.jsx */}
-                    <div className="absolute top-0 left-0 m-4">
-                        <Link to='/home'>
-                            <button className="flex items-center bg-teal-600 text-white px-6 py-3 rounded-full mt-2 gap-2 text-xl hover:bg-teal-700 transition duration-300 transform hover:scale-105">
-                                <FaLongArrowAltLeft className="text-2xl" /> Home
-                            </button>
-                        </Link>
-                    </div>
+                {/* Button - back to home.jsx */}
+                <div className="absolute top-4 left-4">
+                    <Link to="/home">
+                        <button className="flex items-center bg-teal-600 text-white px-5 py-2 sm:px-6 sm:py-3 rounded-full gap-2 text-base sm:text-xl hover:bg-teal-700 transition duration-300 transform hover:scale-105">
+                            <FaLongArrowAltLeft className="text-xl sm:text-2xl" /> Home
+                        </button>
+                    </Link>
+                </div>
 
+                <div className="w-full max-w-4xl mx-auto flex flex-col items-center justify-center">
                     {/* Profile Card */}
-                    <UserProfileCard user={user} onEditPopUp={() => setEditBtn(true)} onDeleteBtn={handleDeleteBtn} loading={loading}/>
+                    <UserProfileCard
+                        user={user}
+                        onEditPopUp={() => setEditBtn(true)}
+                        onDeleteBtn={handleDeleteBtn}
+                        loading={loading}
+                    />
 
                     {/* PopUp Component - Edit Profile */}
                     {editBtn && (
                         <EditProfilePopup
-                        user={user}
-                        usernameRef={usernameRef}
-                        emailRef={emailRef}
-                        passwordRef={passwordRef}
-                        newPasswordRef={newPasswordRef}
-                        firstNameRef={firstNameRef}
-                        lastNameRef={lastNameRef}
-                        imagePreview={imagePreview}
-                        handleImageUpload={handleImageUpload}
-                        handleSaveBtn={handleSaveBtn}
-                        loading={loading}
-                        setEditBtn={setEditBtn}
-                        errors={errors}
-                        setErrors={setErrors}
+                            user={user}
+                            usernameRef={usernameRef}
+                            emailRef={emailRef}
+                            passwordRef={passwordRef}
+                            newPasswordRef={newPasswordRef}
+                            firstNameRef={firstNameRef}
+                            lastNameRef={lastNameRef}
+                            imagePreview={imagePreview}
+                            handleImageUpload={handleImageUpload}
+                            handleSaveBtn={handleSaveBtn}
+                            loading={loading}
+                            setEditBtn={setEditBtn}
+                            errors={errors}
+                            setErrors={setErrors}
                         />
                     )}
-
                 </div>
-            )};
-        </>
+            </div>
+        )}
+    </>
     );
 };
 

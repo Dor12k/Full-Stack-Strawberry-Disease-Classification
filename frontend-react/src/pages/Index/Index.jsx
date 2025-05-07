@@ -2,9 +2,10 @@
 
 // import "../index.css";
 
+import Main from "../../components/Index/Main";
 import Header from "../../components/Index/Header";
 import Footer from "../../components/Index/Footer";
-import Main from "../../components/Index/Main";
+import Dashboard from "../../components/Index/Dashboard";
 
 
 const Index = () => {
@@ -13,7 +14,8 @@ const Index = () => {
 
     <>
       <Header/>
-      <Main/>
+      {/* <Main/> */}
+      <Dashboard/>
       <Footer/>
     </>
   );

@@ -1,11 +1,12 @@
 
 # File name: permissions.py
 
-from rest_framework.permissions import BasePermission
+from rest_framework.permissions import BasePermission, SAFE_METHODS
+
 
 class IsOwner(BasePermission):
     """
-    Allow actions only if the object is the logged-in user.
+    Only allow the user to access or modify their own object.
     """
 
     def has_object_permission(self, request, view, obj):

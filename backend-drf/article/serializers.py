@@ -14,10 +14,30 @@ class SubjectSerializer(serializers.ModelSerializer):
 
 
 class FeedbackSerializer(serializers.ModelSerializer):
+    username = serializers.CharField(write_only=True) 
     class Meta:
         model = Feedback
         fields = ['id', 'text', 'username', 'user', 'rating']
         read_only_fields = ['user', 'article']
+
+    def validate_rating(self, value):
+        if not (0 <= value <= 5):
+            raise serializers.ValidationError("Rating must be between 1 and 5.")
+        return value
+
+    def validate_text(self, value):
+        if not value.strip():
+            raise serializers.ValidationError("Comment cannot be empty.")
+        return value
+
+    def validate(self, data):
+        request = self.context['request']
+        if data.get("username") != request.user.username:
+            raise serializers.ValidationError("You can only submit feedback using your own username.")
+        return data
+
+
+
 
 
 class AuthorSerializer(serializers.ModelSerializer):

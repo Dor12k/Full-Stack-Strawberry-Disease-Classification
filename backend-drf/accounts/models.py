@@ -49,6 +49,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_premium = models.BooleanField(default=False)
+    is_guest = models.BooleanField(default=False)
     date_joined = models.DateTimeField(auto_now_add=True)
 
     password = models.CharField(max_length=128, blank=False)
@@ -75,15 +76,10 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
         # If username has changed, move image to a new folder
         if old_username and old_username != self.username and self.profile_picture:
-            print("Debug", "old_username", old_username, "self.username", self.username)
             
             # Define old and new paths
             old_path = os.path.join(settings.MEDIA_ROOT, 'images', 'accounts', old_username, 'profile_picture')
             new_path = os.path.join(settings.MEDIA_ROOT, 'images', 'accounts', self.username, 'profile_picture')
-
-            print("OLD PATH:", old_path)
-            print("NEW PATH:", new_path)
-            print("PROFILE PIC:", self.profile_picture.path)
 
             # Check if old path exists
             if os.path.exists(old_path):
@@ -95,12 +91,10 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
                     old_file_path = os.path.join(old_path, filename)
                     new_file_path = os.path.join(new_path, filename)
                     shutil.move(old_file_path, new_file_path)
-                    print(f"Moved {old_file_path} to {new_file_path}")
                     
                 # After moving files, check if old directory is empty
                 if not os.listdir(old_path):  # Directory should be empty after moving files
                     shutil.rmtree(old_path)
-                    print(f"Removed old path: {old_path}")
 
                     # After deleting 'profile_picture' folder
                     user_old_dir = os.path.join(settings.MEDIA_ROOT, 'images', 'accounts', old_username)    
@@ -108,16 +102,11 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
                     # If the user directory is now empty, remove it too
                     if os.path.isdir(user_old_dir) and not os.listdir(user_old_dir):
                         os.rmdir(user_old_dir)
-                        print(f"Removed user directory: {user_old_dir}")  
-                else:
-                    print(f"Old path {old_path} is not empty, skipped removal.")
   
                     
                 # Update the image path in the model
                 ext = self.profile_picture.name.split('.')[-1]
                 self.profile_picture.name = f"images/accounts/{self.username}/profile_picture/profile_picture.{ext}"
                 super().save(update_fields=['profile_picture'])
-            else:
-                print(f"Old path {old_path} does not exist, skipping move and cleanup.")
 
 

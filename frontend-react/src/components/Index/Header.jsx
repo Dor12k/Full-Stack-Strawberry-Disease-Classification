@@ -13,12 +13,13 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { RxCross2 } from "react-icons/rx";
 import { AuthContext } from '../../context/AuthContext';
+import { UserContext } from "../../context/UserContext";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 
 const Header = () => {
     
-    // const {user, setUser} = useContext(UserContext);
+    const {user, setUser} = useContext(UserContext);
     const {isLoggedIn, setIsLoggedIn} = useContext(AuthContext)
 
     // Define type=signIn/signUp
@@ -59,7 +60,7 @@ const Header = () => {
 
                 {/* SignUp pop up window */}
                 <div className={`${show ? 'visible opacity-100' : 'invisible opacity-0 pointer-events-none'} 
-                                fixed inset-0 flex justify-center items-center bg-[#252627ad] z-10 transition-opacity duration-500`}>
+                                fixed inset-0 flex justify-center items-center bg-[#252725ad] z-50 transition-opacity duration-500`}>
                     
                     {/* Overlay - Dark background */}
                     <div onClick={() => setShow(false)} className="absolute inset-0 bg-black bg-opacity-30 z-40"/>
@@ -96,23 +97,41 @@ const Header = () => {
                     </div>
 
                     {/* Navigation Links */}
-                    <div >
+                    <div>
                         <ul className="flex flex-row md:flex-row gap-6">
                             {[
-                                { label: "Home", path: "/home" },
-                                { label: "About", path: "/about" },
-                                { label: "Contact", path: "/contact" },
-                                { label: "Gallery", path: "/gallery" },
-                                { label: "Articles", path: "/articles" },
+                            { label: "Home", path: "/home" },
+                            { label: "About", path: "/about" },
+                            { label: "Contact", path: "/contact" },
+                            { label: "Gallery", path: "/gallery" },
+                            { label: "Articles", path: "/articles" },
                             ].map(({ label, path }) => (
-                                <li key={label}>
+                            <li key={label}>
+                                {user ? (
                                 <Link
                                     to={path}
-                                    className="text-xl text-[#1f2121] dark:text-white dark:hover:text-blue-600 lg:text-2xl hover:text-blue-600 transition duration-300 hover:scale-110"
+                                    className="text-xl text-[#1a1a1a] dark:text-white dark:hover:text-blue-600 lg:text-2xl hover:text-blue-600 transition duration-300 hover:scale-110"
                                 >
                                     {label}
                                 </Link>
-                                </li>
+                                ) : (
+                                <span
+                                    onClick={() => {
+                                    setType('signin');
+                                    setShow(true);
+                                    setErrors({
+                                        email: '',
+                                        username: '',
+                                        password: '',
+                                        error: '',
+                                    });
+                                    }}
+                                    className="text-red-600 font-bold cursor-pointer text-lg lg:text-xl hover:text-green-500"
+                                >
+                                    {label}
+                                </span>
+                                )}
+                            </li>
                             ))}
                         </ul>
                     </div>

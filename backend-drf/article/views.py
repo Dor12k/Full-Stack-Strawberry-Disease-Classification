@@ -11,6 +11,7 @@ from rest_framework.response import Response
 from django.db.models import Case, When, Value, IntegerField
 from article.models import Article, Feedback,Subject, Author
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
+from rest_framework.exceptions import PermissionDenied
 from article.serializers import ArticleSerializer, FeedbackSerializer, SubjectSerializer, AuthorSerializer
 
 # Manage all *articles/ urls
@@ -81,6 +82,11 @@ class FeedbackViewSet(viewsets.ModelViewSet):
         slug = self.kwargs.get('article_slug') 
         article = Article.objects.get(slug=slug)
 
+        # Prevent guest users from submitting feedback
+        if getattr(self.request.user, "is_guest", False):
+            raise PermissionDenied({"error": "Only registered users can submit feedback."})
+
+
         # Check if the user has already submitted feedback for this article
         existing_feedback = Feedback.objects.filter(user=self.request.user, article=article).first()
 
@@ -102,6 +108,8 @@ class FeedbackViewSet(viewsets.ModelViewSet):
         article.average_rating = article.feedbacks.aggregate(Avg('rating'))['rating__avg'] or 0
         article.average_rating = round(article.average_rating, 1)
         article.save()
+
+        
 
 
 # Manage all *subjects urls

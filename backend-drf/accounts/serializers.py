@@ -21,14 +21,23 @@ class CustomUserSerializer(serializers.ModelSerializer):
         'blank': 'Password can\'t be empty.',
     })
     new_password = serializers.CharField(write_only=True, required=False, allow_blank=True, min_length=8)
-    profile_picture = serializers.ImageField(required=False)
+
+    # profile_picture = serializers.SerializerMethodField()
+    profile_picture = serializers.ImageField(allow_null=True, required=False)
+    
+    print("profile_picture", profile_picture)
 
     class Meta:
-
-
         model = CustomUser
         read_only_fields = ['id', 'date_joined']
-        fields = ['id', 'username', 'email', 'password', 'new_password', 'first_name', 'last_name', 'student_id', 'is_staff', 'is_premium', 'profile_picture']
+        fields = ['id', 'username', 'email', 'password', 'new_password', 'first_name', 'last_name', 'student_id', 'is_staff', 'is_premium', 'is_guest', 'profile_picture']
+
+
+    def get_profile_picture(self, obj):
+        request = self.context.get('request')
+        if obj.profile_picture and hasattr(obj.profile_picture, 'url'):
+            return request.build_absolute_uri(obj.profile_picture.url) if request else obj.profile_picture.url
+        return None
 
     def create(self, validated_data):
 
@@ -64,6 +73,16 @@ class CustomUserSerializer(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
         errors = {}
+
+        print("instance", instance)
+        print("validated_data", validated_data)
+
+
+        # Prevent guest user from updating profile
+        if instance.email == "guest@example.com":
+            raise serializers.ValidationError({
+                "error": "Guest account cannot be modified."
+            })
 
         if 'password' in validated_data:
             user = get_user_model().objects.get(id=instance.id)

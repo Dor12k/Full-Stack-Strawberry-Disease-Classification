@@ -1,18 +1,24 @@
 
 
-import './Article.css'
-import React from 'react';
-import sanitizeHtml from 'sanitize-html';
+// External libraries
+import React, { useState, useEffect, useContext, useRef } from 'react';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import axiosInstance from '../../axiosInstance';
+import sanitizeHtml from 'sanitize-html';
 
-import { useParams } from 'react-router-dom';
-import { Link, useNavigate } from 'react-router-dom';
-import { UserContext } from '../../context/UserContext';
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
-import { useState, useEffect, useContext, useRef } from 'react';
+// Icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+
+// Styles
+import './Article.css';
+
+// Contexts
+import { UserContext } from '../../context/UserContext';
+
+// Components
 import LoadingPage from '../LoadingPage';
-// import FormattedParagraph from '../../components/Articles/FormattedParagraph';
+import ScrollToTopButton from '../../components/utils/ScrollToTopButton';
 
 
 
@@ -32,7 +38,10 @@ const Article = () => {
   const [article, setArticle] = useState(null);
   const [loading, setLoading] = useState(true);
   const [messageColor, setMessageColor] = useState('green');
+  
 
+
+  
 
   useEffect(() => {
 
@@ -70,14 +79,33 @@ const Article = () => {
   }, [navigate, slug , user, ]);
 
   const handlePostReview = async () => {
+
     setErrors({});
     setMessage('');
+
     if (user.username !== username) {
       setErrors({ username: 'Please enter your username' });
       return;
     }
 
+    if (!rating || rating < 0 || 5 < rating ) {
+      setErrors({ rating: 'Rating must be between 0 and 5' });
+      return; 
+    }
+    
+    if (!text || !text.trim()) {
+      setErrors({ text: 'Comment cannot be empty' });
+      return; 
+    }
+
+    if (user.is_guest) {          
+      setMessageColor('red');
+      setMessage('Only registered users can submit feedback. Please sign in.');
+      return; 
+    }
+
     try {
+      setLoading(true);
       const response = await axiosInstance.post(`/articles/${slug}/feedback/`, {
         username,
         rating,
@@ -101,24 +129,25 @@ const Article = () => {
     } catch (error) {
 
       if (error.response && error.response.data) {
-
         const data = error.response.data;
         setMessageColor('red');
-        
+    
         setErrors({
-          username: data.username?.[0],
-          rating: data.rating?.[0],
-          text: data.text?.[0],
-
+          username: data.username?.[0] || '',
+          rating: data.rating?.[0] || '',
+          text: data.text?.[0] || '',
+          error: data['error'] || '',
         });
-      }else{
-          setMessage(data.detail || 'Something went wrong. Please try again later.');
-      }
+    
+      } else {
+        setMessage(error?.response?.data?.detail || 'Something went wrong. Please try again later.');
+      } 
+    } finally {
+        setLoading(false);
     }
   };
 
-  if (loading || !article) {
-    
+  if (loading || !article) { 
     return <LoadingPage/>
   }
 
@@ -234,38 +263,52 @@ const Article = () => {
                     placeholder="Enter username"
                     onChange={(e) => setUsername(e.target.value)}
                 />
-                {errors.username && <p className="text-red-500 text-sm lg:text-xl mt-1">{errors.username}</p>}
+                {errors.username && <p className="text-red-500 ml-2 text-sm lg:text-xl mt-1">{errors.username}</p>}
             </div>
 
             <div className="mb-4">
-            <label className="lg:text-xl block mb-1 font-semibold">Rating (0-5)</label>
-            <input
-                type="number"
-                min="0"
-                max="5"
-                className="w-full lg:text-xl border border-gray-300 rounded-lg p-2 dark:text-black"
-                value={rating}
-                onChange={(e) => setRating(e.target.value)}
-            />
-            {errors.rating && <p className="text-red-500 text-sm lg:text-xl mt-1">{errors.rating}</p>}
+              <label className="lg:text-xl block mb-1 font-semibold">Rating (0-5)</label>
+              <input
+                  type="number"
+                  min="0"
+                  max="5"
+                  className="w-full lg:text-xl border border-gray-300 rounded-lg p-2 dark:text-black"
+                  value={rating}
+                  onChange={(e) => setRating(e.target.value)}
+              />
+              {errors.rating && <p className="text-red-500 ml-2 text-sm lg:text-xl mt-1">{errors.rating}</p>}
             </div>
 
             <div className="mb-4">
-            <label className="lg:text-xl block mb-1 font-semibold">Feedback</label>
-            <textarea
-                className="w-full lg:text-xl border border-gray-300 rounded-lg p-2 dark:text-black"
-                rows="4"
-                value={text}
-                onChange={(e) => setText(e.target.value)}
-            />
-            {errors.text && <p className="text-red-500 text-sm lg:text-xl mt-1">{errors.text}</p>}
+              <label className="lg:text-xl block mb-1 font-semibold">Feedback</label>
+              <textarea
+                  className="w-full lg:text-xl border border-gray-300 rounded-lg p-2 dark:text-black"
+                  rows="4"
+                  value={text}
+                  onChange={(e) => setText(e.target.value)}
+              />
+              {errors.text && <p className="text-red-500 ml-2 text-sm lg:text-xl mt-1">{errors.text}</p>}
             </div>
 
-            {message && <div className={`mb-4 text-sm lg:text-xl font-semibold text-${messageColor}-600`}>{message}</div>}
+            {message && <div className={`mb-4 ml-2 text-sm lg:text-xl font-semibold text-${messageColor}-600`}>{message}</div>}
+            {errors.error && <div className={`mb-4 ml-2 text-sm lg:text-xl font-semibold text-${messageColor}-600`}>{errors.error}</div>}
 
-            <button onClick={handlePostReview} className="lg:text-xl bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700" >
+            {loading ? (
+
+
+              <button onClick={handlePostReview} className="w-48 lg:text-xl gap-4 flex bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700" >
+                <FontAwesomeIcon icon={faSpinner} spin className="pt-2"/> 
+                <p> Please wait... </p> 
+              </button>
+            ):(
+
+              <button onClick={handlePostReview} className="w-48 lg:text-xl bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700" >
                 Submit Feedback
-            </button>
+              </button>
+
+            )}
+            
+
         </section>
 
         {/* Reviews Section */}
@@ -283,6 +326,7 @@ const Article = () => {
 
         </section>
 
+        <ScrollToTopButton />
     </div>
   );
 };

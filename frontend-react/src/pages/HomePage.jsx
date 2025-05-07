@@ -11,7 +11,7 @@ const HomePage = () => {
     <>
       <Header />
 
-        <main className="min-h-screen bg-slate-100 dark:bg-[#1b1b1be9] dark:text-white">
+        <main className="min-h-screen dark:bg-[#1b1b1be9] dark:text-white">
 
           <Outlet />
 

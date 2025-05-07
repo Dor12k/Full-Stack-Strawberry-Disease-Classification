@@ -1,15 +1,15 @@
 
 
-
+# File name: /api/urls.py
 from django.urls import path, include
 from accounts import views as UserViews
 from article import views as ArticleViews
-from rest_framework.routers import DefaultRouter
 from accounts.views import CustomUserViewSet 
-from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
-from article.views import ArticleViewSet, FeedbackViewSet, SubjectViewSet, AuthorViewSet
+from rest_framework.routers import DefaultRouter
 from rest_framework_nested.routers import NestedDefaultRouter
 from classification.views import DiseaseViewSet, DiseaseImageViewSet
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from article.views import ArticleViewSet, FeedbackViewSet, SubjectViewSet, AuthorViewSet
 
 # Create Router
 router = DefaultRouter()
@@ -37,4 +37,7 @@ urlpatterns = [
 
     # Path to home page for members acounts
     path('protected-view/', UserViews.ProtectedView.as_view()),
+
+    # Path to guest users
+    path('guest-login/', UserViews.GuestLoginView.as_view(), name='guest-login'),
 ]

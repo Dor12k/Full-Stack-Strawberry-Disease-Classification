@@ -1,5 +1,7 @@
 
 
+# File name: conftest.py
+
 import pytest
 from django.urls import reverse
 from ..models import CustomUser
@@ -87,7 +89,7 @@ def admin_user_data():
         'password': 'AdminPassword123*',
         'first_name': 'Admin',
         'last_name': 'User',
-        'is_staff': True,  # חשוב: לוודא שהמשתמש הוא Admin
+        'is_staff': True, 
     }
 
 @pytest.fixture

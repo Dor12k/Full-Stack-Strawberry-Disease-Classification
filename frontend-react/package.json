@@ -17,6 +17,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "axios": "^1.8.4",
+    "framer-motion": "^12.9.7",
     "jwt-decode": "^4.0.0",
     "lucide-react": "^0.503.0",
     "quill": "^2.0.3",
@@ -26,7 +27,9 @@
     "react-multi-carousel": "^2.8.5",
     "react-quill": "^2.0.0",
     "react-router-dom": "^7.4.0",
+    "react-tsparticles": "^2.12.2",
     "sanitize-html": "^2.16.0",
+    "tsparticles": "^3.8.1",
     "util": "^0.12.5"
   },
   "devDependencies": {

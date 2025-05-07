@@ -10,6 +10,8 @@ const PrivateRoute = ({children}) => {
 
   const { isLoggedIn } = useContext(AuthContext)
 
+  
+
   return isLoggedIn ? (
     children
   ) : (

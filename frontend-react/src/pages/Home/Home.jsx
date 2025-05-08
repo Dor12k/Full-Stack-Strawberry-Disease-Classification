@@ -16,6 +16,7 @@ import axiosInstance from '../../axiosInstance';
 import ArticleCard from '../../components/Articles/ArticleCard';
 import ScrollToTopButton from '../../components/utils/ScrollToTopButton';
 
+import '../../index.css'
 
 
 function Home() {
@@ -33,12 +34,13 @@ function Home() {
     const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext); 
     const [ classificationLabel, setClassificationLabel ] = useState('');
     const [ classificationScore, setClassificationScore ] = useState('');
-    
 
     // Check accessToken for user premission
     useEffect(()=>{
 
         setFadeIn(true)
+
+        
         const fetchProtectedData = async () =>{
 
             try{
@@ -142,12 +144,12 @@ function Home() {
 
     return (
 
-        <div className={`flex flex-col min-h-screen  dark:bg-[#1a1a1a] ${fadeIn  ? "fade-in" : "" }`}>
+        <div className={`flex flex-col min-h-screen bg-slate-100 dark:bg-[#1a1a1a] ${fadeIn  ? "fade-in" : "" }`}>
             
             {/* Section 1 – Top */}
             <section className="flex-1 min-h-[500px] dark:text-white flex items-center justify-center">
 
-                <div className="flex flex-col lg:flex-row items-center justify-center h-full w-full px-6 sm:px-10 py-12 gap-14 dark:bg-[#1a1a1a] dark:text-white bg-white text-black transition-colors duration-500">
+                <div className="flex flex-col lg:flex-row items-center justify-center h-full w-full px-6 sm:px-10 py-12 gap-14 dark:text-white text-black transition-all   duration-500">
 
                     {/* Text + Button */}
                     <div className="flex-1 max-w-3xl flex flex-col items-center lg:items-start justify-center min-w-0 space-y-6 text-center lg:text-left gap-2 lg:mb-4  lg:ml-16">
@@ -187,7 +189,7 @@ function Home() {
             </section>
 
             {/* Classification Section */}  
-            <section className="flex-1 h-[500px] bg-[#ffe6c1db] dark:bg-[#1f1f1f] text-black dark:text-white py-16 px-6 sm:px-12 my-16 rounded-[30px] shadow-[0_12px_30px_-10px_rgba(0,0,0,0.15),0_-4px_8px_-2px_rgba(0,0,0,0.1)] transition-all duration-500">
+            <section className="flex-1 h-[500px] bg-[#ffe6c1db] dark:bg-[#1f1f1f] text-black dark:text-white py-16 px-6 sm:px-12 my-16 rounded-[30px] shadow-[0_12px_30px_-10px_rgba(0,0,0,0.15),0_-4px_8px_-2px_rgba(0,0,0,0.1)] dark:shadow-red-600 transition-all duration-500">
 
                 <div className="flex flex-col lg:flex-row gap-12 items-stretch max-w-screen-xl mx-auto px-6 py-2 w-full">
 

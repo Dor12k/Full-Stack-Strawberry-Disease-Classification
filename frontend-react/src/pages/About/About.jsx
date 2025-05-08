@@ -2,6 +2,7 @@
 
 import { Link } from "react-router-dom";
 import { Leaf, Brain, Smartphone, Rocket } from "lucide-react";
+import ScrollToTopButton from "../../components/utils/ScrollToTopButton";
 
 
 
@@ -84,6 +85,8 @@ const About = () => {
         </div>
 
       </section>
+      
+      <ScrollToTopButton/>
       
     </div>
   );

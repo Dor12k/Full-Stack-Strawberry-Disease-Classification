@@ -14,6 +14,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import LoadingPage from '../LoadingPage';
 import axiosInstance from '../../axiosInstance';
 import ArticleCard from '../../components/Articles/ArticleCard';
+import ScrollToTopButton from '../../components/utils/ScrollToTopButton';
 
 
 
@@ -306,8 +307,9 @@ function Home() {
                 </div>
             </section>
 
-        </div>
+            <ScrollToTopButton />
 
+        </div>
     )
 }
 

@@ -5,6 +5,7 @@ import LoadingPage from '../LoadingPage';
 import axiosInstance from '../../axiosInstance';
 import GalleryImages from '../../components/Gallery/GalleryImages';
 import GalleryToolbar from '../../components/Gallery/GalleryToolbar';
+import ScrollToTopButton from '../../components/utils/ScrollToTopButton';
 
 function Gallery() {
 
@@ -159,6 +160,9 @@ function Gallery() {
         <GalleryImages filteredGallery={filteredGallery} />
 
       </div>
+
+      
+      <ScrollToTopButton />
 
     </div>
 

@@ -14,6 +14,7 @@ import axiosInstance from '../../axiosInstance';
 
 import leafIcon from "/images/Dashboard/leaf.svg";
 import strawberryIcon from "/images/Dashboard/strawberry.svg";
+import ScrollToTopButton from "../utils/ScrollToTopButton";
 
 
 
@@ -153,6 +154,8 @@ const Dashboard = () => {
         </button>
 
       </div>
+
+      <ScrollToTopButton />
 
     </div>
   );

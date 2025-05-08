@@ -47,7 +47,7 @@ def test_guest_user_cannot_update_profile(client):
 
     response = client.patch(update_url, data={'first_name': 'NewName'})
     assert response.status_code == 403
-    assert response.data['detail'] == 'Guest users cannot update their profile.'
+    assert response.data['error'] == 'Guest users cannot update their profile.'
 
 
 @pytest.mark.django_db
@@ -63,4 +63,4 @@ def test_guest_user_cannot_delete_profile(client):
 
     response = client.delete(delete_url)
     assert response.status_code == 403
-    assert response.data['detail'] == 'Guest users cannot delete their account.'
+    assert response.data['error'] == 'Guest users cannot delete their account.'

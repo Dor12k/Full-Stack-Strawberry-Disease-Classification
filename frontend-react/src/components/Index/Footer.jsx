@@ -8,7 +8,7 @@ const Footer = () => {
   return (
 
     
-      <footer className="w-full border-t  py-8 bg-[#ececec] text-black dark:bg-[#24262b] dark:text-white shadow-[0_-4px_10px_0_rgba(0,0,0,0.25)] z-10 relative">      
+      <footer className="w-full border-t py-8 bg-[#ececec] text-black dark:bg-[#24262b] dark:text-white shadow-[0_-4px_10px_0_rgba(0,0,0,0.25)] z-10 ">      
         <div className="container mx-auto px-4">
 
         {/* Subscription Section */}

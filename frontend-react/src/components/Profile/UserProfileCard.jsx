@@ -66,7 +66,7 @@ export default function UserProfileCard({ user, onEditPopUp, onDeleteBtn, loadin
                     {loading ? (
                         <button
                             type="submit"
-                            className="w-48 sm:w-56 px-5 py-2.5 rounded-full bg-purple-800 outline-none hover:bg-purple-600 text-white"
+                            className="px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-purple-800 outline-none hover:bg-purple-600 text-white"
                             disabled
                         >
                             <FontAwesomeIcon icon={faSpinner} spin /> Please wait...

@@ -14,6 +14,7 @@ import LoadingPage from '../LoadingPage';
 import axiosInstance from '../../axiosInstance'
 import UserProfileCard from '../../components/Profile/UserProfileCard';
 import EditProfilePopup from '../../components/Profile/EditProfilePopup';
+import ScrollToTopButton from '../../components/utils/ScrollToTopButton';
 
 
 const Profile = () => {
@@ -198,14 +199,12 @@ const Profile = () => {
             console.log('Deleted and Logged out');
         }catch (error) {
 
-            console.log('Full error details:', error);
 
             const errorMessage =
-              error.response?.data?.detail ||
-              error.response?.data?.message ||
-              'Failed to delete account. Please try again.';
+              error.response?.data?.detail || error.response?.data?.message || error.response?.data?.error || 'Failed to delete account. Please try again.';
         
             alert(errorMessage);
+            console.log('Full error details:', errorMessage)
         } finally {
             setLoading(false);
         }
@@ -259,7 +258,11 @@ const Profile = () => {
                         />
                     )}
                 </div>
+
+                <ScrollToTopButton />
+
             </div>
+
         )}
     </>
     );

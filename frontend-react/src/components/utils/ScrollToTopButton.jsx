@@ -30,7 +30,7 @@ export default function ScrollToTopButton() {
       )}
       aria-label="Scroll to top"
     >
-      <ArrowUp className="w-10 h-10" />
+      <ArrowUp className="w-10 h-10 z-100" />
     </button>
   );
 }

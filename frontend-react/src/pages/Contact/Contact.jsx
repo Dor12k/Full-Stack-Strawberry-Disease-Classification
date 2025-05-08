@@ -4,6 +4,7 @@
 // File name: Contact.jsx
 import React, { useState } from 'react'
 import { Mail, Phone, MapPin, Github, Linkedin } from 'lucide-react'
+import ScrollToTopButton from '../../components/utils/ScrollToTopButton'
 
 function Contact() {
 
@@ -102,6 +103,8 @@ function Contact() {
             </p>
           )}
         </form>
+
+        <ScrollToTopButton/>
       </div>
     
   )

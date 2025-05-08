@@ -8,7 +8,11 @@ const Footer = () => {
   return (
 
     
-      <footer className="w-full border-t py-8 bg-[#ececec] text-black dark:bg-[#24262b] dark:text-white shadow-[0_-4px_10px_0_rgba(0,0,0,0.25)] z-10 ">      
+    <footer className="w-full py-8 bg-[#ececec] text-black dark:bg-[#24262b] dark:text-white z-10">
+
+      {/* blurred top border */}
+      <div className=" top-0 left-0 w-full h-2 pointer-events-none z-20 shadow-[0_-45px_20px_rgba(0,0,0,1.2)] dark:shadow-[0_-40px_15px_rgba(255,255,255,0.5)]"></div>
+
         <div className="container mx-auto px-4">
 
         {/* Subscription Section */}
@@ -109,15 +113,17 @@ const Footer = () => {
               </a>
             </div>
           </div>
+
         </div>
 
-        <hr className="my-4 border-t-2 border-gray-400 dark:border-gray-700" />
+        <hr className="my-4 border-t-2 border-gray-400 dark:border-red-800" />
 
         {/* Footer Bottom */}
         <div className="social-media-wrap text-center text-gray-700 dark:text-gray-400">
           <small className="text-sm">Copyright © 2024 | All rights reserved by SDC</small>
         </div>
       </div>
+      
     </footer>
   );
 };

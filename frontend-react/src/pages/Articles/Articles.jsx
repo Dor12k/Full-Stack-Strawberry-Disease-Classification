@@ -60,7 +60,7 @@ function Articles() {
       )}
 
       {/* Articles grid */}
-      <div className="w-full min-h-screen py-10 px-4 lg:px-20 bg-slate-50 dark:bg-[#1f1f1f] dark:text-white ">
+      <div className="w-full relative min-h-screen py-10 px-4 lg:px-20 bg-slate-50 dark:bg-[#1f1f1f] dark:text-white ">
         <ArticleGrid articles={articles} />
       </div>
 

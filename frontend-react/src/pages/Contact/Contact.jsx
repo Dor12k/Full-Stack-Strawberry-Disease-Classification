@@ -29,7 +29,7 @@ function Contact() {
   return (
 
 
-      <div className="w-full min-h-screen  bg-slate-50 dark:bg-[#1f1f1f] dark:text-white py-12 px-4 md:px-16">
+      <div className="w-full min-h-screen relative bg-slate-50 dark:bg-[#1f1f1f] dark:text-white py-12 px-4 md:px-16">
 
         <h2 className="text-4xl font-bold mb-6 text-center ">Contact Me</h2>
         <p className="text-center text-xl text-gray-600 dark:text-gray-400 mb-12">

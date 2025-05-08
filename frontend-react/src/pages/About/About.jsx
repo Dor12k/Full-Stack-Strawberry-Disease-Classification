@@ -11,7 +11,7 @@ const About = () => {
 
   return (
 
-    <div className="min-h-screen bg-gradient-to-br from-red-50 to-green-50 dark:from-[#1b1b1be1] dark:to-[#1a1a1a] text-gray-800 dark:text-gray-100 px-6 py-12">
+    <div className="min-h-screen relative bg-gradient-to-br from-red-50 to-green-50 dark:from-[#1b1b1be1] dark:to-[#1a1a1a] text-gray-800 dark:text-gray-100 px-6 py-12">
       
       <section className="max-w-5xl mx-auto space-y-20">
 

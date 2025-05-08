@@ -82,8 +82,12 @@ const Header = () => {
         
                 {/* Navigation Bar */}
                 <nav className="relative z-10 w-full top-0 left-0 backdrop-blur-lg
-                                bg-[#ececec] dark:bg-[#222222] dark:text-white shadow-lg border-b border-gray-100 
-                                dark:border-gray-700 px-4 py-3 sm:px-6 sm:py-4 flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0">
+                    bg-[#ececec] dark:bg-[#222222] dark:text-white
+                    shadow-[0_-15px_32px_-2px_rgba(0,0,0,1.1)] dark:shadow-[0_-10px_25px_-0px_rgba(255,255,255,1.05)]
+                    border-b border-gray-100 dark:border-gray-700
+                    px-4 py-3 sm:px-6 sm:py-4 flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0">
+
+
 
                     {/* Logo */}
                     <div>

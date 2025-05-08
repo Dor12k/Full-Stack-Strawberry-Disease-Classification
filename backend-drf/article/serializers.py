@@ -14,7 +14,7 @@ class SubjectSerializer(serializers.ModelSerializer):
 
 
 class FeedbackSerializer(serializers.ModelSerializer):
-    username = serializers.CharField(write_only=True) 
+    # username = serializers.CharField(write_only=True) 
     class Meta:
         model = Feedback
         fields = ['id', 'text', 'username', 'user', 'rating']

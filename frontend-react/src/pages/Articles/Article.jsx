@@ -58,6 +58,7 @@ const Article = () => {
         setArticle(articleRresponse.data);
         
         const feedbackResponse = await axiosInstance.get(`/articles/${slug}/feedback`);
+        console.log("feedbackResponse", feedbackResponse)
         setReviews(feedbackResponse.data);
         
         if (!user?.is_premium && !user?.is_staff && articleRresponse.data.card !== 'regular') {
@@ -153,7 +154,7 @@ const Article = () => {
 
   return (
 
-    <div className=" w-full flex flex-col items-center justify-center dark:bg-[#1b1b1be1] dark:text-white">
+    <div className="w-full min-h-screen relative flex flex-col items-center justify-center bg-slate-100 dark:bg-[#1b1b1be1] dark:text-white">
 
         {/* Button - add article */}
         {user.is_staff && (

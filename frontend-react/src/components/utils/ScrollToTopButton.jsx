@@ -1,6 +1,6 @@
 
 
-
+import React from 'react';
 import { useState, useEffect } from 'react';
 import { ArrowUp } from 'lucide-react'; 
 import { cn } from '../../lib/utils';

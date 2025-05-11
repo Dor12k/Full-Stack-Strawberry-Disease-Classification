@@ -200,8 +200,10 @@ const Profile = () => {
             console.log('Deleted and Logged out');
         }catch (error) {
 
-            const errorMessage =
-              error.response?.data?.detail || error.response?.data?.message || error.response?.data?.error || 'Failed to delete account. Please try again.';
+            const errorMessage = error.response?.data?.error ||
+                                 error.response?.data?.detail ||
+                                 error.response?.data?.message ||
+                                 'Failed to delete account. Please try again.';
         
             // alert(errorMessage);
             toast.error(errorMessage);

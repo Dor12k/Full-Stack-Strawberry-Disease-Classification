@@ -6,10 +6,16 @@ import { AuthContext } from '../../../context/AuthContext';
 import { BrowserRouter } from 'react-router-dom';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 // Silence console logs during tests
 console.log = jest.fn();
 
+
+
+jest.mock('react-toastify', () => ({
+  toast: jest.fn(),
+}));
 
 jest.mock('../../../axiosInstance', () => ({
   post: jest.fn(),
@@ -20,7 +26,6 @@ jest.mock('../../../axiosInstance', () => ({
     request: { use: jest.fn() },
   },
 }));
-
 
 // mock navigate
 const mockNavigate = jest.fn();
@@ -344,9 +349,9 @@ describe("Testing Integration", () => {
   test("Shows error alert when user deletion fails", async () => {
     localStorage.setItem('accessToken', 'mockAccessToken');
     localStorage.setItem('refreshToken', 'mockRefreshToken');
-  
+
     window.confirm = jest.fn(() => true);
-  
+
     // Mocking axios rejection with a general error response
     axiosInstance.delete.mockRejectedValueOnce({
       response: {
@@ -356,14 +361,14 @@ describe("Testing Integration", () => {
         },
       },
     });
-  
-    window.alert = jest.fn(); // Mocking the alert function
-  
+
+    toast.error = jest.fn();  // Mocking the toast.error function
+
     const [_, mockSetUser, mockSetIsLoggedIn] = renderWithProviders();
     
     const deleteButton = screen.getByRole('button', { name: /Delete/i });
     fireEvent.click(deleteButton);
-  
+
     await waitFor(() => {
       expect(axiosInstance.delete).toHaveBeenCalledWith('/users/1/', {
         headers: {
@@ -371,18 +376,15 @@ describe("Testing Integration", () => {
         },
       });
     });
-  
-    // Check if the alert displays the actual error message from the server
-    expect(window.alert).toHaveBeenCalledWith('Internal Server Error');
-  
+
+    // Check if toast.error displays the actual error message from the server
+    expect(toast.error).toHaveBeenCalledWith('Internal Server Error');
+
     // Ensure state and localStorage are not changed
     expect(mockSetUser).not.toHaveBeenCalled();
     expect(mockSetIsLoggedIn).not.toHaveBeenCalled();
   });
-  
-  
-  
-  
+    
   beforeAll(() => {
     window.confirm = jest.fn(() => true); 
   });
@@ -402,6 +404,7 @@ describe("Testing Integration", () => {
       },
     });
   
+    toast.error = jest.fn();  // Mocking the toast.error function
     window.alert = jest.fn(); // Mocking the alert function
   
     const [_, mockSetUser, mockSetIsLoggedIn] = renderWithProviders();
@@ -418,14 +421,11 @@ describe("Testing Integration", () => {
     });
   
     // Check if the alert displays the server's error message
-    expect(window.alert).toHaveBeenCalledWith('You are not authorized to perform this action.');
+    expect(toast.error).toHaveBeenCalledWith('You are not authorized to perform this action.');
   
     // Make sure state and localStorage haven't changed
     expect(mockSetUser).not.toHaveBeenCalled();
     expect(mockSetIsLoggedIn).not.toHaveBeenCalled();
   });
   
-
-
-
 });

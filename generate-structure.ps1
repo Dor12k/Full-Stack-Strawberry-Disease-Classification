@@ -1,31 +1,33 @@
-
-
 # Create tree of backend-drf directory into structure-backend.txt
-tree .\backend-drf /F /A > structure-backend.txt
+tree .\backend-drf /F /A | Where-Object { 
+    $_ -notmatch '\.jpg$|\.png$|\.jpeg$' -and $_ -notmatch '\\migrations\\' -and $_ -notmatch '\\__pycache__\\'
+} > structure-backend.txt
 
 # Add an empty line for spacing
 "" | Out-File -Append structure-backend.txt
 Write-Output "Root Files (backend-drf):" | Out-File -Append structure-backend.txt
 
-# Add only files from the root directory (backend-drf)
+# Add only files from the root directory (backend-drf), excluding certain files
 Get-ChildItem -Path .\backend-drf -File | Where-Object { 
-  $_.Name -notmatch 'package-lock\.json|\.DS_Store|yarn\.lock' 
+    $_.Name -notmatch 'package-lock\.json|\.DS_Store|yarn\.lock' 
 } | ForEach-Object {
-  $_.Name 
+    $_.Name 
 } >> structure-backend.txt
 
 # Create tree of src directory in frontend-react into structure-frontend.txt
-tree .\frontend-react\src /F /A > structure-frontend.txt
+tree .\frontend-react\src /F /A | Where-Object { 
+    $_ -notmatch '\.jpg$|\.png$' -and $_ -notmatch '\\migrations\\' -and $_ -notmatch '\\__pycache__\\'
+} > structure-frontend.txt
 
 # Add an empty line for spacing
 "" | Out-File -Append structure-frontend.txt
 Write-Output "Root Files (frontend-react):" | Out-File -Append structure-frontend.txt
 
-# Add only files from the root directory (frontend-react)
+# Add only files from the root directory (frontend-react), excluding certain files
 Get-ChildItem -Path .\frontend-react -File | Where-Object { 
-  $_.Name -notmatch 'package-lock\.json|\.DS_Store|yarn\.lock' 
+    $_.Name -notmatch 'package-lock\.json|\.DS_Store|yarn\.lock' 
 } | ForEach-Object {
-  $_.Name 
+    $_.Name 
 } >> structure-frontend.txt
 
 # Combine both structure-backend.txt and structure-frontend.txt into structure-project.txt

@@ -1,13 +1,19 @@
 
 import React, { useEffect, useState } from 'react'
 
+
+import { useContext } from 'react';
+import { toast } from 'react-toastify';
 import LoadingPage from '../LoadingPage';
 import axiosInstance from '../../axiosInstance';
+import { UserContext } from '../../context/UserContext';
 import GalleryImages from '../../components/Gallery/GalleryImages';
 import GalleryToolbar from '../../components/Gallery/GalleryToolbar';
 import ScrollToTopButton from '../../components/utils/ScrollToTopButton';
 
 function Gallery() {
+
+  const { user, setUser } = useContext(UserContext);
 
   const [error, setError] = useState('');
   const [gallery, setGallery] = useState([]);
@@ -19,6 +25,14 @@ function Gallery() {
   const [isFiltersVisible, setIsFiltersVisible] = useState(false);
   const [filteredGallery, setFilteredGallery] = useState(gallery);
 
+  const [activeTab, setActiveTab] = useState(''); 
+  const [viewMode, setViewMode] = useState('gallery');
+  const [clickedImage ,setClickedImage] = useState();
+  const [recentImages, setRecentImages] = useState([]);
+  const [imagePreview, setImagePreview] = useState(null);
+  const [diseasePreview, setDiseasePreview] = useState(null);
+  const [isRecentLoaded, setIsRecentLoaded] = useState(false);
+
   useEffect(() => {
 
     const fetchGallery = async () => {
@@ -26,24 +40,19 @@ function Gallery() {
       setLoading(true);
 
       try {
-
         const galleryResponse = await axiosInstance.get('/diseases/');
         setGallery(galleryResponse.data);
         setFilteredGallery(galleryResponse.data);
+        setLoading(false);
 
       } catch (error) {
-
         console.error("Failed to fetch gallery:", error);
         setError("Failed to load gallery. Please try again later.");
-
-      } finally {
-        setLoading(false);
-      }
+      } 
     };
 
     fetchGallery();
   }, []);
-
   
   // Toggle the visibility of the filters section
   const toggleFilters = () => {
@@ -114,10 +123,84 @@ function Gallery() {
   
     setFilteredGallery(filtered);
   };
-  
+
+  const handleCardClicked = async (diseaseId, imageId) => {
+
+    setClickedImage({ diseaseId: diseaseId, imageId: imageId });
+    // console.log(`Disease ID clicked: ${diseaseId} with image ID: ${imageId}`);
+
+    try {
+      const response = await axiosInstance.post(`/diseases/${diseaseId}/image/${imageId}/`);
+
+      console.log("Image added to Redis");
+    } catch (error) {
+      console.error("Error adding image to Redis:", error.response.data.message);
+    }
+
+
+  };
+
+  const handleGalleryOrder = async (mode) => {
+
+    setViewMode(mode);
+
+    if (mode === 'recent' && !isRecentLoaded) {
+
+      if( !user.is_premium ){
+        return toast.error("Recent Images is available for premium users only.");
+      }
+      
+      // const response = await axiosInstance.get('disease-images/recent/');
+       
+      // const recent_images = response.data.recent_images;     
+      console.error('Recent Images is available for premium users only.'); 
+
+      const recent_images = null;
+      
+      if (recentImages &&  Array.isArray(recent_images)) {
+        
+
+        const filtered = [];
+
+        recent_images.forEach(recent_image => {
+          
+          const disease = gallery.find(disease => disease.id.toString() === recent_image.disease_id.toString());
+          
+          if (disease) {
+            
+            let existingDisease = filtered.find(item => item.id === disease.id);
+            
+            if (!existingDisease) {
+              existingDisease = {
+                ...disease,         
+                images: []          
+              };
+              filtered.push(existingDisease);
+            }
+            
+            
+            const image = disease.images.find(img => img.id.toString() === recent_image.image_id.toString());
+            if (image) {
+              existingDisease.images.push(image);
+            }
+          }
+        });
+
+        setFilteredGallery(filtered)
+        // console.log('filtered', filtered)
+      } else {
+        console.error('recent_images is not an array');
+      }
+    }
+
+    if( mode == 'gallery' ){
+      setFilteredGallery(gallery);
+    }
+  };
+
+
   // Fallback for loading state if needed
   if ((loading) ) {
-
     return <LoadingPage/>
   }
 
@@ -154,10 +237,20 @@ function Gallery() {
           handleApplyFilters={handleApplyFilters}
           selectedCategory={selectedCategory}
           setSelectedCategory={setSelectedCategory}
+          handleGalleryOrder={handleGalleryOrder}
+          viewMode={viewMode}
         />
 
         {/* Gallery Section */}
-        <GalleryImages filteredGallery={filteredGallery} />
+        <GalleryImages 
+          filteredGallery={filteredGallery} 
+          onCardClick={handleCardClicked} 
+          setActiveTab={setActiveTab} 
+          imagePreview={imagePreview} 
+          setImagePreview={setImagePreview}
+          diseasePreview={diseasePreview}
+          setDiseasePreview={setDiseasePreview}
+          />
 
       </div>
 

@@ -27,6 +27,7 @@
     "react-multi-carousel": "^2.8.5",
     "react-quill": "^2.0.0",
     "react-router-dom": "^7.4.0",
+    "react-toastify": "^11.0.5",
     "react-tsparticles": "^2.12.2",
     "sanitize-html": "^2.16.0",
     "tsparticles": "^3.8.1",

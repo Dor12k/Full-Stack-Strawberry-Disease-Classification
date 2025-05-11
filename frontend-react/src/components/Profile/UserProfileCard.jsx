@@ -14,10 +14,10 @@ export default function UserProfileCard({ user, onEditPopUp, onDeleteBtn, loadin
 
         <>
             {/* Profile Card */}
-            <div className="bg-blue-900 shadow-2xl rounded-xl p-6 sm:p-10 w-full max-w-md mx-auto text-center border-white border-solid border-2">
+            <div className="h-[60vh] bg-blue-900 shadow-2xl rounded-xl p-6 sm:p-10 w-full max-w-md mx-auto text-center border-white border-solid border-2">
 
                 {/* User profile picture */}
-                <div className="mb-6">
+                <div className="mb-8">
                     {user.profile_picture ? (
                         <img
                             src={user.profile_picture}
@@ -33,18 +33,18 @@ export default function UserProfileCard({ user, onEditPopUp, onDeleteBtn, loadin
                 </div>
 
                 {/* Username */}
-                <h2 className="text-3xl sm:text-5xl font-bold text-teal-700 mb-4">
+                <h2 className="text-3xl sm:text-5xl font-bold text-teal-700 mb-12 lg:mb-16">
                     {user.username || 'Username'}
                 </h2>
 
                 {/* User personal details */}
-                <div className="space-y-4 text-left text-blue-400">
-                    <div className='flex flex-col sm:flex-row gap-1 sm:gap-5 text-lg sm:text-2xl'>
+                <div className="space-y-4 text-left text-blue-400 gap-5">
+                    <div className='flex flex-row sm:flex-row gap-3 sm:gap-5 text-lg sm:text-2xl'>
                         <p className="font-semibold">Email:</p>
                         {user.email && <p>{user.email}</p>}
                     </div>
 
-                    <div className='flex flex-col sm:flex-row gap-1 sm:gap-5 text-lg sm:text-2xl'>
+                    <div className='flex flex-row sm:flex-row gap-3 sm:gap-5 text-lg sm:text-2xl'>
                         <p className="font-semibold">Full Name:</p>
                         <div className='flex gap-2'>
                             {user.first_name && <p>{user.first_name}</p>}
@@ -54,7 +54,7 @@ export default function UserProfileCard({ user, onEditPopUp, onDeleteBtn, loadin
                 </div>
 
                 {/* Buttons - Edit and Delete profile */}
-                <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-20 mt-6">
+                <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-20 mt-28 lg:mt-28 bottom-0">
 
                     <button
                         onClick={() => onEditPopUp(true)}

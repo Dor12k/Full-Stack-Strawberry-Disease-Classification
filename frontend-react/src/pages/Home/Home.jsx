@@ -1,4 +1,6 @@
 
+import '../../index.css'
+
 import React from 'react'
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -16,7 +18,6 @@ import axiosInstance from '../../axiosInstance';
 import ArticleCard from '../../components/Articles/ArticleCard';
 import ScrollToTopButton from '../../components/utils/ScrollToTopButton';
 
-import '../../index.css'
 
 
 function Home() {
@@ -189,15 +190,16 @@ function Home() {
             </section>
 
             {/* Classification Section */}  
-            <section className="flex-1 h-[500px] bg-[#ffe6c1db] dark:bg-[#1f1f1f] text-black dark:text-white py-16 px-6 sm:px-12 my-16 rounded-[30px] shadow-[0_12px_30px_-10px_rgba(0,0,0,0.15),0_-4px_8px_-2px_rgba(0,0,0,0.1)] dark:shadow-red-600 transition-all duration-500">
+            <section className="flex-1 h-[500px] bg-[#ffe6c1db] dark:bg-[#1f1f1f] text-black dark:text-white py-16 px-6 mx-2 sm:px-12 my-16 rounded-[30px] shadow-[0_12px_30px_-10px_rgba(0,0,0,0.15),0_-4px_8px_-2px_rgba(0,0,0,0.1)] dark:shadow-red-600 transition-all duration-500">
 
                 <div className="flex flex-col lg:flex-row gap-12 items-stretch max-w-screen-xl mx-auto px-6 py-2 w-full">
 
                     {/* Text */}
-                    <div className="flex-[1.8] px-16 bg-[#fff8ef] dark:bg-[#2a2a2a] p-8 rounded-[30px] shadow-lg flex flex-col justify-center h-[500px]">
+                    <div className="flex-[1.8] lg:px-16 bg-[#fff8ef] dark:bg-[#2a2a2a] p-8 rounded-[30px] shadow-lg flex flex-col h-[500px]">
 
-                        <h2 className="text-4xl lg:text-6xl font-bold mb-6">Quick Classification</h2>
-                        <p className="text-base sm:text-lg lg:text-2xl text-left leading-relaxed text-gray-800 dark:text-gray-300">
+                        <h2 className="text-4xl lg:text-6xl font-bold mt-1 mb-8 lg:mt-10 lg:mb-16">Quick Classification</h2>
+
+                        <p className="text-base pb-3 lg:pb-0 sm:text-lg lg:text-2xl text-left leading-relaxed text-gray-800 dark:text-gray-300">
                             Unsure about your strawberry plant's health? Upload a photo and let our AI model diagnose it for you — instantly and effortlessly. <br /><br />
 
                             <b>No image available?</b> We've got you covered — {" "}

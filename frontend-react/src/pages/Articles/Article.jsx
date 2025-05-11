@@ -58,7 +58,7 @@ const Article = () => {
         setArticle(articleRresponse.data);
         
         const feedbackResponse = await axiosInstance.get(`/articles/${slug}/feedback`);
-        console.log("feedbackResponse", feedbackResponse)
+        // console.log("feedbackResponse", feedbackResponse)
         setReviews(feedbackResponse.data);
         
         if (!user?.is_premium && !user?.is_staff && articleRresponse.data.card !== 'regular') {
@@ -170,7 +170,7 @@ const Article = () => {
         )}
 
         {/* Article Profile */}
-        <div className="w-[80%] lg:w-[60%] flex flex-col lg:flex-row mt-20 gap-2 text-center rounded-3xl transition-all duration-300 bg-amber-100 dark:bg-[#1a1a1a] dark:text-white">
+        <div className="w-[80%] lg:w-[60%] flex flex-col lg:flex-row mt-20 gap-2 text-center rounded-3xl transition-all duration-300 bg-red-200 dark:bg-[#1a1a1a] dark:text-white">
 
             {/* Author Profile */}
             <div className="m-10 lg:w-1/3 lg:mx-20 lg:my-10 flex flex-col items-center justify-center gap-4">
@@ -208,7 +208,7 @@ const Article = () => {
         </div>
 
         {/* Article Text + Images */}
-        <div className="w-[80%] lg:w-[60%] mt-20 p-6 space-y-10 text-start flex flex-col md:flex-row items-center justify-center rounded-3xl md:space-y-0 md:space-x-10 bg-amber-100 dark:bg-[#1a1a1a] dark:text-white">
+        <div className="w-[80%] lg:w-[60%] mt-20 p-6 space-y-10 text-start flex flex-col md:flex-row items-center justify-center rounded-3xl md:space-y-0 md:space-x-10 bg-red-200 dark:bg-[#1a1a1a] dark:text-white">
 
           <div className="w-full lg:text-xl lg:p-10">
             {[[article.first_paragraph, article.first_media], 
@@ -251,7 +251,7 @@ const Article = () => {
         </div>
 
         {/* Feedback Form */}
-        <section className="w-[80%] lg:w-[60%] p-6 my-10 rounded-xl shadow-lg  bg-amber-100 dark:bg-[#1a1a1a] dark:text-white ">
+        <section className="w-[80%] lg:w-[60%] p-6 my-10 rounded-xl shadow-lg  bg-red-200 dark:bg-[#1a1a1a] dark:text-white ">
 
             <h2 className="text-2xl font-bold mb-4">Leave a Comment</h2>
 
@@ -313,7 +313,7 @@ const Article = () => {
         </section>
 
         {/* Reviews Section */}
-        <section className="w-[80%] lg:w-[60%] mb-10 p-6 rounded-xl dark:bg-[#1a1a1a] dark:text-white">
+        <section className="w-[80%] lg:w-[60%] mb-10 p-6 rounded-xl bg-slate-100 dark:bg-[#1a1a1a] dark:text-white">
 
             {reviews.map((review, index) => (
             <div key={index} className=" px-8 pt-6">

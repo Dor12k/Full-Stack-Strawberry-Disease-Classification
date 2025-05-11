@@ -10,6 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+import os
+import environ
 from pathlib import Path
 from decouple import config
 from datetime import timedelta
@@ -17,6 +19,15 @@ from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+
+# Init environment
+env = environ.Env()
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+
+# Load your custom flag from .env
+ENABLE_RECENT_IMAGES_FEATURE = env.bool('ENABLE_RECENT_IMAGES_FEATURE', default=False) # env
+# ENABLE_RECENT_IMAGES_FEATURE = os.getenv("ENABLE_RECENT_IMAGES_FEATURE", "False") == "True" // os
 
 
 # Load environment variables from the .env file
@@ -189,7 +200,6 @@ CORS_ALLOWED_ORIGINS = [
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-        
     )
 }
 
@@ -207,3 +217,9 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",  
 ]
+
+
+# Redis configuration
+REDIS_HOST = 'localhost'
+REDIS_PORT = 6379
+

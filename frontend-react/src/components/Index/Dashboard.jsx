@@ -59,16 +59,18 @@ const Dashboard = () => {
       containerRef.current.classList.remove('opacity-100');
       containerRef.current.classList.add('opacity-0');
 
-
       const handleTransitionEnd = () => {
         
         containerRef.current.removeEventListener('transitionend', handleTransitionEnd);
     
-        console.log("Navigating with state:", { fromDashboard: true });
+        // console.log("Navigating with state:", { fromDashboard: true });
+        console.log("Login as a guest successful");
     
         setIsLoggedIn(true);
       };
+
       containerRef.current.addEventListener('transitionend', handleTransitionEnd);
+
     }catch(error){
       console.log("Error: ", error);
     }finally{

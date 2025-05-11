@@ -13,6 +13,9 @@ function GalleryToolbar( {
   handleApplyFilters,
   selectedCategory,
   setSelectedCategory,
+  handleGalleryOrder,
+  viewMode,
+  
 
 } ) {
 
@@ -90,9 +93,37 @@ function GalleryToolbar( {
           Search
         </button>
 
+
         {/* Filter Button */}
         <button onClick={toggleFilters} className="w-full lg:w-52 px-4 py-2 mt-3 sm:w-auto sm:mt-0 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-500 transition">
           {isFiltersVisible ? 'Hide Filters' : 'Show Filters'}
+        </button>
+
+      </div>
+    
+      {/* Redis Buttons */}
+      <div className="flex flex-col lg:flex-row mt-5 lg:ml-40 lg:mt-10 text-black lg:text-4xl gap-2 mb-4 ">
+
+        <button
+          className={`px-4 py-2 rounded-lg ${
+            viewMode === 'gallery'
+              ? ' bg-gray-200 text-gray-800 dark:bg-gray-600 dark:text-white hover:text-blue-500 dark:hover:text-blue-500'
+              : ' bg-slate-100 dark:bg-[#2c2c2c] text-gray-800 dark:text-white hover:text-blue-500 dark:hover:text-blue-500'
+          }`}
+          onClick={() => handleGalleryOrder('gallery')}
+        >
+          Gallery Order
+        </button>
+
+        <button
+          className={`px-4 py-2 rounded-lg ${
+            viewMode === 'recent'
+              ? 'bg-gray-200 text-gray-800 dark:bg-gray-600 dark:text-white hover:text-blue-500 dark:hover:text-blue-500'
+              : ' bg-slate-100 dark:bg-[#2c2c2c] text-gray-800 dark:text-white hover:text-blue-500 dark:hover:text-blue-500'
+          }`}
+          onClick={() => handleGalleryOrder('recent')}
+        >
+          Recent Images
         </button>
 
       </div>

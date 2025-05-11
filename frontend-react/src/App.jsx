@@ -20,6 +20,8 @@ import PrivateRoute from './components/auth/PrivateRoute';
 import { createBrowserRouter, RouterProvider,} from "react-router-dom";
 
 
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 
 // Cancel warning message in console
@@ -95,9 +97,23 @@ function App() {
 
     <UserProvider>
       <AuthProvider> {/* Wrap RouterProvider with AuthProvider */}
-        
 
           <RouterProvider router={router} />
+
+          {/* 🟡 Toast notification container (must be inside the JSX tree) */}
+          <ToastContainer 
+            position="top-left"
+            autoClose={4000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="colored" // "dark" | "light" | "colored"
+            toastClassName="!text-lg !py-6 !px-8"
+          />
                 
       </AuthProvider>
     </UserProvider>

@@ -7,11 +7,12 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { FaLongArrowAltLeft } from "react-icons/fa";
-import { AuthContext } from '../../context/AuthContext'
+import { AuthContext } from '../../context/AuthContext';
 import { UserContext } from '../../context/UserContext';
 
+import { toast } from 'react-toastify';
 import LoadingPage from '../LoadingPage';
-import axiosInstance from '../../axiosInstance'
+import axiosInstance from '../../axiosInstance';
 import UserProfileCard from '../../components/Profile/UserProfileCard';
 import EditProfilePopup from '../../components/Profile/EditProfilePopup';
 import ScrollToTopButton from '../../components/utils/ScrollToTopButton';
@@ -199,11 +200,12 @@ const Profile = () => {
             console.log('Deleted and Logged out');
         }catch (error) {
 
-
             const errorMessage =
               error.response?.data?.detail || error.response?.data?.message || error.response?.data?.error || 'Failed to delete account. Please try again.';
         
-            alert(errorMessage);
+            // alert(errorMessage);
+            toast.error(errorMessage);
+                  
             console.log('Full error details:', errorMessage)
         } finally {
             setLoading(false);
@@ -217,54 +219,57 @@ const Profile = () => {
     return (
 
         <>
-        {user && (
-            <div className="min-h-screen bg-gradient-to-r from-indigo-600 to-purple-700 flex items-center justify-center px-4 py-8 sm:px-6 lg:px-8 relative">
 
-                {/* Button - back to home.jsx */}
-                <div className="absolute top-4 left-4">
-                    <Link to="/home">
-                        <button className="flex items-center bg-teal-600 text-white px-5 py-2 sm:px-6 sm:py-3 rounded-full gap-2 text-base sm:text-xl hover:bg-teal-700 transition duration-300 transform hover:scale-105">
-                            <FaLongArrowAltLeft className="text-xl sm:text-2xl" /> Home
-                        </button>
-                    </Link>
-                </div>
+            {user && (
+                <div className="min-h-screen bg-gradient-to-r from-indigo-600 to-purple-700 flex items-center justify-center px-4 py-8 sm:px-6 lg:px-8 relative">
 
-                <div className="w-full max-w-4xl mx-auto flex flex-col items-center justify-center">
+                    {/* Button - back to home.jsx */}
+                    <div className="absolute top-4 left-4">
+                        <Link to="/home">
+                            <button className="flex items-center bg-teal-600 text-white px-5 py-2 sm:px-6 sm:py-3 rounded-full gap-2 text-base sm:text-xl hover:bg-teal-700 transition duration-300 transform hover:scale-105">
+                                <FaLongArrowAltLeft className="text-xl sm:text-2xl" /> Home
+                            </button>
+                        </Link>
+                    </div>
+
                     {/* Profile Card */}
-                    <UserProfileCard
-                        user={user}
-                        onEditPopUp={() => setEditBtn(true)}
-                        onDeleteBtn={handleDeleteBtn}
-                        loading={loading}
-                    />
-
-                    {/* PopUp Component - Edit Profile */}
-                    {editBtn && (
-                        <EditProfilePopup
+                    <div className="w-full max-w-4xl mx-auto flex flex-col items-center justify-center">
+                        
+                        <UserProfileCard
                             user={user}
-                            usernameRef={usernameRef}
-                            emailRef={emailRef}
-                            passwordRef={passwordRef}
-                            newPasswordRef={newPasswordRef}
-                            firstNameRef={firstNameRef}
-                            lastNameRef={lastNameRef}
-                            imagePreview={imagePreview}
-                            handleImageUpload={handleImageUpload}
-                            handleSaveBtn={handleSaveBtn}
+                            onEditPopUp={() => setEditBtn(true)}
+                            onDeleteBtn={handleDeleteBtn}
                             loading={loading}
-                            setEditBtn={setEditBtn}
-                            errors={errors}
-                            setErrors={setErrors}
                         />
-                    )}
+
+                        {/* PopUp Component - Edit Profile */}
+                        {editBtn && (
+                            <EditProfilePopup
+                                user={user}
+                                usernameRef={usernameRef}
+                                emailRef={emailRef}
+                                passwordRef={passwordRef}
+                                newPasswordRef={newPasswordRef}
+                                firstNameRef={firstNameRef}
+                                lastNameRef={lastNameRef}
+                                imagePreview={imagePreview}
+                                handleImageUpload={handleImageUpload}
+                                handleSaveBtn={handleSaveBtn}
+                                loading={loading}
+                                setEditBtn={setEditBtn}
+                                errors={errors}
+                                setErrors={setErrors}
+                            />
+                        )}
+                    </div>
+
+                    <ScrollToTopButton />
+
                 </div>
 
-                <ScrollToTopButton />
-
-            </div>
-
-        )}
-    </>
+            )}
+            
+        </>
     );
 };
 

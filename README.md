@@ -1,132 +1,95 @@
 
 
+# Classification Web Application
 
-# Full-Stack Application (Django + React + DRF)
 
-This project is a full-stack web application built with **Django** and **Django Rest Framework (DRF)** for the backend, and **React** with **Vite** for the frontend. The application features user authentication, a profile page, and a dashboard.
+## About
 
----
+[AIStrawberries.com](https://www.aiStrawberries.com) is an innovative platform designed for strawberry enthusiasts, farmers, and tech-savvy users alike. Our website allows users to easily classify strawberry plant leaf diseases using advanced image recognition technology. Simply upload an image, and our AI-driven system will provide an accurate diagnosis, helping you manage your strawberry crops effectively.
 
-## 🛠️ **Tech Stack**
+In addition to disease classification, aiStrawberries serves as a rich resource for articles on a variety of strawberry-related topics. Whether you're interested in sustainable agriculture practices, delicious strawberry shake recipes, or detailed information about common plant diseases, our platform has you covered.
 
-- **Backend**: Python, Django, Django Rest Framework (DRF), JWT Authentication, Custom User Model
-- **Frontend**: React, Vite, Tailwind CSS
-- **Database**: SQLite (default for Django development)
-- **Authentication**: JWT, Custom User model with a CustomUserManager
-- **Deployment**: [Insert deployment platform here if applicable, e.g., Vercel, Render]
+We also feature cutting-edge articles on artificial intelligence and computer vision, exploring how these technologies are transforming agriculture and beyond. We recommend signing up for our platform and subscribing to our newsletter to receive our best articles and news before anyone else!
 
----
+So click on the Subscribe button and join us to explore the world of strawberries and discover the latest advancements in AI and precision farming, all in one place! 
 
-## 🚀 **Features**
+https://private-user-images.githubusercontent.com/107938584/374960217-17af9d06-baf6-48c8-84cc-ee3b440ffc11.mp4?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3Mjg0Nzc3NTEsIm5iZiI6MTcyODQ3NzQ1MSwicGF0aCI6Ii8xMDc5Mzg1ODQvMzc0OTYwMjE3LTE3YWY5ZDA2LWJhZjYtNDhjOC04NGNjLWVlM2I0NDBmZmMxMS5tcDQ_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQxMDA5JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MTAwOVQxMjM3MzFaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1kMTVlY2MwMmJkZGNiYjAwNmM1ZDM0ZGQyNmI0NzgwYmJkZjQ1MzhiMmI3OGEyYjJmY2MwZDI0ZTk4ODJiNjdlJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.UfUSTHbaMiXT-boyVmuKGh1NEzOOSyFsUNOwJ6AgRDw
 
-- **Homepage**: Simple UI with `Sign Up` and `Sign In` buttons.
-- **Authentication**: 
-  - Custom user model for handling users.
-  - JWT authentication for secure login and registration.
-  - Pop-up modals for user sign-up and sign-in.
-- **Profile**:
-  - Registered users can navigate to their profile page.
-  - Users can update their profile information, including first name, last name, and email.
-- **Dashboard**: Accessible to logged-in users.
+## Technologies
 
----
+In my project, I built a full-scale web and mobile application using a modern and diverse technology stack. The backend was developed with **Python** and **Django**, later enhanced with the **Django REST Framework (DRF)** for robust and scalable API design. On the frontend, the application evolved from traditional **HTML**, **CSS**, and **JavaScript** into a modern stack with **React (via Vite)** and **Tailwind CSS**, offering a fast and responsive user interface.
 
-## ⚙️ **Setup & Installation**
+To support real-time processing and performance optimization, I integrated Redis for in-memory data handling and caching. All development was conducted using Visual Studio Code, ensuring a productive and organized workflow.
 
-### Backend Setup (Django + DRF)
-Clone the repository:
-    ```bash
+The AI model for classifying strawberry diseases was built and trained using **TensorFlow**, **OpenCV**, **NumPy**, **Matplotlib**, **Pandas**, and os within **Google Colab**. You can read more about our AI model [here](https://aistrawberries.com/articles/2/).
 
-    git clone https://github.com/yourusername/your-repository.git
-    cd your-repository/backend-drf
+Deployment was handled using **Docker** for containerization and **AWS EC2** for hosting, with **Nginx** configured as a reverse proxy. The application also uses **AWS S3** for file storage and **AWS RDS (PostgreSQL)** for database management. The trained TensorFlow model was deployed using **Amazon SageMaker** as a serverless endpoint.
 
-Create a virtual environment:
-    
-    python3 -m venv venv
-    venv\Scripts\activate  # On Linux use source venv/bin/activate : 
+A complementary Android application, built with **Android Studio** and **Java**, uses **TensorFlow Lite** for on-device AI inference. This enables users to diagnose strawberry plant diseases directly from their smartphones.
+Learn more about our mobile app [here](https://aistrawberries.com/articles/1/).
 
-Install dependencies:
+Finally, I established a complete **CI/CD pipeline** using **Pytest**, **Jest**, and **GitHub Actions**, enabling automated testing for both backend and frontend components. The pipeline also includes Docker-based deployment to AWS EC2, ensuring consistent, reliable, and reproducible production builds
 
-pip install -r requirements.txt
 
-📁 Before running the project, create the following folders in backend-drf folder:
+## Graph
 
-    static/
-    `media/
+![Project Graph](Graph.png)
 
-Navigate to backn=end-drf
 
-  cd backend-drf
-  
-Run migrations:
+# Strawberry Disease Classifier 🌱🍓
 
-python manage.py migrate
+A full-stack web application that utilizes computer vision and deep learning to classify diseases in strawberry plants. Users can upload an image of a plant leaf, and the system will diagnose the disease using a pre-trained TensorFlow model. In addition, the platform includes informative articles on AI, smart agriculture, and strawberry cultivation.
 
-Start the Django server:
+## 🌟 Features
 
-    python manage.py runserver
+- 🔍 **AI-Powered Disease Classification**  
+  Upload images and get real-time diagnosis using a fine-tuned ResNet50 model deployed on AWS SageMaker.
 
-### Frontend Setup (React + Vite)
+- 🧑‍💻 **User Authentication**  
+  Sign up, log in, and manage your profile securely using JWT-based authentication.
 
-    Navigate to the frontend directory:
+- 📚 **Article System**  
+  Browse, rate, and comment on articles related to AI, agriculture, and strawberries. Admins can manage content directly through the UI.
 
-cd ../frontend-react
+- 🧾 **User Dashboard**  
+  View and update profile details including email, password, and profile image.
 
-Install dependencies:
+- 📤 **Drag & Drop Image Upload**  
+  Easily upload plant images for disease classification.
 
-npm install
-
-Start the React development server:
-
-    npm run dev
+- 🌐 **Responsive Design**  
+  Modern UI built with Tailwind CSS and React, fully responsive with support for dark mode.
 
 ---
 
-## 🔐 **Authentication Flow**
+## 🛠️ Tech Stack
 
-- **Sign Up**: New users can create an account via the Sign Up modal.
-- **Sign In**: Existing users can log in using the Sign In modal.
-- **Profile Update**: Users can navigate to their Profile page and update their details.
-- **Dashboard**: After successful authentication, users are redirected to the Dashboard.
+### 🔧 Backend
+- Python
+- Django
+- Django REST Framework (DRF)
+- PostgreSQL
+- Redis
+- JWT Authentication
+- PyTest (unit/integration testing)
 
----
+### 🎨 Frontend
+- React.js
+- Vite
+- Axios with Interceptors
+- Tailwind CSS
+- Jest (unit/integration testing)
 
-## 🧑‍💻 **Running Tests**
+### 🤖 Machine Learning
+- TensorFlow / Keras
+- OpenCV
+- Matplotlib / NumPy / Pandas
+- Fine-tuned ResNet50 model (deployed on AWS SageMaker)
 
-- **Backend Tests (Django)**:
-  ```bash
-  pytest
-  ```
-
-- **Frontend Tests (React)**:
-  ```bash
-  npm test
-  ```
-
----
-
-## 📦 **Deployment**
-
-- **Backend**: Deploy the Django app to your preferred hosting platform (e.g., Render, Heroku).
-- **Frontend**: Deploy the React app to Vercel or Netlify.
-
----
-
-## 📜 **Future Enhancements**
-
-- Add password reset functionality.
-- Integrate frontend with backend API to fetch and update user profile data.
-- Implement more advanced user features like user roles, permissions, and email notifications.
+### ☁️ Deployment & DevOps
+- AWS (EC2, S3, RDS, SageMaker, Load Balancer)
+- Docker
+- Kubernetes
+- GitHub Actions (CI/CD)
 
 ---
-
-## 🤝 **Contributing**
-
-- Fork the repository.
-- Create a new branch for your feature (`git checkout -b feature/your-feature`).
-- Commit your changes (`git commit -am 'Add new feature'`).
-- Push to the branch (`git push origin feature/your-feature`).
-- Open a pull request.
-
----
-

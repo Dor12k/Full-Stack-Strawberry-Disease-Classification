@@ -3,12 +3,12 @@
 
 import "../../index.css";
 
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useContext, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { UserContext } from "../../context/UserContext";
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useContext, useEffect, useRef, useState } from "react";
 
 import axiosInstance from '../../axiosInstance';
 
@@ -23,6 +23,7 @@ const Dashboard = () => {
 
   const navigate = useNavigate();
   const containerRef = useRef(null);
+  const [fadeIn, setFadeIn]  = useState(false);
   const [loading, setLoading] = useState(false);
   const {user, setUser} = useContext(UserContext);
   const {isLoggedIn, setIsLoggedIn, setManualRedirecting} = useContext(AuthContext)
@@ -80,6 +81,7 @@ const Dashboard = () => {
   
   useEffect(() => {
 
+    // setFadeIn(true);
     const container = document.querySelector(".animated-background");
 
     if (!container) return;
@@ -107,7 +109,7 @@ const Dashboard = () => {
 
     <div
       ref={containerRef}
-      className="relative w-full min-h-screen bg-green-200 dark:bg-[#010201] overflow-hidden opacity-100 transition-background"
+      className={`relative w-full min-h-screen bg-green-200 dark:bg-[#010201] overflow-hidden opacity-100 transition-background ${fadeIn  ? "fade-in" : "" }`}
     >
 
       {/* Background */}
@@ -160,6 +162,7 @@ const Dashboard = () => {
       <ScrollToTopButton />
 
     </div>
+    
   );
 };
 

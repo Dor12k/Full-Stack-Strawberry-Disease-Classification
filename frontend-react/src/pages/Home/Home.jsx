@@ -41,7 +41,6 @@ function Home() {
 
         setFadeIn(true)
 
-        
         const fetchProtectedData = async () =>{
 
             try{
@@ -51,7 +50,10 @@ function Home() {
 
                 // const popularResponse = await axiosInstance.get('/articles/popular/?limit=4');
                 const popularResponse = await axiosInstance.get('/articles/specific/');
-                setPopularArticles(popularResponse.data);
+                
+                if( popularResponse.data ){
+                    setPopularArticles(popularResponse.data);
+                }
                 
             }catch(error){
                 console.log("Home view failed or fetching articles failed:", error);
@@ -119,10 +121,12 @@ function Home() {
             // setClassificationLabel(response.data.label);
             // setClassificationScore(`${response.data.score}%`);
 
-            setClassificationLabel('Angular Leaf Spot');
-            setClassificationScore('95%');
+            const timeoutId = setTimeout(() => {
+                setClassificationLabel('Angular LeafSpot');
+                setClassificationScore('95%');
 
-            setClassify(false)
+                setClassify(false)
+            }, 3000);
 
         }catch(error){
             console.log("Error", error);
@@ -192,10 +196,10 @@ function Home() {
             {/* Classification Section */}  
             <section className="flex-1 h-[500px] bg-[#ffe6c1db] dark:bg-[#1f1f1f] text-black dark:text-white py-16 px-6 mx-2 sm:px-12 my-16 rounded-[30px] shadow-[0_12px_30px_-10px_rgba(0,0,0,0.15),0_-4px_8px_-2px_rgba(0,0,0,0.1)] dark:shadow-red-600 transition-all duration-500">
 
-                <div className="flex flex-col lg:flex-row gap-12 items-stretch max-w-screen-xl mx-auto px-6 py-2 w-full">
+                <div className="flex flex-col lg:flex-row gap-12 items-stretch max-w-screen-xl lg:max-w-screen-2xl lg:gap-40  mx-auto px-6 py-2 w-full">
 
                     {/* Text */}
-                    <div className="flex-[1.8] lg:px-16 bg-[#fff8ef] dark:bg-[#2a2a2a] p-8 rounded-[30px] shadow-lg flex flex-col h-[500px]">
+                    <div className="flex-[1.8] lg:px-20 bg-[#fff8ef] dark:bg-[#2a2a2a] p-8 rounded-[30px] shadow-lg flex flex-col h-[500px]">
 
                         <h2 className="text-4xl lg:text-6xl font-bold mt-1 mb-8 lg:mt-10 lg:mb-16">Quick Classification</h2>
 
@@ -211,11 +215,11 @@ function Home() {
                     {/* Upload */}
                     {imagePreview ? 
                     (
-                        <div className="flex flex-col justify-between gap-2 bg-[#fff8ef] dark:bg-[#2a2a2a] p-4 lg:p-8 rounded-[30px] shadow-lg flex-1 h-[500px]">
+                        <div className="flex flex-col justify-between gap-4 bg-[#fff8ef] dark:bg-[#2a2a2a] p-4 lg:p-8 rounded-[30px] shadow-lg flex-1 h-[500px]">
                             
-                            <div className="w-full flex-1 border-2 border-dashed border-[#bbb5ff] bg-[#f7f8ff] rounded-[20px] flex flex-col items-center justify-center text-center dark:border-[#2a2a2a] dark:bg-[#2a2a2a]">
+                            <div className="w-full flex-1 border-2 border-solid border-[#bbb5ff] bg-[#f7f8ff] rounded-[20px] flex flex-col items-center justify-center text-center dark:border-[#2a2a2a] dark:bg-[#353434]">
                                 
-                                <img alt="Upload" src={imagePreview} className="w-full max-h-[200px] sm:max-h-[400px] md:max-h-[290px] rounded-t-[20px]" />      
+                                <img alt="Upload" src={imagePreview} className="w-full max-h-[200px] sm:max-h-[400px] md:max-h-[285px] rounded-t-[20px] " />      
                                 
                                     {classify ?
                                     (
@@ -225,10 +229,10 @@ function Home() {
                                             </div>
                                         </div>
                                     ):(
-                                        <div className="w-full px-4 mb-2 lg:text-2xl sm:text-lg">
+                                        <div className="w-full px-4 my-2 lg:text-2xl sm:text-lg">
                                             <div className="grid grid-cols-5 items-center text-left">
                                                 {/* Headers */}
-                                                <p className="col-span-3 mb-2 text-gray-700 dark:text-gray-300">Classication</p>
+                                                <p className="col-span-3 mb-2 text-gray-700 dark:text-gray-300">Classification</p>
                                                 <p className="flex items-center justify-center col-span-2 mb-2 text-gray-700 dark:text-gray-300">Accuracy</p>
 
                                                 {/* Values */}
@@ -248,7 +252,7 @@ function Home() {
 
                             </div>
 
-                            <button id="btn" type="submit" onClick={() => handleClear()} className="min-h-[50px] my-1 lg:my-2 w-full bg-blue-500 hover:bg-blue-600 text-white text-lg font-semibold rounded-[50px] cursor-pointer transition-colors duration-300">
+                            <button id="btn" type="submit" onClick={() => handleClear()} className="min-h-[50px] my-0 lg:my-0 w-full bg-blue-500 hover:bg-blue-600 text-white text-lg font-semibold rounded-[50px] cursor-pointer transition-colors duration-300">
                                 Clear
                             </button>
 

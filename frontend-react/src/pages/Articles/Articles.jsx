@@ -25,7 +25,9 @@ function Articles() {
       
       try{
         const response = await axiosInstance.get('/articles/')
-        setArticle(response.data);
+        if (response.data){
+          setArticle(response.data);    
+        }
       } catch (error) {
         console.error('Error fetching articles:', error);
       } finally {
@@ -37,7 +39,6 @@ function Articles() {
 
   
   if (loading ) {
-    
     return <LoadingPage/>
   }
 

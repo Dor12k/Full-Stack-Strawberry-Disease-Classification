@@ -9,7 +9,7 @@ const InputField = ({ onChange, label, type, name, id, placeholder, value, autoC
 
   return (
 
-    <div className="flex flex-col gap-3 mb-3 text-white">
+    <div className="flex flex-col gap-3 mb-1 text-white">
 
       <label 
         htmlFor={name} 

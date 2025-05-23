@@ -97,86 +97,112 @@ const SignUpForm = ({errors, setErrors, setShow }) => {
   return (
 
     <>
-        <h2 className='text-white pb-4 text-center text-xl'>Sign up in seconds</h2>
+        <h2 className="text-green-500 pb-4 text-center text-2xl font-bold">Sign up in seconds</h2>
 
-        <form onSubmit={handleRegistration}>
-            
-           {/* Username Field */}
-            <InputField
-                onChange={inputHandle} 
-                label="Username"
-                type="username" 
-                name="username" 
-                id="username" 
-                placeholder='username' 
-                value={state.username} 
-                autoComplete="username"
-                className='px-3 py-2 rounded-md border outline-none border-[#5c5c5e] focus:border-purple-500 bg-transparent' 
-            />
-            <small>{errors.username && <div data-testid="username-error" className='text-danger my-2 px-1 text-red-600 text-lg'>{errors.username}</div>}</small>
+        <form onSubmit={handleRegistration} className="space-y-4">
 
-           {/* Email Field */}
-            <InputField
-                onChange={inputHandle} 
-                label="Email"
-                type="email" 
-                name="email" 
-                id="email" 
-                placeholder='email' 
-                value={state.email} 
-                autoComplete="email"
-                className='px-3 py-2 rounded-md border outline-none border-[#5c5c5e] focus:border-purple-500 bg-transparent' 
-            />
-            <small>{errors.email && <div data-testid="email-error" className='text-danger my-2 px-1 text-red-600 text-lg'>{errors.email}</div>}</small>
+        {/* Username Field */}
+        <InputField
+            onChange={inputHandle}
+            label="Username"
+            type="text"
+            name="username"
+            id="username"
+            placeholder="Username"
+            value={state.username}
+            autoComplete="username"
+            className="w-full px-4 py-2 rounded-lg border border-green-300 bg-white focus:outline-none focus:ring-2 focus:ring-green-500"
+        />
+        {errors.username && (
+            <small>
+            <div data-testid="username-error" className="text-red-600 text-sm lg:text-lg ml-2 mt-2 font-bold">{errors.username}</div>
+            </small>
+        )}
 
-            {/* Password Field */}
-            <InputField
-                onChange={inputHandle} 
-                label="Password"
-                type="password" 
-                name="password" 
-                id="password" 
-                placeholder='password' 
-                value={state.password} 
-                autoComplete="current-password"
-                className='px-3 py-2 rounded-md border outline-none border-[#5c5c5e] focus:border-purple-500 bg-transparent' 
-            />
-            <small>{errors.password && <div data-testid="password-error" className='text-danger my-2 px-1 text-red-600 text-lg'>{errors.password}</div>}</small>
+        {/* Email Field */}
+        <InputField
+            onChange={inputHandle}
+            label="Email"
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Email"
+            value={state.email}
+            autoComplete="email"
+            className="w-full px-4 py-2 rounded-lg border border-green-300 bg-white focus:outline-none focus:ring-2 focus:ring-green-500"
+        />
+        {errors.email && (
+            <small>
+            <div data-testid="email-error" className="text-red-600 text-sm lg:text-lg ml-2 mt-2 font-bold">{errors.email}</div>
+            </small>
+        )}
 
+        {/* Password Field */}
+        <InputField
+            onChange={inputHandle}
+            label="Password"
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Password"
+            value={state.password}
+            autoComplete="current-password"
+            className="w-full px-4 py-2 rounded-lg border border-green-300 bg-white focus:outline-none focus:ring-2 focus:ring-green-500"
+        />
+        {errors.password && (
+            <small>
+            <div data-testid="password-error" className="text-red-600 text-sm lg:text-lg ml-2 mt-2 font-bold">{errors.password}</div>
+            </small>
+        )}
 
-            {errors.error && <div  data-testid="error-error" className='text-danger px-1 text-red-600 text-lg z-50 mb-5'>{errors.error}</div>}
-            
-            {success && <div className='alert alert-success px-1 text-green-600 text-xl mb-6'>Registration Successful</div>}   
-            
-            {/* Sign In button */}
-            <div>
-                {loading ? (
-                    <button type="submit" className='px-3 py-2 mt-2 rounded-md bg-purple-800 w-full outline-none hover:bg-purple-600 text-white' disabled><FontAwesomeIcon icon={faSpinner} spin /> Please wait...</button>
-                ) : (
-                    <button type="submit" name='sign up' className='px-3 py-2 mt-2 rounded-md bg-purple-800 w-full outline-none hover:bg-purple-600 text-white'>Sign Up</button>
-                )}
-            </div>
+        {errors.error && (
+            <div data-testid="error-error" className="text-red-700 lg:text-lg ml-2 font-bold">{errors.error}</div>
+        )}
 
-            <div className='flex py-4 justify-between items-center px-3'>
-                <div className='w-[45%] h-[1px] bg-slate-500 '></div>
-                <div className='w-[6%] text-center flex pb-1 px-1 text-white'>Or</div>
-                <div className='w-[45%] h-[1px] bg-slate-500 '></div>
-            </div>
+        {success && (
+            <div className="text-green-600 font-semibold text-center lg:text-lg ml-2">Registration Successful!</div>
+        )}
 
-            <div className='pb-4'>
-                <button className='px-3 flex justify-center items-center gap-2 py-2 rounded-md bg-red-500 w-full outline-none hover:bg-red-600 text-white'>
-                    <span><BiLogoGmail /></span>
-                    <span>Sign Up with Gmail </span>
-                </button>
-            </div>
+        {/* Submit Button */}
+        <div>
+            {loading ? (
+            <button
+                type="submit"
+                className="w-full px-4 py-2 rounded-lg bg-green-600 hover:bg-green-700 text-white flex items-center justify-center"
+                disabled
+            >
+                <FontAwesomeIcon icon={faSpinner} spin className="mr-2" />
+                Please wait...
+            </button>
+            ) : (
+            <button
+                type="submit"
+                name="sign up"
+                className="w-full px-4 py-2 mt-4 lg:text-xl rounded-lg bg-green-600 hover:bg-green-700 text-white font-semibold transition-colors"
+            >
+                Sign Up
+            </button>
+            )}
+        </div>
 
-            <div className='pb-4'>
-                <button className='px-3 flex justify-center items-center gap-2 py-2 rounded-md bg-blue-500 w-full outline-none hover:bg-blue-600 text-white'>
-                    <span><FaFacebook /></span>
-                    <span>Sign Up with Facebook </span>
-                </button>
-            </div>
+        {/* Divider */}
+        <div className="flex items-center my-4">
+            <div className="flex-grow h-px bg-gray-300"></div>
+            <span className="mx-2 text-gray-500">Or</span>
+            <div className="flex-grow h-px bg-gray-300"></div>
+        </div>
 
+        {/* Gmail Button */}
+        <button className="w-full flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-red-600 hover:bg-red-700 text-white transition-colors">
+            <BiLogoGmail />
+            <span>Sign Up with Gmail</span>
+        </button>
+
+        {/* Facebook Button */}
+        <button className="w-full flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition-colors">
+            <FaFacebook />
+            <span>Sign Up with Facebook</span>
+        </button>
         </form>
     </>
   );

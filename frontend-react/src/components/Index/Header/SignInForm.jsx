@@ -116,82 +116,116 @@ const SignInForm = ({errors, setErrors, setShow}) => {
   return (
 
     <>
-      <h2 className='text-white pb-4 text-center text-xl'>Sign in seconds</h2>
+        <h2 className="text-green-500 text-center text-xl pb-4 font-semibold">Sign in seconds</h2>
 
-      <form onSubmit={handleSignIn}>       
+        <form onSubmit={handleSignIn} className="space-y-2">
 
         {/* Email Field */}
         <InputField
-          onChange={inputHandle} 
-          label="Email"
-          type="email" 
-          name="email" 
-          id="email" 
-          placeholder='email' 
-          value={state.email} 
-          autoComplete="email"
-          className='px-3 py-2 rounded-md border outline-none border-[#5c5c5e] focus:border-purple-500 bg-transparent' 
+            onChange={inputHandle}
+            label="Email"
+            type="email"
+            name="email"
+            id="email"
+            placeholder="email"
+            value={state.email}
+            autoComplete="email"
+            className="w-full px-3 py-2 rounded-md border border-green-300 text-white placeholder-gray-400 focus:outline-none focus:border-[#A63A3A] transition-colors"
+                    
         />
-        <small>{errors.email && <div data-testid="email-error" className='text-danger my-2 px-1 text-red-600 text-lg'>{errors.email}</div>}</small>
+        {errors.email && (
+            <div data-testid="email-error" className="text-red-600 text-sm mt-0 px-0 lg:text-lg ml-2 font-bold">
+                {errors.email}
+            </div>
+        )}
 
         {/* Password Field */}
         <InputField
-          onChange={inputHandle} 
-          label="Password"
-          type="password" 
-          name="password" 
-          id="password" 
-          placeholder='password' 
-          value={state.password} 
-          autoComplete="current-password"
-          className='px-3 py-2 rounded-md border outline-none border-[#5c5c5e] focus:border-purple-500 bg-transparent' 
+            onChange={inputHandle}
+            label="Password"
+            type="password"
+            name="password"
+            id="password"
+            placeholder="password"
+            value={state.password}
+            autoComplete="current-password"
+            className="w-full px-3 py-2 rounded-md border border-green-300 text-white placeholder-gray-400 focus:outline-none focus:border-[#A63A3A] transition-colors"
+                   
         />
-        <small>{errors.password && <div data-testid="password-error" className='text-danger my-2 px-1 text-red-600 text-lg'>{errors.password}</div>}</small>
+        {errors.password && (
+            <div data-testid="password-error" className="text-red-600 text-sm mt-1 px-1 lg:text-lg ml-2 font-bold">
+                {errors.password}
+            </div>
+        )}
 
-    
-        {errors.error && <div  data-testid="error-error" className='text-danger px-1 text-red-600 text-lg z-50 mb-5'>{errors.error}</div>}
+        {/* General Error */}
+        {errors.error && (
+            <div
+            data-testid="error-error"
+            className="text-red-600 text-sm mt-2 px-1 font-semibold"
+            >
+            {errors.error}
+            </div>
+        )}
 
-        {success && <div className='alert alert-success px-1 text-green-600 text-xl mb-6'>Login Successful</div>}
+        {/* Success message */}
+        {success && (
+            <div className="text-green-500 text-base mt-4 px-1 font-semibold">
+            Login Successful
+            </div>
+        )}
 
-        {/* Sign In button */}
+        {/* Submit Button */}
         <div>
             {loading ? (
-                <button type="submit" className='px-3 py-2 mt-1 rounded-md bg-purple-800 w-full outline-none hover:bg-purple-600 text-white' disabled><FontAwesomeIcon icon={faSpinner} spin /> Please wait...</button>
+            <button
+                type="submit"
+                className="w-full py-2 rounded-md bg-green-600 text-white font-semibold cursor-not-allowed flex items-center justify-center gap-2"
+                disabled
+            >
+                <FontAwesomeIcon icon={faSpinner} spin />
+                Please wait...
+            </button>
             ) : (
-                <button type="submit" className='px-3 py-2 mt-1 rounded-md bg-purple-800 w-full outline-none hover:bg-purple-600 text-white'>Sign In</button>
+            <button
+                type="submit"
+                className="w-full py-2 lg:text-xl mt-6 rounded-md bg-green-600 hover:bg-green-700 transition-colors text-white font-semibold"
+            >
+                Sign In
+            </button>
             )}
         </div>
 
-        <div className='flex py-4 justify-between items-center px-3'>
-          
-          <div className='w-[45%] h-[1px] bg-slate-500 '></div>
-
-          <div className='w-[6%] text-center flex pb-1 px-1 text-white'>Or</div>
-
-          <div className='w-[45%] h-[1px] bg-slate-500 '></div>
-
+        {/* Or divider */}
+        <div className="flex items-center justify-center gap-3 py-4">
+            <hr className="flex-grow border border-slate-500" />
+            <span className="text-white text-sm">Or</span>
+            <hr className="flex-grow border border-slate-500" />
         </div>
 
-        <div className='pb-4'>
-
-            <button className='px-3 flex justify-center items-center gap-2 py-2 rounded-md bg-red-500 w-full outline-none hover:bg-red-600 text-white'>
-
-            <span><BiLogoGmail /></span>
-
-            <span>Login with Gmail </span>
-
-            </button>
-
-        </div>
-
-        <div className='pb-4'>
-            <button className='px-3 flex justify-center items-center gap-2 py-2 rounded-md bg-blue-500 w-full outline-none hover:bg-blue-600 text-white'>
-                <span><FaFacebook /></span>
-                <span>Login with Facebook </span>
+        {/* Gmail Button */}
+        <div>
+            <button
+            type="button"
+            className="w-full flex justify-center items-center gap-2 py-2 rounded-md bg-red-600 hover:bg-red-700 text-white font-semibold transition-colors"
+            >
+            <BiLogoGmail className="text-xl" />
+            <span>Login with Gmail</span>
             </button>
         </div>
 
-      </form>
+        {/* Facebook Button */}
+        <div>
+            <button
+            type="button"
+            className="w-full flex justify-center items-center gap-2 py-2 rounded-md bg-blue-700 hover:bg-blue-800 text-white font-semibold transition-colors"
+            >
+            <FaFacebook className="text-xl" />
+            <span>Login with Facebook</span>
+            </button>
+        </div>
+
+        </form>
     </>
 
   );

@@ -41,10 +41,12 @@ function Gallery() {
 
       try {
         const galleryResponse = await axiosInstance.get('/diseases/');
-        setGallery(galleryResponse.data);
-        setFilteredGallery(galleryResponse.data);
-        setLoading(false);
 
+        if( galleryResponse.data ){
+          setGallery(galleryResponse.data);
+          setFilteredGallery(galleryResponse.data);
+        }
+        setLoading(false);
       } catch (error) {
         console.error("Failed to fetch gallery:", error);
         setError("Failed to load gallery. Please try again later.");

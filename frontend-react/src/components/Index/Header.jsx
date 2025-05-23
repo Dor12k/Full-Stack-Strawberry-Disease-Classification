@@ -17,6 +17,8 @@ import { UserContext } from "../../context/UserContext";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 
+import strawberryIcon from "/images/Header/strawberry-icon.svg";
+
 const Header = () => {
     
     const {user, setUser} = useContext(UserContext);
@@ -58,27 +60,45 @@ const Header = () => {
             {/* Header Wrapper */}
             <header>
 
-                {/* SignUp pop up window */}
+                {/* SignUp / SignIn pop up window */}
                 <div className={`${show ? 'visible opacity-100' : 'invisible opacity-0 pointer-events-none'} 
                                 fixed inset-0 flex justify-center items-center bg-[#252725ad] z-50 transition-opacity duration-500`}>
                     
-                    {/* Overlay - Dark background */}
-                    <div onClick={() => setShow(false)} className="absolute inset-0 bg-black bg-opacity-30 z-40"/>
+                    {/* Overlay */}
+                    <div onClick={() => setShow(false)} className="absolute inset-0 bg-black bg-opacity-30 z-40" />
 
-                        {/* Pop up window */}
-                        <div role="dialog" className="w-[400px] bg-[#212123] px-6 py-4 rounded-md relative z-50 transform transition-all duration-500 scale-95"  
-                            aria-modal="true" data-testid={type === 'signin' ? 'sign-in-modal' : 'sign-up-modal'} style={{ transform: show ? 'scale(1)' : 'scale(0.95)' }} >
-
-                        <button onClick={() => setShow(false)} role="button" aria-label="Close" name="close" className="absolute right-4 top-4 text-xl cursor-pointer text-white z-70">
+                    {/* Pop-up window */}
+                    <div
+                        role="dialog"
+                        aria-modal="true"
+                        data-testid={type === 'signin' ? 'sign-in-modal' : 'sign-up-modal'}
+                        style={{ transform: show ? 'scale(1)' : 'scale(0.95)' }}
+                        className="w-[90%] max-w-md bg-[#324137] px-6 py-6 rounded-2xl shadow-lg shadow-black relative z-50 transition-all duration-500 scale-95"
+                    >
+                        {/* Close Button */}
+                        <button
+                            onClick={() => setShow(false)}
+                            role="button"
+                            aria-label="Close"
+                            name="close"
+                            className="absolute right-4 top-4 text-xl text-red-600 hover:text-red-800 z-70"
+                        >
                             <RxCross2 />
                         </button>
 
+                        {/* Optional decorative image */}
+                        <div className="absolute top-6 left-8 w-8 h-20">
+                            <img src="/images/Header/strawberry-icon.svg" alt="Strawberry" />
+                        </div>
+
+                        {/* Actual Form */}
                         {type === 'signin' 
                             ? <SignInForm errors={errors} setErrors={setErrors} setShow={setShow}/> 
                             : <SignUpForm errors={errors} setErrors={setErrors} setShow={setShow}/>
                         }
                     </div>
                 </div>
+
         
                 {/* Navigation Bar */}
                 <nav className="relative z-10 w-full top-0 left-0 backdrop-blur-lg

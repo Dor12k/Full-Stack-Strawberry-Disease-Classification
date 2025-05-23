@@ -17,7 +17,7 @@ import { UserContext } from "../../context/UserContext";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 
-import strawberryIcon from "/images/Header/strawberry-icon.svg";
+
 
 const Header = () => {
     

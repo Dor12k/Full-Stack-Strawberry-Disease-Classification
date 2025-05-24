@@ -130,7 +130,7 @@ const SignInForm = ({errors, setErrors, setShow}) => {
             placeholder="email"
             value={state.email}
             autoComplete="email"
-            className="w-full px-3 py-2 rounded-md border border-green-300 text-white placeholder-gray-400 focus:outline-none focus:border-[#A63A3A] transition-colors"
+            className="w-full px-3 py-2 rounded-md border border-green-300 text-black placeholder-gray-400 focus:outline-none focus:border-[#A63A3A] transition-colors"
                     
         />
         {errors.email && (
@@ -149,7 +149,7 @@ const SignInForm = ({errors, setErrors, setShow}) => {
             placeholder="password"
             value={state.password}
             autoComplete="current-password"
-            className="w-full px-3 py-2 rounded-md border border-green-300 text-white placeholder-gray-400 focus:outline-none focus:border-[#A63A3A] transition-colors"
+            className="w-full px-3 py-2 rounded-md border border-green-300 text-black placeholder-gray-400 focus:outline-none focus:border-[#A63A3A] transition-colors"
                    
         />
         {errors.password && (
@@ -180,7 +180,7 @@ const SignInForm = ({errors, setErrors, setShow}) => {
             {loading ? (
             <button
                 type="submit"
-                className="w-full py-2 rounded-md bg-green-600 text-white font-semibold cursor-not-allowed flex items-center justify-center gap-2"
+                className="w-full py-2 mt-8 lg:text-xl rounded-md bg-green-600 text-white font-semibold cursor-not-allowed flex items-center justify-center gap-2"
                 disabled
             >
                 <FontAwesomeIcon icon={faSpinner} spin />

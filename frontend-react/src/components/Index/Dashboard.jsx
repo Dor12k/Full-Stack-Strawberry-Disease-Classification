@@ -150,7 +150,7 @@ const Dashboard = () => {
               : 
               <div className="flex flex-row gap-2 mt-0 mb-1">
                 <div className="text-2xl">🍓</div>
-                <div className="pt-1">Continue as a Guest</div>
+                <div className="pt-1">Continue as Guest</div>
               </div>
             }
 

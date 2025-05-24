@@ -122,7 +122,7 @@ function Home() {
             // setClassificationScore(`${response.data.score}%`);
 
             const timeoutId = setTimeout(() => {
-                setClassificationLabel('Angular LeafSpot');
+                setClassificationLabel('Angular Leafspot');
                 setClassificationScore('95%');
 
                 setClassify(false)
@@ -215,7 +215,7 @@ function Home() {
                     {/* Upload */}
                     {imagePreview ? 
                     (
-                        <div className="flex flex-col justify-between gap-4 bg-[#fff8ef] dark:bg-[#2a2a2a] p-4 lg:p-8 rounded-[30px] shadow-lg flex-1 h-[500px]">
+                        <div className="flex flex-col justify-between max-w-md gap-4 bg-[#fff8ef] dark:bg-[#2a2a2a] p-4 lg:p-8 rounded-[30px] shadow-lg flex-1 h-[500px]">
                             
                             <div className="w-full flex-1 border-2 border-solid border-[#bbb5ff] bg-[#f7f8ff] rounded-[20px] flex flex-col items-center justify-center text-center dark:border-[#2a2a2a] dark:bg-[#353434]">
                                 

@@ -111,7 +111,7 @@ const SignUpForm = ({errors, setErrors, setShow }) => {
             placeholder="Username"
             value={state.username}
             autoComplete="username"
-            className="w-full px-4 py-2 rounded-lg border border-green-300 bg-white focus:outline-none focus:ring-2 focus:ring-green-500"
+            className="w-full px-4 py-2 rounded-lg border text-black border-green-300 bg-white focus:outline-none focus:ring-2 focus:ring-green-500"
         />
         {errors.username && (
             <small>
@@ -129,7 +129,7 @@ const SignUpForm = ({errors, setErrors, setShow }) => {
             placeholder="Email"
             value={state.email}
             autoComplete="email"
-            className="w-full px-4 py-2 rounded-lg border border-green-300 bg-white focus:outline-none focus:ring-2 focus:ring-green-500"
+            className="w-full px-4 py-2  text-black rounded-lg border border-green-300 bg-white focus:outline-none focus:ring-2 focus:ring-green-500"
         />
         {errors.email && (
             <small>
@@ -147,7 +147,7 @@ const SignUpForm = ({errors, setErrors, setShow }) => {
             placeholder="Password"
             value={state.password}
             autoComplete="current-password"
-            className="w-full px-4 py-2 rounded-lg border border-green-300 bg-white focus:outline-none focus:ring-2 focus:ring-green-500"
+            className="w-full px-4 py-2  text-black rounded-lg border border-green-300 bg-white focus:outline-none focus:ring-2 focus:ring-green-500"
         />
         {errors.password && (
             <small>
@@ -168,7 +168,7 @@ const SignUpForm = ({errors, setErrors, setShow }) => {
             {loading ? (
             <button
                 type="submit"
-                className="w-full px-4 py-2 rounded-lg bg-green-600 hover:bg-green-700 text-white flex items-center justify-center"
+                className="w-full px-4 py-2 mt-8 lg:text-xl rounded-lg bg-green-600 hover:bg-green-700 text-white flex items-center justify-center"
                 disabled
             >
                 <FontAwesomeIcon icon={faSpinner} spin className="mr-2" />

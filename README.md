@@ -15,7 +15,7 @@ So click on the Subscribe button and join us to explore the world of strawberrie
 
 Watch the video [here](https://www.youtube.com/watch?v=HJZ-G3RxmnA)
 
-[![Watch the video](https://github.com/user-attachments/assets/883dd054-1229-487f-8f91-00b65286afb0)](https://www.youtube.com/watch?v=HJZ-G3RxmnA)
+[![Watch the video](https://github.com/user-attachments/assets/08da2c82-c859-4d1a-bf50-f0f238e53baf)](https://www.youtube.com/watch?v=HJZ-G3RxmnA)
 
 
 ## Technologies

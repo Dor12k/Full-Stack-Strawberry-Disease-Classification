@@ -36,7 +36,7 @@ Finally, I established a complete **CI/CD pipeline** using **Pytest**, **Jest**,
 
 ## Graph
 
-![Project Graph](https://github.com/user-attachments/assets/a68af36a-8050-4e9b-8242-ed93346171ff)
+![Project Graph](https://github.com/user-attachments/assets/9af2222c-51ee-465a-bafa-612458e9f80c)
 
 
 
@@ -93,7 +93,10 @@ A full-stack web application that utilizes computer vision and deep learning to 
 ### ☁️ Deployment & DevOps
 - AWS (EC2, S3, RDS, SageMaker, Load Balancer)
 - Docker
-- Kubernetes
 - GitHub Actions (CI/CD)
 
 ---
+
+AI Model:
+
+

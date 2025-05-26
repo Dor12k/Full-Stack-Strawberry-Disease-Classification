@@ -1,7 +1,9 @@
 
 
-# Classification Web Application
 
+# Strawberry Disease Classifier 🌱🍓
+
+A full-stack web application that utilizes computer vision and deep learning to classify diseases in strawberry plants. Users can upload an image of a plant leaf, and the system will diagnose the disease using a pre-trained TensorFlow model. In addition, the platform includes informative articles on AI, smart agriculture, and strawberry cultivation.
 
 ## About
 
@@ -40,9 +42,6 @@ Finally, I established a complete **CI/CD pipeline** using **Pytest**, **Jest**,
 
 
 
-# Strawberry Disease Classifier 🌱🍓
-
-A full-stack web application that utilizes computer vision and deep learning to classify diseases in strawberry plants. Users can upload an image of a plant leaf, and the system will diagnose the disease using a pre-trained TensorFlow model. In addition, the platform includes informative articles on AI, smart agriculture, and strawberry cultivation.
 
 ## 🌟 Features
 
@@ -99,4 +98,5 @@ A full-stack web application that utilizes computer vision and deep learning to 
 
 AI Model:
 
+📓 [View the Jupyter Notebook on GitHub](https://github.com/Dor12k/Full-Stack-Strawberry-Disease-Classification/blob/main/Strawberry-diseases.ipynb)
 

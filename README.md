@@ -100,3 +100,8 @@ AI Model:
 
 📓 [View the Jupyter Notebook on GitHub](https://github.com/Dor12k/Full-Stack-Strawberry-Disease-Classification/blob/main/Strawberry-diseases.ipynb)
 
+
+
+Old Version:
+
+https://github.com/user-attachments/assets/30f29696-65ef-4c83-a891-e630250646f1

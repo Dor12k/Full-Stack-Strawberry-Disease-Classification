@@ -103,5 +103,5 @@ AI Model:
 
 Old Version:
 
-[View old version repository](https://github.com/Dor12k/Classification_Web_Application)
+📓 [View old version repository](https://github.com/Dor12k/Classification_Web_Application)
 

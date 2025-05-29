@@ -106,7 +106,7 @@ WSGI_APPLICATION = 'backend_main.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-'''
+
 # SQLite
 DATABASES = {
     'default': {
@@ -114,7 +114,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-'''
+
 
 
 '''
@@ -137,8 +137,6 @@ DATABASES = {
     }
 }
 '''
-
-
 
 
 

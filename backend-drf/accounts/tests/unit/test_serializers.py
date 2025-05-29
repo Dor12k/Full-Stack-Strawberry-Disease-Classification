@@ -263,7 +263,7 @@ def test_update_user_with_profile_picture(valid_user_data):
     user = serializer.save()
 
     # Check that the profile picture is updated
-    pattern = rf"^images/accounts/{user.username}/profile_picture/profile_picture(_[a-zA-Z0-9]+)?\.jpg$"
+    pattern = rf"^media/images/accounts/{user.username}/profile_picture/profile_picture(_[a-zA-Z0-9]+)?\.jpg$"
     assert re.match(pattern, user.profile_picture.name)
     
     # Clean up the temporary file

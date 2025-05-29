@@ -113,7 +113,7 @@ const EditProfilePopup = ({
                             (
                                 <button
                                     type="submit"
-                                    className="w-40 lg:w-44 sm:w-44 px-6 py-3 border-2 rounded-full bg-purple-800 text-white flex items-center justify-center gap-2 cursor-not-allowed"
+                                    className="w-44 lg:w-48 sm:w-48 px-6 py-3 border-2 rounded-full bg-purple-800 text-white flex items-center justify-center gap-2 cursor-not-allowed"
                                     disabled
                                 >
                                     <FontAwesomeIcon icon={faSpinner} spin />
@@ -123,7 +123,7 @@ const EditProfilePopup = ({
                             : 
                             (
                                 <button data-testid="editProfile-save-button" type="submit"
-                                        className="w-40 sm:w-44 px-6 py-3 border-2 rounded-full bg-teal-600 text-white hover:bg-teal-700 hover:shadow-lg transition duration-300 transform hover:scale-105">
+                                        className="w-44 lg:w-48 sm:w-48 px-6 py-3 border-2 rounded-full bg-teal-600 text-white hover:bg-teal-700 hover:shadow-lg transition duration-300 transform hover:scale-105">
                                     Save
                                 </button>
                             )
@@ -132,7 +132,7 @@ const EditProfilePopup = ({
                         <button
                             type="button"
                             onClick={() => { setEditBtn(false); setErrors(''); }}
-                            className="w-40 sm:w-44 px-6 py-3 border-2 rounded-full bg-red-600 text-white hover:bg-red-700 transition duration-300 transform hover:scale-105"
+                            className="w-44 lg:w-48 sm:w-48 px-6 py-3 border-2 rounded-full bg-red-600 text-white hover:bg-red-700 transition duration-300 transform hover:scale-105"
                         >
                             Close
                         </button>

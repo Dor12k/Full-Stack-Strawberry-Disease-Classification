@@ -9,7 +9,7 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Permis
 def user_profile_picture_upload_path(instance, filename):
     ext = filename.split('.')[-1]
     filename = f"profile_picture.{ext}"
-    return f"images/accounts/{instance.username}/profile_picture/{filename}"
+    return f"media/images/accounts/{instance.username}/profile_picture/{filename}"
 
 
 # Custom user management

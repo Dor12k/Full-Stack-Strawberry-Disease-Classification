@@ -64,6 +64,8 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'classification',
 
+    'storages',
+
 
 ]
 
@@ -104,7 +106,7 @@ WSGI_APPLICATION = 'backend_main.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-
+'''
 # SQLite
 DATABASES = {
     'default': {
@@ -112,7 +114,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
+'''
 
 
 '''
@@ -135,6 +137,9 @@ DATABASES = {
     }
 }
 '''
+
+
+
 
 
 
@@ -174,15 +179,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 
-# Static files definitions
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    BASE_DIR / 'static',
-]
 
-# Media files (uploaded by users)
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
 
 
 # Default primary key field type
@@ -222,4 +219,26 @@ CORS_ALLOWED_ORIGINS = [
 # Redis configuration
 REDIS_HOST = 'localhost'
 REDIS_PORT = 6379
+
+
+
+# Amazon S3 configuration 
+AWS_ACCESS_KEY_ID = ""
+AWS_SECRET_ACCESS_KEY = ""
+AWS_STORAGE_BUCKET_NAME = ""
+
+# Django 4.2 >
+STORAGES = {
+            "staticfiles": {"BACKEND": "backend_main.custom_storages.StaticFilesStorage"},
+            "default": {"BACKEND": "backend_main.custom_storages.MediaFilesStorage"},
+            }
+
+
+AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
+
+# static files
+STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/static/"
+
+# media files
+MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/media/"
 

@@ -25,7 +25,7 @@ class CustomUserSerializer(serializers.ModelSerializer):
     # profile_picture = serializers.SerializerMethodField()
     profile_picture = serializers.ImageField(allow_null=True, required=False)
     
-    print("profile_picture", profile_picture)
+
 
     class Meta:
         model = CustomUser
@@ -73,10 +73,6 @@ class CustomUserSerializer(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
         errors = {}
-
-        print("instance", instance)
-        print("validated_data", validated_data)
-
 
         # Prevent guest user from updating profile
         if instance.email == "guest@example.com":

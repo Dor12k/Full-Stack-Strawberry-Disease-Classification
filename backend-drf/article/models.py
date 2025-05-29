@@ -41,7 +41,7 @@ def article_file_upload_to(instance, filename):
     else:
         folder = 'files'
     
-    return f'{folder}/article/article/{instance.slug}/{filename}'
+    return f'media/{folder}/article/article/{instance.slug}/{filename}'
 
 
 # Article instance

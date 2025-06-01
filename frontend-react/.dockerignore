@@ -1,0 +1,43 @@
+# Node modules should be ignored as they will be installed fresh in the container
+node_modules
+
+# Logs and debug files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment files that may contain secrets, exclude from image
+.env
+
+# Build output folder - usually generated after build, no need to copy source build files
+dist
+build
+
+# Tests and test output, not needed inside production image
+__tests__
+*.test.jsx
+*.integration.test.jsx
+*.test.js
+*.test.jsx
+*.spec.js
+coverage
+
+# Git files - unnecessary in container
+.git
+.gitignore
+
+# Config files only needed in local dev
+.vscode
+.idea
+
+# Misc system files and OS metadata
+.DS_Store
+Thumbs.db
+
+# Lock files (optional, can be copied if you want deterministic installs)
+# yarn.lock
+# package-lock.json
+
+# Ignore storybook or docs if present (not in your current tree, but common)
+storybook-static
+docs

@@ -4,9 +4,11 @@ import axios from "axios";
 
 import { toast } from 'react-toastify';
 
+console.log("Current build version: 1");
 
-// const baseURL = import.meta.env.VITE_BACKEND_BASE_API 
-var baseURL = process.env.VITE_BACKEND_BASE_API;
+var baseURL = import.meta.env.VITE_BACKEND_BASE_API 
+// var baseURL = process.env.VITE_BACKEND_BASE_API;
+
 
 
 

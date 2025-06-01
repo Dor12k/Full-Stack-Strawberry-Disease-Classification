@@ -1,0 +1,46 @@
+
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Migrations can be ignored if recreated or managed differently
+**/migrations/
+
+# SQLite DB 
+db.sqlite3
+
+# Env files
+.env
+
+# Pytest cache and test artifacts
+.pytest_cache/
+tests/
+pytest.ini
+run_tests.sh
+
+# Git
+.git
+.gitignore
+
+# IDE/editor folders and files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Media files
+media/
+
+# Node modules 
+node_modules/
+
+# Logs, temp files
+*.log
+*.tmp
+
+# Dockerfile and docker-compose override if you don't want to copy them
+Dockerfile
+docker-compose.override.yml

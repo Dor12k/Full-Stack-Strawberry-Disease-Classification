@@ -1,0 +1,53 @@
+
+
+version: '3.8'
+
+services:
+  backend:
+    container_name: backend
+    build:
+      context: ./backend-drf
+      dockerfile: Dockerfile
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py collectstatic --noinput &&
+             gunicorn backend_main.wsgi:application --bind 0.0.0.0:8000 --timeout=5 --threads=10"
+    volumes:
+      - ./backend-drf:/app
+      - static_volume:/app/static
+      - media_volume:/app/media
+    env_file:
+      - ./backend-drf/.env
+    expose:
+      - "8000"
+    depends_on:
+      - frontend
+
+  frontend:
+    container_name: frontend
+    build:
+      context: .
+      dockerfile: frontend-react/Dockerfile
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    expose:
+      - "3000"
+
+  nginx:
+    build: 
+      context: .
+      dockerfile: ./nginx/Dockerfile
+    container_name: project-nginx
+    ports:
+      - "80:80"
+    volumes: 
+    - static_volume:/app/static
+    - media_volume:/app/media
+    depends_on:
+      - frontend
+      - backend
+
+
+volumes:
+  static_volume:
+  media_volume:

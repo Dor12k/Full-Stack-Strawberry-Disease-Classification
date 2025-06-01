@@ -10,7 +10,7 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useContext, useEffect, useRef, useState } from "react";
 
-import axiosInstance from '../../axiosInstance';
+import axiosInstance from "../../axiosInstance";
 
 import leafIcon from "/images/Dashboard/leaf.svg";
 import strawberryIcon from "/images/Dashboard/strawberry.svg";
@@ -28,14 +28,14 @@ const Dashboard = () => {
   const {user, setUser} = useContext(UserContext);
   const {isLoggedIn, setIsLoggedIn, setManualRedirecting} = useContext(AuthContext)
   
-  
+  console.log("Dashboard component loaded");
+
   // Log in as a guest
   const handleGuestButton = async (e) => {
 
     setLoading(true);
 
     try{
-
       const response = await axiosInstance.post('/guest-login/')
     
       const user = response.data.user

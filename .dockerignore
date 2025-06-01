@@ -1,0 +1,56 @@
+
+
+# Ignore Python environment & cache
+env/
+.env
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore SQLite DB 
+db.sqlite3
+
+# Ignore pytest cache and test artifacts
+.pytest_cache/
+tests/
+
+# Ignore Django migrations if you 
+**/migrations/
+
+# Ignore Git and Docker files that don't need to be copied
+.git/
+.gitignore
+docker-compose.yml
+Dockerfile
+
+# Ignore logs and temp files
+*.log
+*.pot
+*.mo
+*.swp
+*.swo
+
+# Ignore editor files
+.vscode/
+.idea/
+*.iml
+
+# Ignore media/uploads 
+media/
+static/
+
+# Ignore node_modules if any 
+node_modules/
+
+
+# Block specific files by name
+commands.txt
+structure-backend.txt
+structure-frontend.txt
+structure-project.txt
+generate-structure.ps1
+README.md
+Strawberry-diseases.ipynb
+git-logs
+git-logs-history

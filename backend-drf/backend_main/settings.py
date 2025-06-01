@@ -11,39 +11,36 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 import os
-import environ
 from pathlib import Path
-from decouple import config
 from datetime import timedelta
 from dotenv import load_dotenv
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+# === Paths ===
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# === Load .env for local development only ===
+load_dotenv(dotenv_path=BASE_DIR / ".env")
 
-# Init environment
-env = environ.Env()
-environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+# === Environment Variables ===
 
-# Load your custom flag from .env
-ENABLE_RECENT_IMAGES_FEATURE = env.bool('ENABLE_RECENT_IMAGES_FEATURE', default=False) # env
-# ENABLE_RECENT_IMAGES_FEATURE = os.getenv("ENABLE_RECENT_IMAGES_FEATURE", "False") == "True" // os
+# Required
+SECRET_KEY = os.environ.get("SECRET_KEY")
+if not SECRET_KEY:
+    raise ValueError("SECRET_KEY environment variable is not set!")
+
+# Optional
+DEBUG = os.environ.get("DEBUG", "False") == "True"
+
+# Feature flags
+ENABLE_RECENT_IMAGES_FEATURE = os.environ.get("ENABLE_RECENT_IMAGES_FEATURE", "False") == "True"
+
+# Example of other variables
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "localhost").split(",")
 
 
-# Load environment variables from the .env file
-load_dotenv()
+ALLOWED_HOSTS = ['www.aistrawberries.com', 'aistrawberries.com', '*']
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
-
-# SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = config('DEBUG', default=False, cast=bool)
-
-ALLOWED_HOSTS = []
+CSRF_TRUSTED_ORIGINS = ['https://www.aistrawberries.com', 'https://aistrawberries.com']
 
 
 # Application definition
@@ -106,7 +103,7 @@ WSGI_APPLICATION = 'backend_main.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-
+'''
 # SQLite
 DATABASES = {
     'default': {
@@ -114,10 +111,10 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
-
-
 '''
+
+
+
 # PostgreSQL Database
 DATABASES = {
 
@@ -136,7 +133,7 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-'''
+
 
 
 
@@ -221,9 +218,9 @@ REDIS_PORT = 6379
 
 
 # Amazon S3 configuration 
-AWS_ACCESS_KEY_ID = ""
-AWS_SECRET_ACCESS_KEY = ""
-AWS_STORAGE_BUCKET_NAME = ""
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID', '')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY', '')
+AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME', '')
 
 # Django 4.2 >
 STORAGES = {

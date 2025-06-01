@@ -12,6 +12,8 @@ import { useNavigate } from 'react-router-dom';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import axiosInstance from '../../../axiosInstance';
+
 const SignUpForm = ({errors, setErrors, setShow }) => {
     
     const navigate = useNavigate();
@@ -46,7 +48,8 @@ const SignUpForm = ({errors, setErrors, setShow }) => {
 
         console.log("user data:", userData)
         try{
-            const response = await axios.post('http://127.0.0.1:8000/api/v1/users/', userData);
+            // const response = await axios.post('http://127.0.0.1:8000/api/v1/users/', userData);
+            const response = await axiosInstance.post('/users/', userData);
 
             response
             
@@ -156,11 +159,11 @@ const SignUpForm = ({errors, setErrors, setShow }) => {
         )}
 
         {errors.error && (
-            <div data-testid="error-error" className="text-red-700 lg:text-lg ml-2 font-bold">{errors.error}</div>
+            <div data-testid="error-error" className="text-red-700 text-sm lg:text-lg ml-2 font-bold">{errors.error}</div>
         )}
 
         {success && (
-            <div className="text-green-600 font-semibold text-center lg:text-lg ml-2">Registration Successful!</div>
+            <div className="text-green-600 font-semibold text-center text-sm lg:text-lg ml-2">Registration Successful!</div>
         )}
 
         {/* Submit Button */}

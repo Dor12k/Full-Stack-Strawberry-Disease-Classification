@@ -55,7 +55,8 @@ const SignInForm = ({errors, setErrors, setShow}) => {
     const userData = state
 
     try{
-        const response = await axios.post('http://127.0.0.1:8000/api/v1/token/', userData) 
+        // const response = await axios.post('http://127.0.0.1:8000/api/v1/token/', userData) 
+        const response = await axiosInstance.post('/token/', userData) 
 
         // Store token in localStorage
         console.log("Sign In successful");
@@ -134,7 +135,7 @@ const SignInForm = ({errors, setErrors, setShow}) => {
                     
         />
         {errors.email && (
-            <div data-testid="email-error" className="text-red-600 text-sm mt-0 px-0 lg:text-lg ml-2 font-bold">
+            <div data-testid="email-error" className="text-red-600 text-lg mt-0 px-0 lg:text-lg ml-2 font-bold">
                 {errors.email}
             </div>
         )}
@@ -153,7 +154,7 @@ const SignInForm = ({errors, setErrors, setShow}) => {
                    
         />
         {errors.password && (
-            <div data-testid="password-error" className="text-red-600 text-sm mt-1 px-1 lg:text-lg ml-2 font-bold">
+            <div data-testid="password-error" className="text-red-600 text-lg mt-1 px-1 lg:text-lg ml-2 font-bold">
                 {errors.password}
             </div>
         )}
@@ -162,7 +163,7 @@ const SignInForm = ({errors, setErrors, setShow}) => {
         {errors.error && (
             <div
             data-testid="error-error"
-            className="text-red-600 text-sm mt-2 px-1 font-semibold"
+            className="text-red-600 text-sm lg:text-lg mt-2 px-1 font-semibold"
             >
             {errors.error}
             </div>
@@ -170,7 +171,7 @@ const SignInForm = ({errors, setErrors, setShow}) => {
 
         {/* Success message */}
         {success && (
-            <div className="text-green-500 text-base mt-4 px-1 font-semibold">
+            <div className="text-green-500 text-sm lg:text-lg mt-4 px-1 font-semibold">
             Login Successful
             </div>
         )}

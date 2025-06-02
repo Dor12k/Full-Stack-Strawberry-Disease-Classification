@@ -1,27 +1,33 @@
+
+
 import React from 'react';
-import axios from 'axios';
+
 import { MemoryRouter } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthContext';
 import { UserContext } from '../../../context/UserContext';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import SignInForm from '../../../components/Index/Header/SignInForm';
+import axiosInstance from '../../../axiosInstance';
 
 // Silence console logs during tests
 console.log = jest.fn();
 
 // Mock axios and axiosInstance
-jest.mock('axios');
 jest.mock('../../../axiosInstance', () => ({
-  post: jest.fn(),
-  get: jest.fn(),
-  put: jest.fn(),
-  delete: jest.fn(),
-  interceptors: {
-    request: {
-      use: jest.fn(),
+  __esModule: true,
+  default: {
+    post: jest.fn(),
+    get: jest.fn(),
+    put: jest.fn(),
+    delete: jest.fn(),
+    interceptors: {
+      request: {
+        use: jest.fn(),
+      },
     },
   },
 }));
+
 
 
 
@@ -66,7 +72,7 @@ describe('SignInForm Unit Tests', () => {
   });
 
   test('submits form and calls axios.post for login', async () => {
-    axios.post.mockResolvedValueOnce({
+    axiosInstance.post.mockResolvedValueOnce({
       data: {
         access: 'mockAccessToken',
         refresh: 'mockRefreshToken',
@@ -82,7 +88,7 @@ describe('SignInForm Unit Tests', () => {
     fireEvent.click(submitButton);
 
     await waitFor(() => {
-      expect(axios.post).toHaveBeenCalledTimes(1);
+      expect(axiosInstance.post).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -92,7 +98,7 @@ describe('SignInForm Unit Tests', () => {
     { label: "email with special characters", value: "test*@test.com", expectedError: "Email can't contain special characters." },
   ])
   ('shows error "$expectedError" when $label', async ({ value, expectedError }) => {
-    axios.post.mockRejectedValueOnce({
+    axiosInstance.post.mockRejectedValueOnce({
       response: {
         status: 400,
         data: { email: [expectedError] },
@@ -114,7 +120,7 @@ describe('SignInForm Unit Tests', () => {
   });
 
   test('displays error message when login fails due to incorrect password', async () => {
-    axios.post.mockRejectedValueOnce({
+    axiosInstance.post.mockRejectedValueOnce({
       response: {
         status: 401,
         data: { error: "Invalid username, email or password." },
@@ -137,7 +143,7 @@ describe('SignInForm Unit Tests', () => {
   });
 
   test('displays error message when login fails due to missing password', async () => {
-    axios.post.mockRejectedValueOnce({
+    axiosInstance.post.mockRejectedValueOnce({
       response: {
         status: 401,
         data: { password: "Password is required." },

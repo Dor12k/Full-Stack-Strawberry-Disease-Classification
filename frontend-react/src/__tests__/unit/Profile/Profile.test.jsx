@@ -15,6 +15,23 @@ import axiosInstance from '../../../axiosInstance';
 // Silence console logs during tests
 console.log = jest.fn();
 
+
+// Mock axios and axiosInstance
+jest.mock('../../../axiosInstance', () => ({
+  __esModule: true,
+  default: {
+    post: jest.fn(),
+    get: jest.fn(),
+    put: jest.fn(),
+    delete: jest.fn(),
+    interceptors: {
+      request: {
+        use: jest.fn(),
+      },
+    },
+  },
+}));
+
 // Mock navigate
 const mockNavigate = jest.fn();
 

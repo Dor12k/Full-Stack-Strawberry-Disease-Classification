@@ -7,6 +7,24 @@ import { MemoryRouter } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthContext';
 import { UserContext } from '../../../context/UserContext';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import axiosInstance from '../../../axiosInstance';
+
+
+// Mock axios and axiosInstance
+jest.mock('../../../axiosInstance', () => ({
+  __esModule: true,
+  default: {
+    post: jest.fn(),
+    get: jest.fn(),
+    put: jest.fn(),
+    delete: jest.fn(),
+    interceptors: {
+      request: {
+        use: jest.fn(),
+      },
+    },
+  },
+}));
 
 // Mock the useNavigate hook from react-router-dom
 const mockNavigate = jest.fn();

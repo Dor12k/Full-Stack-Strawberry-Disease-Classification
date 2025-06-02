@@ -3,9 +3,24 @@ import axios from 'axios';
 import SignUpForm from '../../../components/Index/Header/SignUpForm';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
+import axiosInstance from '../../../axiosInstance';
 
-// Mock axios to avoid real API calls
-jest.mock('axios');
+
+// Mock axiosInstance
+jest.mock('../../../axiosInstance', () => ({
+  __esModule: true,
+  default: {
+    post: jest.fn(),
+    get: jest.fn(),
+    put: jest.fn(),
+    delete: jest.fn(),
+    interceptors: {
+      request: {
+        use: jest.fn(),
+      },
+    },
+  },
+}));
 
 // Hide console.log in testing
 console.log = jest.fn(); 
@@ -60,7 +75,7 @@ describe('SignUpForm Component Test', () => {
   });
 
   test('submits form and navigates on success', async () => {
-    axios.post.mockResolvedValueOnce({ 
+    axiosInstance.post.mockResolvedValueOnce({ 
       data: {
         id: 96,
         username: 'testuser',
@@ -93,13 +108,13 @@ describe('SignUpForm Component Test', () => {
     fireEvent.click(submitButton);
 
     await waitFor(() => {
-      expect(axios.post).toHaveBeenCalledTimes(1);
+      expect(axiosInstance.post).toHaveBeenCalledTimes(1);
       expect(mockedNavigate).toHaveBeenCalledWith('/');
     });
   });
 
   test('displays validation errors from the server', async () => {
-    axios.post.mockRejectedValueOnce({
+    axiosInstance.post.mockRejectedValueOnce({
       response: {
         status: 400, 
         data: {
@@ -161,7 +176,7 @@ describe('SignUpForm Component Test', () => {
   test.each(emailErrorCases)(
     "shows error '$expectedError' when $label",
     async ({ value, expectedError }) => {
-      axios.post.mockRejectedValueOnce({
+      axiosInstance.post.mockRejectedValueOnce({
         response: {
           status: 400, 
           data: {
@@ -225,7 +240,7 @@ describe('SignUpForm Component Test', () => {
   test.each(usernameErrorCases)(
     "shows error '$expectedError' when $label",
     async ({ value, expectedError }) => {
-      axios.post.mockRejectedValueOnce({
+      axiosInstance.post.mockRejectedValueOnce({
         response: {
           status: 400,
           data: {
@@ -286,7 +301,7 @@ describe('SignUpForm Component Test', () => {
   test.each(passwordErrorCases)(
     "shows error '$expectedError' when $label",
     async ({ value, expectedError }) => {
-      axios.post.mockRejectedValueOnce({
+      axiosInstance.post.mockRejectedValueOnce({
         response: {
           status: 400,
           data: {
@@ -344,7 +359,7 @@ describe('SignUpForm Component Test', () => {
   test.each(emptyFieldCases)(
     'shows error "$expectedError" when $label',
     async ({ fields, expectedError, testid }) => {
-      axios.post.mockRejectedValueOnce({
+      axiosInstance.post.mockRejectedValueOnce({
         response: {
           status: 400,
           data: {

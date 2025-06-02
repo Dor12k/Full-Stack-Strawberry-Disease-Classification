@@ -1,7 +1,7 @@
 
 
 import React from 'react';
-import axios from 'axios';
+
 import { MemoryRouter } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthContext';
 import { UserContext } from '../../../context/UserContext';
@@ -14,14 +14,19 @@ import axiosInstance from '../../../axiosInstance';
 console.log = jest.fn();
 
 
-jest.mock('axios');
+// Mock axios and axiosInstance
 jest.mock('../../../axiosInstance', () => ({
-  post: jest.fn(),
-  get: jest.fn(),
-  put: jest.fn(),
-  delete: jest.fn(),
-  interceptors: {
-    request: { use: jest.fn() },
+  __esModule: true,
+  default: {
+    post: jest.fn(),
+    get: jest.fn(),
+    put: jest.fn(),
+    delete: jest.fn(),
+    interceptors: {
+      request: {
+        use: jest.fn(),
+      },
+    },
   },
 }));
 
@@ -42,7 +47,7 @@ beforeEach(() => {
 describe('SignInForm Integration Tests', () => {
 
   test('successful sign in triggers axiosInstance.get and context updates', async () => {
-    axios.post.mockResolvedValueOnce({
+    axiosInstance.post.mockResolvedValueOnce({
       data: {
         access: 'mockAccessToken',
         refresh: 'mockRefreshToken',
@@ -78,7 +83,7 @@ describe('SignInForm Integration Tests', () => {
     const submitButton = screen.getAllByText(/Sign In/i).find(button => button.type === 'submit');
     fireEvent.click(submitButton);
 
-    await waitFor(() => expect(axios.post).toHaveBeenCalledTimes(1));
+    await waitFor(() => expect(axiosInstance.post).toHaveBeenCalledTimes(1));
     await waitFor(() => expect(mockSetUser).toHaveBeenCalled());
     await waitFor(() => expect(mockSetIsLoggedIn).toHaveBeenCalledWith(true));
     await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith('/home'));

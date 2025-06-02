@@ -206,10 +206,6 @@ SIMPLE_JWT = {
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",  
-]
-
 
 # Redis configuration
 REDIS_HOST = 'localhost'

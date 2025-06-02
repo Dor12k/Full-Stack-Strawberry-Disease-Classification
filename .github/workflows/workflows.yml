@@ -12,6 +12,10 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    env:
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      AWS_STORAGE_BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}
+
     services:
       postgres:
         image: postgres:15
@@ -28,6 +32,7 @@ jobs:
           --health-retries 5
 
     steps:
+
       # Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v2

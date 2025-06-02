@@ -128,7 +128,7 @@ DATABASES = {
 
         'PASSWORD': os.getenv('DB_PASSWORD'), # - Enter your RDS password HERE
 
-        'HOST' : os.getenv('DB_HOST'), # - Enter your RDS host name HERE
+        'HOST' : os.getenv('DB_HOST', "localhost"), # - Enter your RDS host name HERE
 
         'PORT': '5432',
     }

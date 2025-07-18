@@ -5,6 +5,12 @@
 
 A full-stack web application that utilizes computer vision and deep learning to classify diseases in strawberry plants. Users can upload an image of a plant leaf, and the system will diagnose the disease using a pre-trained TensorFlow model. In addition, the platform includes informative articles on AI, smart agriculture, and strawberry cultivation.
 
+Watch the video [here](https://www.youtube.com/watch?v=HJZ-G3RxmnA)
+
+[![Watch the video](https://github.com/user-attachments/assets/2338cea4-dfdf-4e35-8dc0-f07ef569ef62)](https://www.youtube.com/watch?v=HJZ-G3RxmnA)
+
+
+
 ## About
 
 [AIStrawberries.com](https://www.aiStrawberries.com) is an innovative platform designed for strawberry enthusiasts, farmers, and tech-savvy users alike. Our website allows users to easily classify strawberry plant leaf diseases using advanced image recognition technology. Simply upload an image, and our AI-driven system will provide an accurate diagnosis, helping you manage your strawberry crops effectively.
@@ -15,9 +21,6 @@ We also feature cutting-edge articles on artificial intelligence and computer vi
 
 So click on the Subscribe button and join us to explore the world of strawberries and discover the latest advancements in AI and precision farming, all in one place! 
 
-Watch the video [here](https://www.youtube.com/watch?v=HJZ-G3RxmnA)
-
-[![Watch the video](https://github.com/user-attachments/assets/2338cea4-dfdf-4e35-8dc0-f07ef569ef62)](https://www.youtube.com/watch?v=HJZ-G3RxmnA)
 
 
 ## Technologies

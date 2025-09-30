@@ -5,7 +5,7 @@
 
 A full-stack web application that utilizes computer vision and deep learning to classify diseases in strawberry plants. Users can upload an image of a plant leaf, and the system will diagnose the disease using a pre-trained TensorFlow model. In addition, the platform includes informative articles on AI, smart agriculture, and strawberry cultivation.
 
-Watch the video [here](https://www.youtube.com/watch?v=HJZ-G3RxmnA)
+## Watch the video [here](https://www.youtube.com/watch?v=HJZ-G3RxmnA)
 
 [![Watch the video](https://github.com/user-attachments/assets/2338cea4-dfdf-4e35-8dc0-f07ef569ef62)](https://www.youtube.com/watch?v=HJZ-G3RxmnA)
 
@@ -93,7 +93,7 @@ Finally, I established a complete **CI/CD pipeline** using **Pytest**, **Jest**,
 - Fine-tuned ResNet50 model (deployed on AWS SageMaker)
 
 ### ☁️ Deployment & DevOps
-- AWS (EC2, S3, RDS, SageMaker, Load Balancer)
+- AWS (ECS, ECR, EC2, S3, RDS, SageMaker, Load Balancer)
 - Docker
 - GitHub Actions (CI/CD)
 

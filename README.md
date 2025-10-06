@@ -1,15 +1,19 @@
 
 
 
-# Strawberry Disease Classifier 🌱🍓
+## Web & Android Application: Strawberry Plant Leaf Diseases Classification 🌱🍓
 
 A full-stack web application that utilizes computer vision and deep learning to classify diseases in strawberry plants. Users can upload an image of a plant leaf, and the system will diagnose the disease using a pre-trained TensorFlow model. In addition, the platform includes informative articles on AI, smart agriculture, and strawberry cultivation.
 
-## Watch the video [here](https://www.youtube.com/watch?v=HJZ-G3RxmnA)
+# <img width="40" height="30" alt="Image" src="https://github.com/user-attachments/assets/567d1706-facf-437a-aaca-9f82ccbe51dd" /> Watch the video [here](https://www.youtube.com/watch?v=HJZ-G3RxmnA)
 
 [![Watch the video](https://github.com/user-attachments/assets/2338cea4-dfdf-4e35-8dc0-f07ef569ef62)](https://www.youtube.com/watch?v=HJZ-G3RxmnA)
 
 
+
+## Architecture Diagram:
+
+![Project Graph](https://github.com/user-attachments/assets/9af2222c-51ee-465a-bafa-612458e9f80c)
 
 ## About
 
@@ -37,13 +41,6 @@ A complementary Android application, built with **Android Studio** and **Java**,
 Learn more about our mobile app [here](https://aistrawberries.com/articles/1/).
 
 Finally, I established a complete **CI/CD pipeline** using **Pytest**, **Jest**, and **GitHub Actions**, enabling automated testing for both backend and frontend components. The pipeline also includes Docker-based deployment to AWS EC2, ensuring consistent, reliable, and reproducible production builds
-
-
-## Graph
-
-![Project Graph](https://github.com/user-attachments/assets/9af2222c-51ee-465a-bafa-612458e9f80c)
-
-
 
 
 ## 🌟 Features

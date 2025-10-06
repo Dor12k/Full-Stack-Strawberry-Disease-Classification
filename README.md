@@ -1,7 +1,7 @@
 
 
 
-## Web & Android Application: Strawberry Plant Leaf Diseases Classification 🌱🍓
+## AI Full-Stack Web & Android Application: Strawberry Plant Leaf Diseases Classification 🌱🍓
 
 A full-stack web application that utilizes computer vision and deep learning to classify diseases in strawberry plants. Users can upload an image of a plant leaf, and the system will diagnose the disease using a pre-trained TensorFlow model. In addition, the platform includes informative articles on AI, smart agriculture, and strawberry cultivation.
 

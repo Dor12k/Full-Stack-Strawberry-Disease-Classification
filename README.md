@@ -94,6 +94,7 @@ Finally, I established a complete **CI/CD pipeline** using **Pytest**, **Jest**,
 - GitHub Actions (CI/CD)
 - AWS (ECS, ECR, EC2, S3, RDS, SageMaker, Load Balancer)
 
+### 📱Android App: Built with Java (Android Studio) and TensorFlow Lite
 ---
 
 AI Model:

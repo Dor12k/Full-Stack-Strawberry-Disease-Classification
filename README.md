@@ -90,9 +90,9 @@ Finally, I established a complete **CI/CD pipeline** using **Pytest**, **Jest**,
 - Fine-tuned ResNet50 model (deployed on AWS SageMaker)
 
 ### ☁️ Deployment & DevOps
-- AWS (ECS, ECR, EC2, S3, RDS, SageMaker, Load Balancer)
 - Docker
 - GitHub Actions (CI/CD)
+- AWS (ECS, ECR, EC2, S3, RDS, SageMaker, Load Balancer)
 
 ---
 
